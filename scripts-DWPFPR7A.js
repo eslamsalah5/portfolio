@@ -1,1 +1,0 @@
-(function(){"use strict";document.fonts&&document.fonts.ready&&document.fonts.ready.then(function(){document.body.classList.add("fonts-loaded")}),setTimeout(function(){document.body.classList.add("fonts-loaded")},3e3),["assets/images/1.jpg","assets/images/2.jpg"].forEach(function(s){const t=new Image;t.src=s})})();
