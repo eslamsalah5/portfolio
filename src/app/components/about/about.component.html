@@ -1,0 +1,372 @@
+<!-- About Section -->
+<section id="about" class="about-section py-5">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h2 class="section-title">
+          <i class="fas fa-user me-3"></i>
+          About Me
+        </h2>
+        <p class="section-subtitle">Get to know me better</p>
+      </div>
+    </div>
+
+    <!-- Main About Content -->
+    <div class="row">
+      <!-- Personal Info & Image -->
+      <div class="col-lg-4 mb-4">
+        <div class="about-card">
+          <div class="profile-image-container">
+            <img
+              [src]="personalInfo.profileImage"
+              [alt]="personalInfo.name"
+              class="profile-image"
+            />
+            <div class="profile-overlay">
+              <div class="social-links">
+                <button
+                  class="social-btn linkedin"
+                  (click)="openLinkedIn()"
+                  title="LinkedIn Profile"
+                >
+                  <i class="fab fa-linkedin-in"></i>
+                </button>
+                <button
+                  class="social-btn github"
+                  (click)="openGitHub()"
+                  title="GitHub Profile"
+                >
+                  <i class="fab fa-github"></i>
+                </button>
+                <button
+                  class="social-btn email"
+                  (click)="openEmail()"
+                  title="Send Email"
+                >
+                  <i class="fas fa-envelope"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-info">
+            <h3 class="profile-name">{{ personalInfo.name }}</h3>
+            <p class="profile-title">{{ personalInfo.title }}</p>
+            <p class="profile-location">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              {{ personalInfo.location }}
+            </p>
+          </div>
+
+          <!-- Quick Contact Buttons -->
+          <div class="quick-contact-buttons mt-3">
+            <button
+              class="btn btn-sm btn-outline-primary me-2"
+              (click)="openEmail()"
+              title="Send Email"
+            >
+              <i class="fas fa-envelope me-1"></i>
+              Email
+            </button>
+            <button
+              class="btn btn-sm btn-outline-success"
+              (click)="callPhone()"
+              title="Call Phone"
+            >
+              <i class="fas fa-phone me-1"></i>
+              Call
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Details -->
+      <div class="col-lg-8">
+        <div class="about-content">
+          <!-- Summary -->
+          <div class="about-summary mb-4">
+            <h4 class="content-title">
+              <i class="fas fa-quote-left me-2"></i>
+              Professional Summary
+            </h4>
+            <p class="summary-text">
+              {{ personalInfo.summary }}
+            </p>
+
+            <!-- Key Highlights -->
+            <div class="key-highlights mt-3">
+              <h5 class="highlights-title">
+                <i class="fas fa-star me-2"></i>
+                Key Highlights
+              </h5>
+              <ul class="highlights-list">
+                <li>
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  Specialized in .NET Full Stack Development with
+                  {{ getYearsOfExperience() }}+ years experience
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  Proficient in modern technologies: Angular, ASP.NET Core,
+                  Flutter
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  Experience with Clean Architecture and advanced design
+                  patterns
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  Successfully delivered 9+ projects across web and mobile
+                  platforms
+                </li>
+                <li>
+                  <i class="fas fa-check-circle text-success me-2"></i>
+                  Graduate with Excellent Honors from Zagazig University (GPA:
+                  3.63)
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="stats-grid mb-4">
+            <div class="stat-item">
+              <div class="stat-number">{{ getYearsOfExperience() }}+</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">{{ internships.length }}</div>
+              <div class="stat-label">Training Programs</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">{{ courses.length }}+</div>
+              <div class="stat-label">Certifications</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">9+</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="contact-info mb-4">
+            <h4 class="content-title">
+              <i class="fas fa-address-card me-2"></i>
+              Professional Contact
+            </h4>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="contact-item">
+                  <div class="contact-icon email-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span class="contact-label">Professional Email</span>
+                    <a
+                      [href]="'mailto:' + personalInfo.email"
+                      class="contact-value"
+                    >
+                      {{ personalInfo.email }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="contact-item">
+                  <div class="contact-icon phone-icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div class="contact-details">
+                    <span class="contact-label">Direct Phone</span>
+                    <a
+                      [href]="'tel:' + personalInfo.phone"
+                      class="contact-value"
+                    >
+                      {{ getFormattedPhone() }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Professional Links -->
+            <div class="professional-links mt-3">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="contact-item">
+                    <div class="contact-icon linkedin-icon">
+                      <i class="fab fa-linkedin-in"></i>
+                    </div>
+                    <div class="contact-details">
+                      <span class="contact-label">LinkedIn Profile</span>
+                      <a
+                        [href]="personalInfo.linkedin"
+                        target="_blank"
+                        class="contact-value"
+                      >
+                        View Professional Profile
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="contact-item">
+                    <div class="contact-icon github-icon">
+                      <i class="fab fa-github"></i>
+                    </div>
+                    <div class="contact-details">
+                      <span class="contact-label">GitHub Portfolio</span>
+                      <a
+                        [href]="personalInfo.github"
+                        target="_blank"
+                        class="contact-value"
+                      >
+                        View Code Repository
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CV Download Section -->
+          <div class="cv-download-section mb-4">
+            <h4 class="content-title">
+              <i class="fas fa-file-download me-2"></i>
+              Download Resume/CV
+            </h4>
+            <p class="cv-description">
+              Get my professional resume tailored for different roles and
+              technologies
+            </p>
+            <div class="cv-buttons">
+              <a
+                *ngFor="let cv of cvs"
+                [href]="cv.url"
+                target="_blank"
+                class="cv-btn"
+                [title]="'Download ' + cv.name"
+              >
+                <div class="cv-btn-icon" [style.background-color]="cv.color">
+                  <i [class]="cv.icon"></i>
+                </div>
+                <div class="cv-btn-content">
+                  <div class="cv-btn-title">{{ cv.name }}</div>
+                  <div class="cv-btn-subtitle">{{ cv.type }}</div>
+                </div>
+                <div class="cv-btn-action">
+                  <i class="fas fa-download"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education & Training -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <h3 class="subsection-title">
+          <i class="fas fa-graduation-cap me-3"></i>
+          Education & Training
+        </h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Education -->
+      <div class="col-lg-6 mb-4">
+        <div class="timeline-section">
+          <h4 class="timeline-title">
+            <i class="fas fa-university me-2"></i>
+            Education
+          </h4>
+          <div class="timeline">
+            <div *ngFor="let edu of education" class="timeline-item">
+              <div class="timeline-marker education-marker">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="timeline-content">
+                <h5 class="timeline-degree">{{ edu.degree }}</h5>
+                <p class="timeline-institution">{{ edu.institution }}</p>
+                <span class="timeline-period">{{ edu.period }}</span>
+                <p *ngIf="edu.description" class="timeline-description">
+                  {{ edu.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Training & Internships -->
+      <div class="col-lg-6 mb-4">
+        <div class="timeline-section">
+          <h4 class="timeline-title">
+            <i class="fas fa-briefcase me-2"></i>
+            Training Programs
+          </h4>
+          <div class="timeline">
+            <div *ngFor="let internship of internships" class="timeline-item">
+              <div class="timeline-marker training-marker">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <div class="timeline-content">
+                <h5 class="timeline-degree">{{ internship.title }}</h5>
+                <p class="timeline-institution">{{ internship.company }}</p>
+                <span class="timeline-period">{{ internship.period }}</span>
+                <p class="timeline-description">{{ internship.description }}</p>
+                <div class="tech-tags">
+                  <span
+                    *ngFor="let tech of internship.technologies"
+                    class="tech-tag"
+                  >
+                    {{ tech }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Certifications -->
+    <div class="row mt-4" *ngIf="courses.length > 0">
+      <div class="col-12">
+        <h4 class="subsection-title">
+          <i class="fas fa-award me-2"></i>
+          Certifications & Courses
+        </h4>
+        <div class="certifications-grid">
+          <div
+            *ngFor="let course of getRecentCourses()"
+            class="certification-card"
+          >
+            <div class="cert-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <div class="cert-content">
+              <h5 class="cert-name">{{ course.name }}</h5>
+              <p class="cert-provider">{{ course.provider }}</p>
+              <span class="cert-date">{{ course.date }}</span>
+              <a
+                *ngIf="course.url"
+                [href]="course.url"
+                target="_blank"
+                class="cert-link"
+              >
+                <i class="fas fa-external-link-alt me-1"></i>
+                View Certificate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

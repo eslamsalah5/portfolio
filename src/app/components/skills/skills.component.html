@@ -1,0 +1,51 @@
+<!-- Skills Section -->
+<section id="skills" class="skills-section py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="section-title">My Skills</h2>
+        <p class="text-center text-muted mb-5">
+          Technologies and tools I work with professionally
+        </p>
+      </div>
+    </div>
+
+    <!-- Dynamic Skills Categories -->
+    <div *ngFor="let category of skillCategories">
+      <!-- Category Title -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <h3 class="skills-category-title mb-4">{{ category }}</h3>
+        </div>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="row mb-5">
+        <div
+          class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-3"
+          *ngFor="let skill of getSkillsByCategory(category)"
+        >
+          <div class="skill-card">
+            <div class="skill-icon">
+              <!-- Font Awesome Icon -->
+              <i
+                *ngIf="!isTextIcon(skill)"
+                [class]="getIconClass(skill)"
+                [style.color]="skill.color"
+              ></i>
+              <!-- Text Icon -->
+              <span
+                *ngIf="isTextIcon(skill)"
+                [style.color]="skill.color"
+                style="font-weight: bold; font-size: 1.5rem"
+              >
+                {{ getIconText(skill) }}
+              </span>
+            </div>
+            <h5 class="skill-name">{{ skill.name }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

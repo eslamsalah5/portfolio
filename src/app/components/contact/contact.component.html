@@ -1,0 +1,378 @@
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <!-- Animated Background Elements -->
+  <div class="contact-bg-elements">
+    <div class="floating-circle circle-1"></div>
+    <div class="floating-circle circle-2"></div>
+    <div class="floating-circle circle-3"></div>
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+  </div>
+
+  <div class="container">
+    <!-- Enhanced Section Header -->
+    <div class="section-header-wrapper text-center">
+      <div class="section-icon-wrapper">
+        <div class="icon-pulse"></div>
+        <i class="fas fa-envelope section-main-icon"></i>
+      </div>
+      <h2 class="gradient-text">Get In Touch</h2>
+      <div class="title-underline"></div>
+      <p class="section-subtitle">
+        Looking for a skilled developer? I'm available for job opportunities,
+        freelance projects, and collaborations. Let's discuss how I can
+        contribute to your team!
+      </p>
+    </div>
+
+    <div class="row justify-content-center">
+      <!-- Enhanced Contact Form -->
+      <div class="col-lg-8 col-xl-7">
+        <div class="contact-form-container">
+          <!-- Status Message -->
+          <div
+            class="status-message-container"
+            *ngIf="showStatusMessage"
+            [ngClass]="getStatusClasses()"
+          >
+            <div class="status-content">
+              <i [class]="getStatusIcon()"></i>
+              <div class="status-text">
+                <h4 class="status-title">
+                  {{
+                    emailStatus.isLoading
+                      ? "Sending Message..."
+                      : emailStatus.isSuccess
+                      ? "Message Sent!"
+                      : "Oops! Something went wrong"
+                  }}
+                </h4>
+                <p class="status-description">{{ emailStatus.message }}</p>
+              </div>
+              <button
+                type="button"
+                class="status-close-btn"
+                (click)="dismissStatusMessage()"
+                *ngIf="!emailStatus.isLoading"
+              >
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Form Header -->
+          <div class="form-header">
+            <div class="form-icon-wrapper">
+              <i class="fas fa-comments form-header-icon"></i>
+            </div>
+            <h3 class="form-title">Send Me a Message</h3>
+            <p class="form-description">
+              I'm actively seeking new opportunities in Flutter, Full Stack, and
+              .NET Backend development. If you have a job opening, freelance
+              project, or collaboration opportunity - let's connect!
+            </p>
+          </div>
+
+          <form
+            class="enhanced-contact-form"
+            #contactForm="ngForm"
+            (ngSubmit)="onSubmit(contactForm)"
+            [class.form-disabled]="emailStatus.isLoading"
+          >
+            <!-- Name Fields Row -->
+            <div class="form-row">
+              <div class="form-group-enhanced">
+                <div class="input-wrapper">
+                  <label class="floating-label">
+                    <i class="fas fa-user label-icon"></i>
+                    First Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    class="form-input-enhanced"
+                    placeholder=" "
+                    required
+                    [(ngModel)]="formData.firstName"
+                    #firstName="ngModel"
+                    [disabled]="emailStatus.isLoading"
+                  />
+                  <div class="input-focus-border"></div>
+                </div>
+                <div
+                  class="error-message"
+                  *ngIf="firstName.invalid && firstName.touched"
+                >
+                  <i class="fas fa-exclamation-circle me-1"></i>
+                  First name is required
+                </div>
+              </div>
+
+              <div class="form-group-enhanced">
+                <div class="input-wrapper">
+                  <label class="floating-label">
+                    <i class="fas fa-user label-icon"></i>
+                    Last Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    class="form-input-enhanced"
+                    placeholder=" "
+                    required
+                    [(ngModel)]="formData.lastName"
+                    #lastName="ngModel"
+                    [disabled]="emailStatus.isLoading"
+                  />
+                  <div class="input-focus-border"></div>
+                </div>
+                <div
+                  class="error-message"
+                  *ngIf="lastName.invalid && lastName.touched"
+                >
+                  <i class="fas fa-exclamation-circle me-1"></i>
+                  Last name is required
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Info Row -->
+            <div class="form-row">
+              <div class="form-group-enhanced">
+                <div class="input-wrapper">
+                  <label class="floating-label">
+                    <i class="fas fa-envelope label-icon"></i>
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input-enhanced"
+                    placeholder=" "
+                    required
+                    email
+                    [(ngModel)]="formData.email"
+                    #email="ngModel"
+                    [disabled]="emailStatus.isLoading"
+                  />
+                  <div class="input-focus-border"></div>
+                </div>
+                <div
+                  class="error-message"
+                  *ngIf="email.invalid && email.touched"
+                >
+                  <i class="fas fa-exclamation-circle me-1"></i>
+                  <span *ngIf="email.errors?.['required']"
+                    >Email is required</span
+                  >
+                  <span *ngIf="email.errors?.['email']"
+                    >Please enter a valid email</span
+                  >
+                </div>
+              </div>
+
+              <div class="form-group-enhanced">
+                <div class="input-wrapper">
+                  <label class="floating-label">
+                    <i class="fas fa-phone label-icon"></i>
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="form-input-enhanced"
+                    placeholder=" "
+                    [(ngModel)]="formData.phone"
+                    #phone="ngModel"
+                    [disabled]="emailStatus.isLoading"
+                  />
+                  <div class="input-focus-border"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project Type -->
+            <div class="form-group-enhanced full-width">
+              <div class="select-wrapper">
+                <label class="floating-label">
+                  <i class="fas fa-briefcase label-icon"></i>
+                  Opportunity Type *
+                </label>
+                <select
+                  id="subject"
+                  name="subject"
+                  class="form-select-enhanced"
+                  required
+                  [(ngModel)]="formData.subject"
+                  #subject="ngModel"
+                  [disabled]="emailStatus.isLoading"
+                >
+                  <option value="">Select opportunity type</option>
+                  <option value="job-flutter">
+                    🚀 Job Opportunity - Flutter Developer
+                  </option>
+                  <option value="job-fullstack">
+                    💼 Job Opportunity - Full Stack Developer
+                  </option>
+                  <option value="job-dotnet">
+                    ⚡ Job Opportunity - .NET Backend Developer
+                  </option>
+                  <option value="job-angular">
+                    🌟 Job Opportunity - Angular Frontend Developer
+                  </option>
+                  <option value="freelance-project">
+                    💰 Freelance Project Opportunity
+                  </option>
+                  <option value="collaboration">
+                    🤝 Partnership & Collaboration
+                  </option>
+                  <option value="consultation">
+                    🎯 Technical Consultation
+                  </option>
+                  <option value="internship">📚 Internship Opportunity</option>
+                  <option value="other">💬 General Inquiry</option>
+                </select>
+                <i class="fas fa-chevron-down select-arrow"></i>
+              </div>
+              <div
+                class="error-message"
+                *ngIf="subject.invalid && subject.touched"
+              >
+                <i class="fas fa-exclamation-circle me-1"></i>
+                Please select an opportunity type
+              </div>
+            </div>
+
+            <!-- Project Details -->
+            <div class="form-group-enhanced full-width">
+              <div class="textarea-wrapper">
+                <label class="floating-label">
+                  <i class="fas fa-file-alt label-icon"></i>
+                  Opportunity Details *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-textarea-enhanced"
+                  placeholder=" "
+                  required
+                  [(ngModel)]="formData.message"
+                  #message="ngModel"
+                  [disabled]="emailStatus.isLoading"
+                ></textarea>
+                <div class="textarea-focus-border"></div>
+              </div>
+              <div
+                class="error-message"
+                *ngIf="message.invalid && message.touched"
+              >
+                <i class="fas fa-exclamation-circle me-1"></i>
+                Opportunity details are required
+              </div>
+            </div>
+
+            <!-- Enhanced Action Buttons -->
+            <div class="form-actions-enhanced">
+              <button
+                type="submit"
+                class="btn-send-enhanced"
+                [disabled]="contactForm.invalid || emailStatus.isLoading"
+              >
+                <div class="btn-hover-effect"></div>
+                <div class="btn-content">
+                  <i
+                    [class]="
+                      emailStatus.isLoading
+                        ? 'fas fa-spinner fa-spin'
+                        : 'fas fa-paper-plane'
+                    "
+                  ></i>
+                  {{ emailStatus.isLoading ? "Sending..." : "Send Message" }}
+                </div>
+              </button>
+
+              <button
+                type="button"
+                class="btn-reset-enhanced"
+                (click)="resetForm(contactForm)"
+                [disabled]="emailStatus.isLoading"
+              >
+                <div class="btn-content">
+                  <i class="fas fa-redo"></i>
+                  Reset Form
+                </div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Quick Contact Section -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="quick-contact-section">
+          <div class="quick-contact-header">
+            <div class="quick-icon-wrapper">
+              <i class="fas fa-bolt quick-contact-icon"></i>
+            </div>
+            <h4 class="quick-contact-title">Ready to Hire or Collaborate?</h4>
+            <p class="quick-contact-description">
+              For immediate job opportunities, urgent project discussions, or
+              quick questions about my availability, reach out directly through
+              these channels
+            </p>
+          </div>
+          <div class="quick-contact-grid">
+            <a
+              [href]="'mailto:' + personalInfo?.email"
+              class="quick-contact-card email-card"
+              title="Send Email"
+            >
+              <div class="card-icon-wrapper">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="card-content">
+                <h5>Email Me</h5>
+                <p>{{ personalInfo?.email }}</p>
+              </div>
+            </a>
+
+            <a
+              [href]="personalInfo?.linkedin"
+              target="_blank"
+              class="quick-contact-card linkedin-card"
+              title="LinkedIn Message"
+            >
+              <div class="card-icon-wrapper">
+                <i class="fab fa-linkedin"></i>
+              </div>
+              <div class="card-content">
+                <h5>LinkedIn</h5>
+                <p>Professional Network</p>
+              </div>
+            </a>
+
+            <a
+              [href]="'tel:' + personalInfo?.phone"
+              class="quick-contact-card phone-card"
+              title="Call Phone"
+            >
+              <div class="card-icon-wrapper">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="card-content">
+                <h5>Call Now</h5>
+                <p>{{ personalInfo?.phone }}</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

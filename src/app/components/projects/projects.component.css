@@ -1,0 +1,339 @@
+/* Projects Section Styles */
+.projects-section {
+  background: var(--bg-primary);
+  padding: var(--spacing-4xl) 0;
+}
+
+/* Project Filters */
+.project-filters {
+  margin-bottom: var(--spacing-3xl);
+}
+
+.filter-btn {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  margin: 0 var(--spacing-sm);
+  border-radius: var(--border-radius-lg);
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-normal);
+  cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+/* Project Cards */
+.project-item {
+  margin-bottom: var(--spacing-xl);
+}
+
+.project-card {
+  background: white;
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: 0 10px 30px var(--shadow-light);
+  transition: var(--transition-normal);
+  height: 100%;
+  border: 2px solid transparent;
+}
+
+.project-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 60px var(--shadow-medium);
+  border-color: var(--secondary-color);
+}
+
+/* Project Image */
+.project-image {
+  position: relative;
+  height: 250px;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image-placeholder {
+  color: white;
+  opacity: 0.8;
+  transition: var(--transition-normal);
+}
+
+.project-card:hover .image-placeholder {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* Project Overlay */
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition-normal);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-links {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.project-link {
+  width: 50px;
+  height: 50px;
+  background: var(--secondary-color);
+  color: white;
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: var(--transition-normal);
+  font-size: var(--font-size-lg);
+}
+
+.project-link:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Project Content */
+.project-content {
+  padding: var(--spacing-xl);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+.project-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 0;
+  line-height: var(--line-height-tight);
+  flex: 1;
+}
+
+.project-type-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.badge-personal {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.badge-academic {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+  color: white;
+}
+
+.badge-graduation {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+}
+
+.badge-freelance {
+  background: linear-gradient(135deg, #43e97b, #38f9d7);
+  color: white;
+}
+
+.badge-default {
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  color: #8b4513;
+}
+
+/* Project Technologies */
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.project-technologies .tech-tag {
+  background: var(--gradient-accent);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-normal);
+}
+
+.project-technologies .tech-tag:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+/* Project Card Variations */
+.project-card:nth-child(3n + 1) .project-image {
+  background: var(--gradient-primary);
+}
+
+.project-card:nth-child(3n + 2) .project-image {
+  background: var(--gradient-secondary);
+}
+
+.project-card:nth-child(3n + 3) .project-image {
+  background: var(--gradient-accent);
+}
+
+/* Load More Button */
+.btn-lg {
+  padding: var(--spacing-md) var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Filter Animation */
+.project-item {
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-item.fade-out {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+.project-item.fade-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hover Effects */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.project-card:hover .project-title {
+  color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .project-filters {
+    text-align: center;
+  }
+
+  .filter-btn {
+    display: block;
+    width: 100%;
+    margin: var(--spacing-sm) 0;
+  }
+
+  .project-image {
+    height: 200px;
+  }
+
+  .project-content {
+    padding: var(--spacing-lg);
+  }
+
+  .project-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .project-description {
+    font-size: var(--font-size-sm);
+  }
+
+  .project-links {
+    gap: var(--spacing-md);
+  }
+
+  .project-link {
+    width: 40px;
+    height: 40px;
+    font-size: var(--font-size-base);
+  }
+
+  .project-technologies {
+    gap: var(--spacing-xs);
+  }
+
+  .project-technologies .tech-tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+
+  .project-type-badge {
+    align-self: flex-end;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .project-content {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Animation on Scroll */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-item {
+  animation: slideUp 0.6s ease-out;
+}
+
+.project-item:nth-child(even) {
+  animation-delay: 0.1s;
+}
+
+.project-item:nth-child(3n) {
+  animation-delay: 0.2s;
+}

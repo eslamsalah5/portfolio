@@ -1,0 +1,294 @@
+<!-- Project Details Section -->
+<section class="project-details-section py-5">
+  <div class="container" *ngIf="project">
+    <!-- Back Button -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <button class="btn btn-outline-primary" (click)="goBack()">
+          <i class="fas fa-arrow-left me-2"></i>
+          Back to Projects
+        </button>
+      </div>
+    </div>
+
+    <!-- Project Header -->
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="project-header">
+          <h1 class="project-title">{{ project.title }}</h1>
+          <div class="project-links mt-3">
+            <a
+              *ngIf="project.githubUrl"
+              [href]="project.githubUrl"
+              target="_blank"
+              class="btn btn-dark me-3"
+            >
+              <i class="fab fa-github me-2"></i>
+              View Code
+            </a>
+            <a
+              *ngIf="project.demoUrl"
+              [href]="project.demoUrl"
+              target="_blank"
+              class="btn btn-primary"
+            >
+              <i class="fas fa-external-link-alt me-2"></i>
+              Live Demo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Content -->
+    <div class="row">
+      <!-- Main Content -->
+      <div class="col-lg-8 mb-4">
+        <!-- Project Image/Gallery -->
+        <div class="project-gallery mb-4">
+          <div class="main-image">
+            <img
+              [src]="project.image"
+              [alt]="project.title"
+              class="img-fluid rounded shadow"
+              (error)="onImageError($event)"
+              [style.display]="showDefaultIcon ? 'none' : 'block'"
+            />
+            <!-- Default Project Icon -->
+            <div
+              *ngIf="showDefaultIcon"
+              class="default-project-image d-flex align-items-center justify-content-center rounded shadow"
+            >
+              <div class="text-center">
+                <i [class]="getProjectIcon()" class="project-icon mb-3"></i>
+                <h5 class="project-type">{{ getProjectCategory() }}</h5>
+                <p class="text-muted">{{ project.title }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Gallery Images -->
+          <div
+            *ngIf="project.gallery && project.gallery.length > 0"
+            class="gallery-images mt-3"
+          >
+            <h5 class="gallery-title mb-3">
+              <i class="fas fa-images me-2"></i>
+              Project Gallery
+            </h5>
+            <div class="row g-3">
+              <!-- Display first 3 images -->
+              <div
+                *ngFor="
+                  let galleryImage of getDisplayedGalleryImages();
+                  let i = index
+                "
+                class="col-md-6 col-lg-4"
+              >
+                <div
+                  class="gallery-item"
+                  (click)="openImageModal(galleryImage, i)"
+                  [class.has-overlay]="i === 2 && getRemainingImagesCount() > 0"
+                >
+                  <img
+                    [src]="galleryImage"
+                    [alt]="project.title + ' - Image ' + (i + 1)"
+                    class="img-fluid rounded shadow-sm gallery-image"
+                    (error)="onGalleryImageError($event, i)"
+                    (click)="
+                      $event.stopPropagation(); openImageModal(galleryImage, i)
+                    "
+                  />
+                  <div class="gallery-overlay">
+                    <i class="fas fa-search-plus"></i>
+                  </div>
+                  <!-- Show remaining count on last image if there are more -->
+                  <div
+                    *ngIf="i === 2 && getRemainingImagesCount() > 0"
+                    class="remaining-count-overlay"
+                    (click)="openImageModal(galleryImage, i)"
+                  >
+                    <span class="remaining-count"
+                      >+{{ getRemainingImagesCount() }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Modal -->
+        <div
+          *ngIf="selectedImage"
+          class="image-modal-overlay"
+          (click)="closeImageModal()"
+        >
+          <div class="image-modal-container" (click)="$event.stopPropagation()">
+            <button class="modal-close-btn" (click)="closeImageModal()">
+              <i class="fas fa-times"></i>
+            </button>
+            <div
+              class="modal-navigation"
+              *ngIf="project.gallery && project.gallery.length > 1"
+            >
+              <button
+                class="nav-btn prev-btn"
+                (click)="previousImage()"
+                [disabled]="currentImageIndex === 0"
+              >
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button
+                class="nav-btn next-btn"
+                (click)="nextImage()"
+                [disabled]="currentImageIndex === project.gallery!.length - 1"
+              >
+                <i class="fas fa-chevron-right"></i>
+              </button>
+            </div>
+            <img
+              [src]="selectedImage"
+              [alt]="project.title"
+              class="modal-image"
+            />
+            <div
+              class="image-counter"
+              *ngIf="project.gallery && project.gallery.length > 1"
+            >
+              {{ currentImageIndex + 1 }} / {{ project.gallery.length }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Description -->
+        <div class="project-description mb-4">
+          <h3>About This Project</h3>
+          <p class="lead">{{ project.description }}</p>
+
+          <!-- Full Description Section -->
+          <div *ngIf="project.fullDescription" class="full-description mt-4">
+            <div class="description-header">
+              <div class="description-icon">
+                <i class="fas fa-info-circle"></i>
+              </div>
+              <h4>Project Details</h4>
+            </div>
+            <div class="description-container">
+              <div
+                class="full-description-content"
+                [innerHTML]="getFormattedDescription()"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="project-features mb-4">
+          <h3>Key Features</h3>
+          <div class="features-list">
+            <div
+              class="feature-item"
+              *ngFor="let feature of getProjectFeatures()"
+            >
+              <i class="fas fa-check-circle text-success me-2"></i>
+              {{ feature }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Technologies Used -->
+        <div class="project-technologies mb-4">
+          <h3>Technologies Used</h3>
+          <div class="tech-stack-grid">
+            <div
+              *ngFor="let tech of project.technologies"
+              class="tech-card"
+              [style.border-left-color]="getTechColor(tech)"
+            >
+              <div class="tech-card-content">
+                <div class="tech-icon">
+                  <i [class]="getTechIcon(tech)"></i>
+                </div>
+                <div class="tech-info">
+                  <span class="tech-name">{{ tech }}</span>
+                  <small class="tech-category">{{
+                    getTechCategory(tech)
+                  }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-lg-4">
+        <!-- Project Info Card -->
+        <div class="project-info-card">
+          <h4>Project Information</h4>
+          <div class="info-item">
+            <strong>Project Type:</strong>
+            <span
+              class="ms-2 project-type-badge"
+              [ngClass]="getProjectTypeBadgeClass()"
+            >
+              {{ getProjectTypeDisplay() }}
+            </span>
+          </div>
+          <div class="info-item">
+            <strong>Category:</strong>
+            <span class="ms-2">{{ getProjectCategory() }}</span>
+          </div>
+          <div class="info-item">
+            <strong>Technologies:</strong>
+            <span class="ms-2"
+              >{{ project.technologies.length }} technologies</span
+            >
+          </div>
+          <div class="info-item" *ngIf="project.githubUrl">
+            <strong>Repository:</strong>
+            <a [href]="project.githubUrl" target="_blank" class="ms-2">
+              View on GitHub
+            </a>
+          </div>
+          <div class="info-item" *ngIf="project.demoUrl">
+            <strong>Live Demo:</strong>
+            <a [href]="project.demoUrl" target="_blank" class="ms-2">
+              View Demo
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="project-navigation mt-4">
+          <h5>More Projects</h5>
+          <div class="nav-buttons">
+            <button
+              class="btn btn-outline-secondary btn-sm w-100 mb-2"
+              (click)="goToPreviousProject()"
+            >
+              <i class="fas fa-arrow-left me-2"></i>
+              Previous Project
+            </button>
+            <button
+              class="btn btn-outline-secondary btn-sm w-100"
+              (click)="goToNextProject()"
+            >
+              Next Project
+              <i class="fas fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="container text-center py-5" *ngIf="!project">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3">Loading project details...</p>
+  </div>
+</section>
