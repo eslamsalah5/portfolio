@@ -170,6 +170,11 @@
   color: white;
 }
 
+.badge-professional {
+  background: linear-gradient(135deg, #4937bb, #7c4dff);
+  color: white;
+}
+
 .badge-default {
   background: linear-gradient(135deg, #ffecd2, #fcb69f);
   color: #8b4513;

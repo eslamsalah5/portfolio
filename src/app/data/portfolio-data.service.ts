@@ -12,7 +12,12 @@ export interface Project {
   description: string;
   technologies: string[];
   image: string;
-  projectType: 'Personal Training' | 'Academic' | 'Graduation' | 'Freelance';
+  projectType:
+    | 'Personal Training'
+    | 'Academic'
+    | 'Graduation'
+    | 'Freelance'
+    | 'Professional';
   demoUrl?: string;
   githubUrl?: string;
   fullDescription?: string;
@@ -75,7 +80,7 @@ export class PortfolioDataService {
     linkedin: 'https://linkedin.com/in/eslamsalah55',
     github: 'https://github.com/eslamsalah5',
     summary:
-      "I'm Eslam Mohamed Salah, a Full‑Stack Developer driven by a passion for building intuitive and impactful digital experiences. I graduated with honors from the Faculty of Computers and Information at Zagazig University and sharpened my practical skills during a rigorous five‑month program at ITI. I thrive on turning complex requirements into clean, user‑friendly solutions and enjoy collaborating closely with teams to bring ideas to life. Always eager to learn, I embrace new challenges and continuously refine my craft to deliver reliable, maintainable applications that make a real difference.",
+      "I'm Eslam Mohamed Salah, a Full‑Stack Developer driven by a passion for building intuitive and impactful digital experiences. I graduated with honors from the Faculty of Computers and Information at Zagazig University and sharpened my practical skills during a rigorous five‑month program at ITI. I thrive on turning complex requirements into clean, user‑friendly solutions and enjoy collaborating closely with teams to bring ideas to life. I am always eager to learn, embrace new challenges, and continuously refine my craft to deliver reliable, maintainable applications that make a real difference.",
     profileImage: 'assets/images/1.jpg',
   };
 
@@ -157,6 +162,18 @@ export class PortfolioDataService {
       category: 'Backend Technologies',
     },
     {
+      name: 'Google OAuth',
+      icon: 'fab fa-google',
+      color: '#4285f4',
+      category: 'Backend Technologies',
+    },
+    {
+      name: 'Facebook OAuth',
+      icon: 'fab fa-facebook',
+      color: '#1877f2',
+      category: 'Backend Technologies',
+    },
+    {
       name: 'Identity',
       icon: 'fas fa-user-shield',
       color: '#ff6f00',
@@ -202,6 +219,18 @@ export class PortfolioDataService {
       name: 'Stored Procedures',
       icon: 'fas fa-cogs',
       color: '#cc2927',
+      category: 'Backend Technologies',
+    },
+    {
+      name: 'FluentValidation',
+      icon: 'fas fa-check-circle',
+      color: '#28a745',
+      category: 'Backend Technologies',
+    },
+    {
+      name: 'ACID Transactions',
+      icon: 'fas fa-shield-alt',
+      color: '#17a2b8',
       category: 'Backend Technologies',
     },
 
@@ -408,6 +437,12 @@ export class PortfolioDataService {
       category: 'Development Tools',
     },
     {
+      name: 'Serilog',
+      icon: 'fas fa-file-alt',
+      color: '#2e7d32',
+      category: 'Development Tools',
+    },
+    {
       name: 'Trello',
       icon: 'fas fa-terminal',
       color: '#0052cc',
@@ -475,10 +510,247 @@ export class PortfolioDataService {
       color: '#00bcd4',
       category: 'Design & Development Concepts',
     },
+    {
+      name: 'Caching Strategies',
+      icon: 'fas fa-bolt',
+      color: '#ff5722',
+      category: 'Design & Development Concepts',
+    },
+    {
+      name: 'API Versioning',
+      icon: 'fas fa-code-branch',
+      color: '#607d8b',
+      category: 'Design & Development Concepts',
+    },
+    {
+      name: 'Rate Limiting',
+      icon: 'fas fa-tachometer-alt',
+      color: '#e91e63',
+      category: 'Design & Development Concepts',
+    },
+
+    // Cloud & DevOps
+    {
+      name: 'Redis',
+      icon: 'fas fa-database',
+      color: '#dc382d',
+      category: 'Cloud & DevOps',
+    },
+    {
+      name: 'Azure',
+      icon: 'fab fa-microsoft',
+      color: '#0078d4',
+      category: 'Cloud & DevOps',
+    },
+    {
+      name: 'Docker',
+      icon: 'fab fa-docker',
+      color: '#2496ed',
+      category: 'Cloud & DevOps',
+    },
+    {
+      name: 'Hangfire',
+      icon: 'fas fa-clock',
+      color: '#4a148c',
+      category: 'Cloud & DevOps',
+    },
+    {
+      name: 'CI/CD',
+      icon: 'fas fa-sync-alt',
+      color: '#ff6f00',
+      category: 'Cloud & DevOps',
+    },
   ];
 
   // Projects Data
   projects: Project[] = [
+    {
+      title:
+        'Insta Dawa - Enterprise Medical Distribution Platform (Backend API)',
+      description:
+        'Production-ready ASP.NET Core 9 backend serving an Angular 21 admin dashboard and a Flutter mobile app for B2B pharmaceutical distribution across Egypt. Features 400+ REST API endpoints, Clean Architecture, AI-powered product mapping, comprehensive order management, and enterprise-grade security with JWT + API Key authentication.',
+      technologies: [
+        'ASP.NET Core 9',
+        'Entity Framework Core 9',
+        'SQL Server',
+        'Redis',
+        'JWT Authentication',
+        'API Key Auth',
+        'Clean Architecture',
+        'Repository Pattern',
+        'Unit of Work',
+        'Hangfire',
+        'Firebase FCM',
+        'AutoMapper',
+        'FluentValidation',
+        'Serilog',
+        'Swagger',
+        'API Versioning',
+        'Rate Limiting',
+        'QuestPDF',
+        'ClosedXML',
+      ],
+      image: 'assets/images/insta-dawa-api.jpg',
+      projectType: 'Professional',
+      fullDescription: `Architecture & Design:
+• Clean Architecture with 4 layers (API, Application, Domain, Infrastructure)
+• SOLID principles with clear separation of concerns and dependency inversion
+• Repository & Unit of Work patterns for data access abstraction
+• Result Pattern for graceful error handling in business logic
+• Decorator Pattern for repository logging and caching
+
+Authentication & Security:
+• Dual authentication: JWT tokens + API Key for external warehouse systems
+• Role-Based Access Control with 6 user roles (SystemAdmin, SupportAgent, WarehouseManager, PharmacyDoctor, Employee types)
+• OTP system for email confirmation and password reset
+• Multi-device session management with device fingerprinting
+• Rate limiting per endpoint to prevent brute force and DDoS attacks
+• 3-layer exception handling (Middleware, Filter, Model Validation)
+
+Core Business Features:
+• Product Management with Excel import/export (600+ products seeded)
+• AI-Powered Product Mapping System (45 endpoints) - Intelligent warehouse Excel file processing with 95%+ matching accuracy
+• Multi-Warehouse System with regional coverage and delivery scheduling
+• Shopping Cart with real-time stock validation, quota enforcement, and auto-checkout
+• Order Management: Single & batch orders with 5 order types (Normal, Call, Classic, File, Voice)
+• Returns Management: Complete product returns workflow (Pharmacy, Warehouse, Admin)
+• Invoice Export in Excel, CSV & PDF formats
+• Push Notifications via Firebase Cloud Messaging with session-based tokens
+• Pharmacy Registration: Public self-registration with OTP verification
+
+Performance & Analytics:
+• 70% faster operations through query optimization
+• 89% query reduction in critical paths (N+1 elimination)
+• Redis distributed caching with in-memory fallback
+• Sales Statistics System (38 endpoints) for comprehensive analytics
+• Sales & DataEntry Performance Tracking with leaderboards
+• Pharmacy Target System with bottom-up revenue aggregation
+
+By The Numbers:
+• 400+ REST API endpoints across 31 controllers
+• 48 domain entities with full audit trail
+• 100,000+ lines of code in 530+ files
+• 35+ FluentValidation validators
+• 32 database migrations
+• 5 Hangfire background jobs
+• Code Quality Score: 9/10`,
+    },
+    {
+      title:
+        'Insta Dawa - Pharmaceutical Distribution Platform (Admin Dashboard)',
+      description:
+        'Enterprise Angular 21 admin dashboard for managing the pharmaceutical distribution platform. Built with 70+ standalone components, Signal-based reactive state, 5-role RBAC system with 40+ granular permissions, and 13 feature modules for complete platform control including orders, products, warehouses, AI product mapping, and sales analytics.',
+      technologies: [
+        'Angular 21',
+        'TypeScript',
+        'Bootstrap 5',
+        'Angular Signals',
+        'RxJS',
+        'JWT Authentication',
+        'RBAC',
+        'Lazy Loading',
+        'Standalone Components',
+        'Azure Static Web Apps',
+      ],
+      image: 'assets/images/insta-dawa-angular.jpg',
+      projectType: 'Professional',
+      fullDescription: `Architecture & Design:
+• 100% standalone components with explicit imports, zero NgModules
+• Signal-based reactive state management with Angular Signals
+• Result<T> pattern for consistent error handling across all services
+• Functional guards & interceptors (authGuard, permissionGuard, roleGuard)
+• Dev-only logging with devLog/devError utilities (no-ops in production)
+• Lazy-loaded routes for optimal performance
+
+Authentication & RBAC:
+• JWT authentication with automatic token refresh
+• 5 user roles: SystemAdmin, TeleSales, SalesMan, DataEntry, SupportAgent
+• 40+ granular permissions with permission-based UI rendering
+• Multi-device session management
+
+13 Feature Modules:
+• Dashboard: Role-specific metrics with auto-refresh
+• Employees: CRUD with role assignment and performance tracking
+• Pharmacies: CRUD, registration workflow, doctor info, order history
+• Warehouses: CRUD, product inventory, API keys, orders, coverage areas
+• Products: CRUD, Excel import, barcode, multi-warehouse pricing
+• Orders: 5 order types, batch orders, tracking, scheduling
+• Call Requests: FIFO queue, active call tracking, statistics
+• Returns & Admin Returns: Complete return workflow with approval
+• Product Mapping: Excel upload, AI auto-matching, manual review
+• Pharmacy Targets: Company, region, and governorate target tracking
+• Upload Requests & Profile management
+
+UI & Design:
+• Bootstrap 5.3.8 with custom purple theme (#4131A3)
+• RTL-ready with Arabic locale support
+• Toast notification system
+• Responsive design across all devices
+
+By The Numbers:
+• 70+ standalone components
+• 16 injectable services
+• 55+ routes with lazy loading
+• 80+ API endpoints integrated
+• 19 model files with 120+ TypeScript interfaces
+• Integrated with backend API (80+ endpoints)
+• Serves as control center for Flutter mobile app used by pharmacies`,
+    },
+    {
+      title: 'PayMind - Expense Tracking & Management System',
+      description:
+        'A full-stack expense tracking and wallet management system designed to help users efficiently manage their personal finances. The application allows users to record expenses, categorize spending, manage multiple wallets, and receive payment reminders for upcoming expenses.',
+      technologies: [
+        'ASP.NET Core 9 Web API',
+        'Entity Framework Core',
+        'SQL Server',
+        'JWT Authentication',
+        'Google OAuth',
+        'Facebook OAuth',
+        'Repository Pattern',
+        'Unit of Work',
+        'Onion Architecture',
+        'Serilog',
+        'FluentValidation',
+        'Swagger',
+        'ACID Transactions',
+      ],
+      image: 'assets/images/paymind.jpg',
+      projectType: 'Personal Training',
+      fullDescription: `User Authentication & Authorization:
+• Secure JWT-based authentication system
+• Google and Facebook OAuth integrations for simplified login
+• Protected endpoints with role-based access control
+
+Wallet Management:
+• Create and manage multiple wallets for different purposes
+• Track balance updates with ACID-compliant transactional handling
+• Ensure data reliability and consistency across all operations
+
+Expense Management:
+• Add, update, and delete expenses with comprehensive category selection
+• Future-date support for expenses with automated reminder notifications
+• Image validation for expense attachments (receipts, invoices)
+• Real-time expense tracking and categorization
+
+Reporting & Analytics:
+• Detailed financial reports by day, month, year, or custom date ranges
+• Category-based spending breakdowns and analytics
+• Spending averages and trends for better financial insights
+• Visual representation of financial data patterns
+
+Architecture & Quality:
+• Onion Architecture for separation of concerns and scalability
+• Repository Pattern and Unit of Work for clean data access abstraction
+• SOLID principles implementation for maintainable and testable code
+• Centralized global exception middleware for consistent error handling
+
+Documentation & Monitoring:
+• Comprehensive API documentation with Swagger/OpenAPI
+• Structured logging using Serilog for monitoring and debugging
+• Unified API response format across all endpoints
+• FluentValidation for robust input validation`,
+    },
     {
       title: 'FashionHub - Web API for E-Commerce Platform',
       description:
@@ -898,6 +1170,25 @@ Purpose & Scope:
   // Experience Data
   experience: Experience[] = [
     {
+      title: 'Full-Stack Developer',
+      company: 'Insta Dawa',
+      period: 'Nov 2025 - Present',
+      description:
+        'Working as a Full-Stack Developer building an enterprise-grade B2B pharmaceutical distribution platform. Single-handedly architected and developed the complete system including ASP.NET Core 9 backend (400+ REST endpoints, Clean Architecture, 100K+ LOC), Angular 21 admin dashboard (70+ components, 5-role RBAC), and API infrastructure serving a Flutter mobile app. Achieved 9/10 code quality score with 70% performance optimization in production environment.',
+      technologies: [
+        'ASP.NET Core 9',
+        'Angular 21',
+        'Entity Framework Core 9',
+        'SQL Server',
+        'Redis',
+        'Firebase FCM',
+        'Clean Architecture',
+        'JWT & API Key Auth',
+        'Hangfire',
+        'Azure',
+      ],
+    },
+    {
       title: 'Freelance Full Stack Developer',
       company: 'Self-Employed',
       period: '2023 - Present',
@@ -1005,14 +1296,14 @@ Purpose & Scope:
     {
       name: 'Flutter Developer CV',
       type: 'Mobile Development',
-      url: 'assets/cv/Eslam Salah CV Flutter.pdf', // Add your Flutter CV here
+      url: 'assets/cv/Eslam Salah Flutter CV.pdf', // Add your Flutter CV here
       icon: 'fas fa-mobile-alt',
       color: '#02569b',
     },
     {
       name: '.NET Developer CV',
       type: 'Web Development',
-      url: 'assets/cv/Eslam Salah .NET CV.pdf', // Add your .NET CV here
+      url: 'assets/cv/Eslam Mohamed Salah __ .NET Full Stack Developer.pdf', // Add your .NET CV here
       icon: 'fab fa-microsoft',
       color: '#512bd4',
     },

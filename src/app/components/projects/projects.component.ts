@@ -20,7 +20,7 @@ export class ProjectsComponent implements OnInit {
 
   constructor(
     private portfolioDataService: PortfolioDataService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -41,8 +41,8 @@ export class ProjectsComponent implements OnInit {
             tech.toLowerCase().includes('asp.net') ||
             tech.toLowerCase().includes('web api') ||
             tech.toLowerCase().includes('sql server') ||
-            tech.toLowerCase().includes('core')
-        )
+            tech.toLowerCase().includes('core'),
+        ),
       );
     } else if (category === 'mobile') {
       this.filteredProjects = this.projects.filter((project) =>
@@ -51,8 +51,8 @@ export class ProjectsComponent implements OnInit {
             tech.toLowerCase().includes('flutter') ||
             tech.toLowerCase().includes('dart') ||
             tech.toLowerCase().includes('firebase') ||
-            tech.toLowerCase().includes('mobile')
-        )
+            tech.toLowerCase().includes('mobile'),
+        ),
       );
     }
   }
@@ -68,8 +68,8 @@ export class ProjectsComponent implements OnInit {
             tech.toLowerCase().includes('asp.net') ||
             tech.toLowerCase().includes('web api') ||
             tech.toLowerCase().includes('sql server') ||
-            tech.toLowerCase().includes('core')
-        )
+            tech.toLowerCase().includes('core'),
+        ),
       ).length;
     }
 
@@ -80,8 +80,8 @@ export class ProjectsComponent implements OnInit {
             tech.toLowerCase().includes('flutter') ||
             tech.toLowerCase().includes('dart') ||
             tech.toLowerCase().includes('firebase') ||
-            tech.toLowerCase().includes('mobile')
-        )
+            tech.toLowerCase().includes('mobile'),
+        ),
       ).length;
     }
 
@@ -93,11 +93,11 @@ export class ProjectsComponent implements OnInit {
     const mobileTechs = ['flutter', 'dart', 'firebase', 'mobile'];
 
     const hasWebTech = project.technologies.some((tech) =>
-      webTechs.some((webTech) => tech.toLowerCase().includes(webTech))
+      webTechs.some((webTech) => tech.toLowerCase().includes(webTech)),
     );
 
     const hasMobileTech = project.technologies.some((tech) =>
-      mobileTechs.some((mobileTech) => tech.toLowerCase().includes(mobileTech))
+      mobileTechs.some((mobileTech) => tech.toLowerCase().includes(mobileTech)),
     );
 
     if (hasMobileTech) return 'mobile';
@@ -115,6 +115,8 @@ export class ProjectsComponent implements OnInit {
         return 'badge-graduation';
       case 'Freelance':
         return 'badge-freelance';
+      case 'Professional':
+        return 'badge-professional';
       default:
         return 'badge-default';
     }

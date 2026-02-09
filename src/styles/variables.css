@@ -33,10 +33,19 @@
 
 /* Typography */
 :root {
-  /* Font Families */
-  --font-primary: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  --font-secondary: "Roboto", Arial, sans-serif;
-  --font-mono: "Fira Code", "Courier New", monospace;
+  /* Font Families with fallbacks for faster loading */
+  --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+    sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+    "Courier New", monospace;
+
+  /* Custom fonts (loaded asynchronously) */
+  --font-poppins: "Poppins", var(--font-primary);
+  --font-roboto: "Roboto", var(--font-secondary);
+  --font-fira-code: "Fira Code", var(--font-mono);
 
   /* Font Sizes */
   --font-size-xs: 0.75rem; /* 12px */

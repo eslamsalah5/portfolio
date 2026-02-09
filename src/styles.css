@@ -1,15 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Import Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Fira+Code:wght@300;400;500&display=swap");
-
-/* Import Font Awesome */
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
-
-/* Import Variables */
+/* Import Variables First */
 @import "./styles/variables.css";
 
+/* Preload Critical CSS - Google Fonts (fallback to system fonts) */
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Fira+Code:wght@300;400;500&display=swap"); */
+
+/* Import Font Awesome (loaded locally or async) */
+/* @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"); */
+
 /* Global Styles */
+
+/* Font Loading Optimization */
+body:not(.fonts-loaded) {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+body.fonts-loaded {
+  font-family: var(--font-poppins) !important;
+}
+
+/* Prevent Flash of Invisible Text (FOIT) */
+.font-display-swap {
+  font-display: swap;
+}
 
 * {
   margin: 0;
@@ -24,6 +38,10 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-primary);
   scroll-behavior: smooth;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
 }
 
 h1,

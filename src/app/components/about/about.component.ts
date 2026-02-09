@@ -89,7 +89,7 @@ export class AboutComponent implements OnInit {
 
   // Calculate years of experience
   getYearsOfExperience(): number {
-    const startYear = 2023; // Based on freelancing start year
+    const startYear = 2024; // Based on freelancing start year
     const currentYear = new Date().getFullYear();
     return currentYear - startYear;
   }
