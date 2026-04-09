@@ -20,7 +20,7 @@
   left: 0;
   width: 50px;
   height: 3px;
-  background: var(--primary-gradient);
+  background: var(--gradient-primary);
   border-radius: 2px;
 }
 
@@ -36,7 +36,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: var(--primary-gradient);
+  background: var(--gradient-primary);
 }
 
 .timeline-item {
@@ -84,7 +84,7 @@
 }
 
 .timeline-period {
-  background: var(--primary-gradient);
+  background: var(--gradient-primary);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;

@@ -73,14 +73,14 @@ export class PortfolioDataService {
   // Personal Information
   personalInfo: PersonalInfo = {
     name: 'Eslam Mohamed Salah',
-    title: 'Full Stack Developer',
-    email: 'eslamsalah5364@gmail.com',
+    title: 'Full Stack .NET Developer',
+    email: 'eslamsalah5346@gmail.com',
     phone: '+201013114472',
-    location: 'Sharqia, Egypt - Ready to Relocate',
+    location: 'Maadi, Cairo, Egypt — Ready to Relocate',
     linkedin: 'https://linkedin.com/in/eslamsalah55',
     github: 'https://github.com/eslamsalah5',
     summary:
-      "I'm Eslam Mohamed Salah, a Full‑Stack Developer driven by a passion for building intuitive and impactful digital experiences. I graduated with honors from the Faculty of Computers and Information at Zagazig University and sharpened my practical skills during a rigorous five‑month program at ITI. I thrive on turning complex requirements into clean, user‑friendly solutions and enjoy collaborating closely with teams to bring ideas to life. I am always eager to learn, embrace new challenges, and continuously refine my craft to deliver reliable, maintainable applications that make a real difference.",
+      'Full Stack .NET Developer with a strong backend focus, specializing in ASP.NET Core, Clean Architecture, and Angular. Designed and built a production-ready B2B pharmaceutical distribution platform from scratch — 388+ REST endpoints, AI-powered product mapping, Redis caching, Hangfire background jobs, and Azure deployment — achieving 60–70% faster API response times and an 89% reduction in N+1 queries. Holds a B.Sc. in IT (GPA 3.63, Excellent with Honors) from Zagazig University, complemented by 5 months of intensive .NET Full Stack training at ITI. Passionate about clean, maintainable code, SOLID principles, and turning complex business requirements into reliable, scalable systems.',
     profileImage: 'assets/images/1.jpg',
   };
 
@@ -228,6 +228,18 @@ export class PortfolioDataService {
       category: 'Backend Technologies',
     },
     {
+      name: 'AutoMapper',
+      icon: 'fas fa-exchange-alt',
+      color: '#e67e22',
+      category: 'Backend Technologies',
+    },
+    {
+      name: 'RBAC',
+      icon: 'fas fa-user-lock',
+      color: '#8e44ad',
+      category: 'Backend Technologies',
+    },
+    {
       name: 'ACID Transactions',
       icon: 'fas fa-shield-alt',
       color: '#17a2b8',
@@ -263,6 +275,12 @@ export class PortfolioDataService {
       name: 'Angular',
       icon: 'fab fa-angular',
       color: '#dd0031',
+      category: 'Frontend Technologies',
+    },
+    {
+      name: 'RxJS',
+      icon: 'fas fa-infinity',
+      color: '#b7178c',
       category: 'Frontend Technologies',
     },
     {
@@ -481,6 +499,36 @@ export class PortfolioDataService {
       category: 'Design & Development Concepts',
     },
     {
+      name: 'Repository Pattern',
+      icon: 'fas fa-database',
+      color: '#1abc9c',
+      category: 'Design & Development Concepts',
+    },
+    {
+      name: 'Unit of Work',
+      icon: 'fas fa-project-diagram',
+      color: '#2980b9',
+      category: 'Design & Development Concepts',
+    },
+    {
+      name: 'Result Pattern',
+      icon: 'fas fa-check-double',
+      color: '#27ae60',
+      category: 'Design & Development Concepts',
+    },
+    {
+      name: 'Data Structures & Algorithms',
+      icon: 'fas fa-network-wired',
+      color: '#e74c3c',
+      category: 'Design & Development Concepts',
+    },
+    {
+      name: 'Database Design',
+      icon: 'fas fa-table',
+      color: '#cc2927',
+      category: 'Design & Development Concepts',
+    },
+    {
       name: 'MVC',
       icon: 'fas fa-building',
       color: '#607d8b',
@@ -555,6 +603,12 @@ export class PortfolioDataService {
       category: 'Cloud & DevOps',
     },
     {
+      name: 'Health Checks',
+      icon: 'fas fa-heartbeat',
+      color: '#e74c3c',
+      category: 'Cloud & DevOps',
+    },
+    {
       name: 'CI/CD',
       icon: 'fas fa-sync-alt',
       color: '#ff6f00',
@@ -566,9 +620,10 @@ export class PortfolioDataService {
   projects: Project[] = [
     {
       title:
-        'Insta Dawa - Enterprise Medical Distribution Platform (Backend API)',
+        'GoDawa - Enterprise B2B Pharmaceutical Distribution Platform (Backend API)',
       description:
-        'Production-ready ASP.NET Core 9 backend serving an Angular 21 admin dashboard and a Flutter mobile app for B2B pharmaceutical distribution across Egypt. Features 400+ REST API endpoints, Clean Architecture, AI-powered product mapping, comprehensive order management, and enterprise-grade security with JWT + API Key authentication.',
+        'Production-ready ASP.NET Core 9 backend connecting pharmacies with warehouses across Egypt. Features 388 REST endpoints, Clean Architecture (4 layers), AI-powered Excel product mapping, optimistic-locking concurrency, external ERP integration via API Keys, Hangfire background jobs, Redis caching, and enterprise security with JWT + API Key dual authentication.',
+
       technologies: [
         'ASP.NET Core 9',
         'Entity Framework Core 9',
@@ -590,56 +645,75 @@ export class PortfolioDataService {
         'QuestPDF',
         'ClosedXML',
       ],
-      image: 'assets/images/insta-dawa-api.jpg',
+      image: 'assets/images/godawa-api.jpg',
       projectType: 'Professional',
       fullDescription: `Architecture & Design:
-• Clean Architecture with 4 layers (API, Application, Domain, Infrastructure)
-• SOLID principles with clear separation of concerns and dependency inversion
-• Repository & Unit of Work patterns for data access abstraction
-• Result Pattern for graceful error handling in business logic
-• Decorator Pattern for repository logging and caching
+• Clean Architecture with 4 strict layers: Domain → Application → Infrastructure → API (dependencies flow inward only)
+• Result<T> pattern across all 37 services — OnSuccess/OnFailure/Map fluent chaining, no exceptions for expected failures
+• Repository + Unit of Work: Lazy<T> repositories — no DB connection opened until actually used
+• Decorator Pattern: LoggingRepositoryDecorator<T> auto-wired by Scrutor — transparent logging on every repo, zero modifications
+• Global Exception Middleware: maps typed exceptions (NotFoundException, ValidationException…) to correct HTTP status codes
+• Base entity hierarchy: BaseEntity → SoftDeletableEntity → BaseAuditableEntity — soft delete with global EF query filters
 
 Authentication & Security:
-• Dual authentication: JWT tokens + API Key for external warehouse systems
-• Role-Based Access Control with 6 user roles (SystemAdmin, SupportAgent, WarehouseManager, PharmacyDoctor, Employee types)
-• OTP system for email confirmation and password reset
-• Multi-device session management with device fingerprinting
-• Rate limiting per endpoint to prevent brute force and DDoS attacks
-• 3-layer exception handling (Middleware, Filter, Model Validation)
+• Dual authentication: JWT Bearer for users + custom ApiKeyAuthenticationHandler (X-API-Key) for warehouse ERPs
+• 7 distinct user roles: SystemAdmin, WarehouseManager, PharmacyDoctor, TeleSales, SalesMan, DataEntry, SupportAgent
+• Multi-device sessions: each login creates a UserSession row with device info (UAParser), per-session FCM token
+• SessionValidationMiddleware: validates session.IsActive in DB on every authenticated request
+• API Keys: hashed storage, per-warehouse scoping, fully revocable, usage logged
+• Rate limiting per endpoint; 3-layer validation (Middleware + Filter + FluentValidation)
 
-Core Business Features:
-• Product Management with Excel import/export (600+ products seeded)
-• AI-Powered Product Mapping System (45 endpoints) - Intelligent warehouse Excel file processing with 95%+ matching accuracy
-• Multi-Warehouse System with regional coverage and delivery scheduling
-• Shopping Cart with real-time stock validation, quota enforcement, and auto-checkout
-• Order Management: Single & batch orders with 5 order types (Normal, Call, Classic, File, Voice)
-• Returns Management: Complete product returns workflow (Pharmacy, Warehouse, Admin)
-• Invoice Export in Excel, CSV & PDF formats
-• Push Notifications via Firebase Cloud Messaging with session-based tokens
-• Pharmacy Registration: Public self-registration with OTP verification
+AI-Powered Product Mapping System (48 endpoints):
+• Transforms warehouse Excel files → GoDawa catalog entries via 4 strategies in priority order:
+  1. Barcode match (Regex: EAN13/EAN8/UPCA/Code128)
+  2. Saved template match (cached 10 min)
+  3. Fuzzy Levenshtein similarity: ≥0.75 high-confidence / ≥0.55 auto-match / ≥0.25 suggested
+  4. Price discrepancy check (flags >30% deviation)
+• Hangfire job with DisableConcurrentExecution(6h) + AutomaticRetry — handles 2,000–7,000+ items per session
+• 7 duplicate resolution strategies: KeepFirst / KeepLast / HighestStock / LowestPrice / All / SkipAll / Manual
+• Complete audit trail: immutable PriceHistory rows on every price change
 
-Performance & Analytics:
-• 70% faster operations through query optimization
-• 89% query reduction in critical paths (N+1 elimination)
-• Redis distributed caching with in-memory fallback
-• Sales Statistics System (38 endpoints) for comprehensive analytics
-• Sales & DataEntry Performance Tracking with leaderboards
-• Pharmacy Target System with bottom-up revenue aggregation
+Order Management & Concurrency:
+• 5 order types: Normal, CallOrder, ClassicOrder, FileOrder, VoiceOrder
+• Optimistic locking (RowVersion) + RetryHelper: 5 attempts, exponential backoff (50ms × 2^attempt + jitter)
+• IdempotencyKey: client GUID prevents duplicate orders from double-taps and network retries
+• OrderAutoShipmentService (IHostedService): polls every 10 min, auto-ships confirmed orders when delivery round starts
+• Invoice export in Excel, CSV & PDF formats (QuestPDF + ClosedXML)
+
+External ERP Integration (API Key):
+• Full sync + Delta sync: warehouse ERPs push stock updates in batches of 100, rate-limited, queued via Hangfire
+• Unresolved item queue: unmatched items enter ApiSyncUnresolved; admin resolution creates a MappingTemplate for future auto-match
+• Order polling: ERPs pull new orders, acknowledge receipt, confirm with item-level adjustments or reject (auto-restores stock)
+• All operations logged in ApiSyncLog with full audit trail
+
+Sales & Performance Analytics (86+ statistics endpoints):
+• SalesStatisticsService — 28 endpoints: daily/monthly/period revenue, per-pharmacy/warehouse/product breakdowns
+• SalesPerformanceService — 16 endpoints: TeleSales order volume, revenue, targets, gap-to-target alerts
+• SalesManPerformanceService — 17 endpoints: field visits, pharmacy registrations, region coverage
+• DataEntryPerformanceService — 25 endpoints: approvals, mapping sessions, team leaderboards
+• Pharmacy Target System: bottom-up aggregation (Pharmacy → Region → Governorate → Company), immutable history
+
+Performance & Infrastructure:
+• Redis distributed caching (ICacheService abstraction) with in-memory fallback — product details 5 min, seasonal 30 min, search uncached (real-time stock)
+• SplitQuery globally + EnableRetryOnFailure(5) — resilient EF Core queries
+• Serilog structured logging → Console + File + Seq; health checks for SQL + Redis
+• 5 Hangfire workers, 2 dedicated queues (default + stock-sync), SQL Server storage
+• 15 seed data files auto-run on first startup
 
 By The Numbers:
-• 400+ REST API endpoints across 31 controllers
-• 48 domain entities with full audit trail
-• 100,000+ lines of code in 530+ files
-• 35+ FluentValidation validators
-• 32 database migrations
-• 5 Hangfire background jobs
-• Code Quality Score: 9/10`,
+• 388 REST endpoints (V1 + V2) across 34 controllers
+• 52 domain entities, 34 enumerations, all with soft delete & full audit trail
+• 37 application services, 73 interfaces, 30 repositories
+• 119 DTO files, 34 FluentValidation validators, 19 AutoMapper profiles
+• 46 EF Core migrations — auto-applied on startup
+• 8 background jobs (4 recurring + 3 on-demand + 1 IHostedService)
+• Deployed on Azure`,
     },
     {
-      title:
-        'Insta Dawa - Pharmaceutical Distribution Platform (Admin Dashboard)',
+      title: 'GoDawa - Pharmaceutical Distribution Platform (Admin Dashboard)',
       description:
-        'Enterprise Angular 21 admin dashboard for managing the pharmaceutical distribution platform. Built with 70+ standalone components, Signal-based reactive state, 5-role RBAC system with 40+ granular permissions, and 13 feature modules for complete platform control including orders, products, warehouses, AI product mapping, and sales analytics.',
+        'Enterprise Angular 21 admin dashboard for the GoDawa platform. 67 standalone components, Signal-based state, 5-role RBAC with 70 granular permissions, and 17 feature modules covering orders, products, warehouses, AI product mapping, sales analytics, and pharmacy targets — deployed on Azure Static Web Apps.',
+
       technologies: [
         'Angular 21',
         'TypeScript',
@@ -652,52 +726,58 @@ By The Numbers:
         'Standalone Components',
         'Azure Static Web Apps',
       ],
-      image: 'assets/images/insta-dawa-angular.jpg',
+      image: 'assets/images/godawa-angular.jpg',
       projectType: 'Professional',
       fullDescription: `Architecture & Design:
-• 100% standalone components with explicit imports, zero NgModules
-• Signal-based reactive state management with Angular Signals
-• Result<T> pattern for consistent error handling across all services
-• Functional guards & interceptors (authGuard, permissionGuard, roleGuard)
-• Dev-only logging with devLog/devError utilities (no-ops in production)
-• Lazy-loaded routes for optimal performance
+• 100% standalone components — zero NgModules, every component declares its own explicit imports
+• Signal-based reactive state: services use signal() + computed() for derived values (no RxJS Subjects for state)
+• Result<T> pattern: all service methods return Observable<Result<T>> via successResult/failureResult helpers
+• Functional guards & interceptors — authGuard, permissionGuard(Permission[]), roleGuard, systemAdminGuard — tree-shakable
+• Reusable request/mutate helpers eliminate boilerplate across all 25 services
+• Dev-only logging: devLog/devError/devWarn are no-ops in production (esbuild tree-shaken)
+• Lazy-loaded routes across all 17 feature modules
 
-Authentication & RBAC:
-• JWT authentication with automatic token refresh
-• 5 user roles: SystemAdmin, TeleSales, SalesMan, DataEntry, SupportAgent
-• 40+ granular permissions with permission-based UI rendering
-• Multi-device session management
+Authentication & RBAC (5 Roles × 70 Permissions):
+• JWT with automatic token refresh via authInterceptor — 401 triggers refresh → retry original request → logout on failure
+• 5 dashboard roles: SystemAdmin, TeleSales, SalesMan, DataEntry, SupportAgent
+• 70 granular permissions enforced at route level (permissionGuard) AND component level (signal-based computed)
+• Component visibility example: readonly canEdit = computed(() => perm.hasPermission(Permission.EDIT_PRODUCT))
+• Multi-device session list — view and revoke active sessions
 
-13 Feature Modules:
-• Dashboard: Role-specific metrics with auto-refresh
-• Employees: CRUD with role assignment and performance tracking
-• Pharmacies: CRUD, registration workflow, doctor info, order history
-• Warehouses: CRUD, product inventory, API keys, orders, coverage areas
-• Products: CRUD, Excel import, barcode, multi-warehouse pricing
-• Orders: 5 order types, batch orders, tracking, scheduling
-• Call Requests: FIFO queue, active call tracking, statistics
-• Returns & Admin Returns: Complete return workflow with approval
-• Product Mapping: Excel upload, AI auto-matching, manual review
-• Pharmacy Targets: Company, region, and governorate target tracking
-• Upload Requests & Profile management
+17 Feature Modules — 67 Standalone Components:
+• Authentication (6 pages): Login, forgot/reset password, OTP verification, change password, active sessions
+• Dashboard (1): Role-specific metrics, quick actions, auto-refresh
+• Employees (8): CRUD, role assignment, per-role performance dashboards (TeleSales, SalesMan, DataEntry)
+• Pharmacies (6): CRUD, registration approval workflow, doctor info, linked warehouses, order history
+• Warehouses (12): CRUD, products, API keys, orders, pharmacies, sync history, unresolved ERP items
+• Products (5): CRUD, Excel import, barcode, multi-warehouse pricing, price history
+• Orders (3): 5 order types (Normal/Call/Classic/File/Voice), batch orders, order details & tracking
+• Call Requests (4): FIFO telesales queue, active call tracking, my-active calls, statistics
+• Returns (2) + Admin Returns (3): Complete pharmacy → warehouse → admin return workflow
+• Product Mapping (8): Excel upload, session management, duplicate groups, audit trail, unlinked products, statistics, templates
+• Product Price History (5): Price change log, session/product/warehouse price tracking
+• Pharmacy Targets (3): Company, region, and governorate revenue target tracking
+• Location Management (1): Governorate & region CRUD (SystemAdmin only)
+• Upload Requests (2) + Profile (1): File tracking and user profile management
 
-UI & Design:
-• Bootstrap 5.3.8 with custom purple theme (#4131A3)
-• RTL-ready with Arabic locale support
-• Toast notification system
-• Responsive design across all devices
+UI & Design System:
+• Bootstrap 5.3.8 + Bootstrap Icons 1.13.1 (2,000+ icons)
+• Custom purple theme: primary #4131A3 — 153 CSS custom properties (colors, shadows, gradients, spacing, transitions)
+• RTL-ready: Arabic locale (ar-EG) registered
+• Scoped styles: each component has its own .css file — no style leakage
+• esbuild-based @angular/build with AOT compilation for fast production builds
 
 By The Numbers:
-• 70+ standalone components
-• 16 injectable services
-• 55+ routes with lazy loading
-• 80+ API endpoints integrated
-• 19 model files with 120+ TypeScript interfaces
-• Integrated with backend API (80+ endpoints)
-• Serves as control center for Flutter mobile app used by pharmacies`,
+• 67 standalone components across 17 feature modules
+• 25 injectable services, 23 TypeScript model files
+• 82 routes (top-level + child) with lazy loading
+• 70 RBAC permissions across 5 roles
+• 153 CSS custom properties
+• Tested with Vitest 4.0.8 (jsdom)
+• Deployed on Azure Static Web Apps`,
     },
     {
-      title: 'PayMind - Expense Tracking & Management System',
+      title: 'Money Flow - Expense & Wallet Management',
       description:
         'A full-stack expense tracking and wallet management system designed to help users efficiently manage their personal finances. The application allows users to record expenses, categorize spending, manage multiple wallets, and receive payment reminders for upcoming expenses.',
       technologies: [
@@ -1171,10 +1251,10 @@ Purpose & Scope:
   experience: Experience[] = [
     {
       title: 'Full-Stack Developer',
-      company: 'Insta Dawa',
-      period: 'Nov 2025 - Present',
+      company: 'الشركة المتخصصة لتوزيع الأدوية — المعادي، القاهرة',
+      period: 'Nov 2025 - Apr 2026',
       description:
-        'Working as a Full-Stack Developer building an enterprise-grade B2B pharmaceutical distribution platform. Single-handedly architected and developed the complete system including ASP.NET Core 9 backend (400+ REST endpoints, Clean Architecture, 100K+ LOC), Angular 21 admin dashboard (70+ components, 5-role RBAC), and API infrastructure serving a Flutter mobile app. Achieved 9/10 code quality score with 70% performance optimization in production environment.',
+        'Architected and delivered a production-ready enterprise B2B pharmaceutical distribution platform connecting pharmacies with warehouses across Egypt. Single-handedly built the complete system: ASP.NET Core 9 backend (388 REST endpoints, Clean Architecture, 52 domain entities, 46 migrations), Angular 21 admin dashboard (67 components, 17 feature modules, 70-permission RBAC), and API infrastructure serving a Flutter mobile pharmacy app. Shipped an AI-powered product mapping engine, optimistic-locking concurrency system, external ERP integration via API Keys, and 86+ analytics endpoints.',
       technologies: [
         'ASP.NET Core 9',
         'Angular 21',
@@ -1191,7 +1271,7 @@ Purpose & Scope:
     {
       title: 'Freelance Full Stack Developer',
       company: 'Self-Employed',
-      period: '2023 - Present',
+      period: 'Aug 2023 - Present',
       description:
         'Developing innovative mobile and web solutions for clients worldwide. Specialized in Flutter mobile apps, .NET backend APIs, and Angular frontends. Successfully delivered multiple projects including social media platforms, e-commerce solutions, and multi-client applications.',
       technologies: [
@@ -1303,7 +1383,7 @@ Purpose & Scope:
     {
       name: '.NET Developer CV',
       type: 'Web Development',
-      url: 'assets/cv/Eslam Mohamed Salah __ .NET Full Stack Developer.pdf', // Add your .NET CV here
+      url: 'assets/cv/Eslam_Salah_FullStack__NET_Developer_CV.pdf',
       icon: 'fab fa-microsoft',
       color: '#512bd4',
     },
