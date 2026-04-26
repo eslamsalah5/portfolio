@@ -1,0 +1,65 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#56CCF2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2F80ED;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFD93D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Sky Background -->
+  <rect width="800" height="600" fill="url(#skyGrad)"/>
+  
+  <!-- Sun -->
+  <circle cx="650" cy="150" r="60" fill="url(#sunGrad)"/>
+  <g transform="translate(650, 150)">
+    <line x1="0" y1="-90" x2="0" y2="-110" stroke="#FFD93D" stroke-width="6" stroke-linecap="round"/>
+    <line x1="0" y1="90" x2="0" y2="110" stroke="#FFD93D" stroke-width="6" stroke-linecap="round"/>
+    <line x1="-90" y1="0" x2="-110" y2="0" stroke="#FFD93D" stroke-width="6" stroke-linecap="round"/>
+    <line x1="90" y1="0" x2="110" y2="0" stroke="#FFD93D" stroke-width="6" stroke-linecap="round"/>
+    <line x1="-64" y1="-64" x2="-78" y2="-78" stroke="#FFD93D" stroke-width="6" stroke-linecap="round"/>
+    <line x1="64" y1="64" x2="78" y2="78" stroke="#FFD93D" stroke-width="6" stroke-linecap="round"/>
+    <line x1="64" y1="-64" x2="78" y2="-78" stroke="#FFD93D" stroke-width="6" stroke-linecap="round"/>
+    <line x1="-64" y1="64" x2="-78" y2="78" stroke="#FFD93D" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Clouds -->
+  <g opacity="0.9">
+    <ellipse cx="200" cy="180" rx="50" ry="35" fill="white"/>
+    <ellipse cx="240" cy="170" rx="60" ry="40" fill="white"/>
+    <ellipse cx="280" cy="180" rx="50" ry="35" fill="white"/>
+  </g>
+  
+  <g opacity="0.8">
+    <ellipse cx="500" cy="350" rx="40" ry="28" fill="white"/>
+    <ellipse cx="530" cy="342" rx="48" ry="32" fill="white"/>
+    <ellipse cx="560" cy="350" rx="40" ry="28" fill="white"/>
+  </g>
+  
+  <!-- Phone Mockup -->
+  <rect x="280" y="220" width="240" height="320" rx="25" fill="#1e293b" stroke="white" stroke-width="4"/>
+  <rect x="295" y="245" width="210" height="270" rx="15" fill="white"/>
+  
+  <!-- Weather Info on Phone -->
+  <text x="400" y="290" font-family="Arial" font-size="20" font-weight="bold" fill="#2F80ED" text-anchor="middle">Cairo</text>
+  
+  <!-- Weather Icon on Phone -->
+  <circle cx="400" cy="350" r="35" fill="#FFD93D"/>
+  
+  <!-- Temperature -->
+  <text x="400" y="425" font-family="Arial" font-size="48" font-weight="bold" fill="#1e293b" text-anchor="middle">28°</text>
+  <text x="400" y="455" font-family="Arial" font-size="18" fill="#64748b" text-anchor="middle">Sunny</text>
+  
+  <!-- Weather Details -->
+  <g transform="translate(320, 475)">
+    <text x="0" y="0" font-family="Arial" font-size="14" fill="#64748b">💨 15 km/h</text>
+    <text x="80" y="0" font-family="Arial" font-size="14" fill="#64748b">💧 45%</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="570" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">Weather App</text>
+</svg>

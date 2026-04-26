@@ -1,0 +1,54 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="fashionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:0.95" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#fashionGrad)"/>
+  
+  <!-- Decorative Circles -->
+  <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="700" cy="500" r="100" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="650" cy="150" r="60" fill="rgba(255,255,255,0.08)"/>
+  
+  <!-- Main Card -->
+  <rect x="150" y="150" width="500" height="300" rx="20" fill="url(#cardGrad)" opacity="0.95"/>
+  
+  <!-- Shopping Bag Icon -->
+  <g transform="translate(350, 220)">
+    <!-- Bag Body -->
+    <path d="M -50 0 L -60 80 L 60 80 L 50 0 Z" fill="#667eea" opacity="0.9"/>
+    <!-- Bag Handle -->
+    <path d="M -30 0 Q -30 -30 0 -30 Q 30 -30 30 0" stroke="#667eea" stroke-width="4" fill="none" opacity="0.9"/>
+    <!-- Decorative Lines -->
+    <line x1="-40" y1="20" x2="40" y2="20" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+    <line x1="-45" y1="40" x2="45" y2="40" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+    <line x1="-50" y1="60" x2="50" y2="60" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="380" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#667eea" text-anchor="middle">FashionHub</text>
+  <text x="400" y="415" font-family="Arial, sans-serif" font-size="18" fill="#6c757d" text-anchor="middle">E-Commerce API</text>
+  
+  <!-- Tech Stack Icons -->
+  <g transform="translate(250, 440)">
+    <circle cx="0" cy="0" r="20" fill="#512bd4"/>
+    <text x="0" y="6" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">.NET</text>
+  </g>
+  <g transform="translate(350, 440)">
+    <circle cx="0" cy="0" r="20" fill="#cc2927"/>
+    <text x="0" y="6" font-family="Arial" font-size="16" font-weight="bold" fill="white" text-anchor="middle">SQL</text>
+  </g>
+  <g transform="translate(450, 440)">
+    <circle cx="0" cy="0" r="20" fill="#635bff"/>
+    <text x="0" y="6" font-family="Arial" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Stripe</text>
+  </g>
+</svg>
