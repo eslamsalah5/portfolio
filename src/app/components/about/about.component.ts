@@ -99,15 +99,15 @@ export class AboutComponent implements OnInit {
     return this.courses;
   }
 
-  // Format phone number for display
+  // Format phone number for display — show as-is
   getFormattedPhone(): string {
-    const phone = this.personalInfo.phone;
-    // Format: +20 101 311 4472
-    if (phone.startsWith('+201')) {
-      return phone
-        .replace('+201', '+20 101 ')
-        .replace(/(\d{3})(\d{4})/, '$1 $2');
-    }
-    return phone;
+    return this.personalInfo.phone; // +201013114472
+  }
+
+  // WhatsApp link
+  openWhatsApp(): void {
+    // Remove leading + for wa.me URL
+    const number = this.personalInfo.phone.replace('+', '');
+    window.open(`https://wa.me/${number}`, '_blank');
   }
 }

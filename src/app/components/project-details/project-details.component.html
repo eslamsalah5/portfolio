@@ -16,6 +16,17 @@
       <div class="col-12">
         <div class="project-header">
           <h1 class="project-title">{{ project.title }}</h1>
+
+          <!-- Live Demo Banner — shown prominently when demo exists -->
+          <div class="live-demo-banner" *ngIf="project.demoUrl && isLiveUrl(project.demoUrl)">
+            <span class="live-dot"></span>
+            <span class="live-text">Live & Deployed</span>
+            <a [href]="project.demoUrl" target="_blank" class="live-demo-link">
+              {{ getDemoDisplayUrl(project.demoUrl) }}
+              <i class="fas fa-external-link-alt ms-1"></i>
+            </a>
+          </div>
+
           <div class="project-links mt-3">
             <a
               *ngIf="project.githubUrl"
@@ -41,7 +52,7 @@
     </div>
 
     <!-- Project Content -->
-    <div class="row">
+    <div class="row align-items-start">
       <!-- Main Content -->
       <div class="col-lg-8 mb-4">
         <!-- Project Image/Gallery -->
@@ -165,57 +176,57 @@
         <div class="project-description mb-4">
           <h3>About This Project</h3>
           <p class="lead">{{ project.description }}</p>
+        </div>
 
-          <!-- Full Description Section -->
-          <div *ngIf="project.fullDescription" class="full-description mt-4">
-            <div class="description-header">
-              <div class="description-icon">
-                <i class="fas fa-info-circle"></i>
-              </div>
-              <h4>Project Details</h4>
-            </div>
-            <div class="description-container">
-              <div
-                class="full-description-content"
-                [innerHTML]="getFormattedDescription()"
-              ></div>
+        <!-- Accordion: Full Description Sections -->
+        <div *ngIf="project.fullDescription" class="desc-accordion mb-4">
+          <div
+            class="acc-item"
+            *ngFor="let section of getDescriptionSections(); let i = index"
+          >
+            <button
+              class="acc-header"
+              [class.open]="openSection === i"
+              (click)="toggleSection(i)"
+            >
+              <span class="acc-icon">{{ section.emoji }}</span>
+              <span class="acc-title">{{ section.title }}</span>
+              <i class="fas acc-chevron" [class.fa-chevron-down]="openSection !== i" [class.fa-chevron-up]="openSection === i"></i>
+            </button>
+            <div class="acc-body" [class.open]="openSection === i">
+              <ul class="acc-list">
+                <li *ngFor="let point of section.points">{{ point }}</li>
+              </ul>
             </div>
           </div>
         </div>
 
-        <!-- Features Section -->
+        <!-- Key Features — compact chips -->
         <div class="project-features mb-4">
           <h3>Key Features</h3>
-          <div class="features-list">
-            <div
-              class="feature-item"
+          <div class="features-chips">
+            <span
+              class="feature-chip"
               *ngFor="let feature of getProjectFeatures()"
             >
-              <i class="fas fa-check-circle text-success me-2"></i>
-              {{ feature }}
-            </div>
+              <i class="fas fa-check-circle me-1"></i>{{ feature }}
+            </span>
           </div>
         </div>
 
-        <!-- Technologies Used -->
+        <!-- Technologies Used — compact grid -->
         <div class="project-technologies mb-4">
           <h3>Technologies Used</h3>
-          <div class="tech-stack-grid">
+          <div class="tech-compact-grid">
             <div
               *ngFor="let tech of project.technologies"
-              class="tech-card"
+              class="tech-compact-card"
               [style.border-left-color]="getTechColor(tech)"
             >
-              <div class="tech-card-content">
-                <div class="tech-icon">
-                  <i [class]="getTechIcon(tech)"></i>
-                </div>
-                <div class="tech-info">
-                  <span class="tech-name">{{ tech }}</span>
-                  <small class="tech-category">{{
-                    getTechCategory(tech)
-                  }}</small>
-                </div>
+              <i [class]="getTechIcon(tech)" [style.color]="getTechColor(tech)"></i>
+              <div class="tech-compact-info">
+                <span class="tech-name">{{ tech }}</span>
+                <small class="tech-category">{{ getTechCategory(tech) }}</small>
               </div>
             </div>
           </div>
@@ -224,62 +235,118 @@
 
       <!-- Sidebar -->
       <div class="col-lg-4">
-        <!-- Project Info Card -->
-        <div class="project-info-card">
-          <h4>Project Information</h4>
-          <div class="info-item">
-            <strong>Project Type:</strong>
-            <span
-              class="ms-2 project-type-badge"
-              [ngClass]="getProjectTypeBadgeClass()"
-            >
-              {{ getProjectTypeDisplay() }}
-            </span>
-          </div>
-          <div class="info-item">
-            <strong>Category:</strong>
-            <span class="ms-2">{{ getProjectCategory() }}</span>
-          </div>
-          <div class="info-item">
-            <strong>Technologies:</strong>
-            <span class="ms-2"
-              >{{ project.technologies.length }} technologies</span
-            >
-          </div>
-          <div class="info-item" *ngIf="project.githubUrl">
-            <strong>Repository:</strong>
-            <a [href]="project.githubUrl" target="_blank" class="ms-2">
-              View on GitHub
-            </a>
-          </div>
-          <div class="info-item" *ngIf="project.demoUrl">
-            <strong>Live Demo:</strong>
-            <a [href]="project.demoUrl" target="_blank" class="ms-2">
-              View Demo
-            </a>
-          </div>
-        </div>
 
-        <!-- Navigation -->
-        <div class="project-navigation mt-4">
-          <h5>More Projects</h5>
-          <div class="nav-buttons">
-            <button
-              class="btn btn-outline-secondary btn-sm w-100 mb-2"
-              (click)="goToPreviousProject()"
-            >
-              <i class="fas fa-arrow-left me-2"></i>
-              Previous Project
-            </button>
-            <button
-              class="btn btn-outline-secondary btn-sm w-100"
-              (click)="goToNextProject()"
-            >
-              Next Project
-              <i class="fas fa-arrow-right ms-2"></i>
-            </button>
+        <!-- Sticky sidebar wrapper -->
+        <div class="sidebar-sticky">
+
+          <!-- Project Info Card -->
+          <div class="project-info-card mb-4">
+            <h4>Project Information</h4>
+            <div class="info-item">
+              <strong>Project Type:</strong>
+              <span
+                class="ms-2 project-type-badge"
+                [ngClass]="getProjectTypeBadgeClass()"
+              >
+                {{ getProjectTypeDisplay() }}
+              </span>
+            </div>
+            <div class="info-item">
+              <strong>Category:</strong>
+              <span class="ms-2">{{ getProjectCategory() }}</span>
+            </div>
+            <div class="info-item">
+              <strong>Technologies:</strong>
+              <span class="ms-2">{{ project.technologies.length }} technologies</span>
+            </div>
+            <div class="info-item" *ngIf="project.githubUrl">
+              <strong>Repository:</strong>
+              <a [href]="project.githubUrl" target="_blank" class="ms-2">
+                <i class="fab fa-github me-1"></i>View on GitHub
+              </a>
+            </div>
+            <div class="info-item" *ngIf="project.demoUrl">
+              <strong>Live Demo:</strong>
+              <a [href]="project.demoUrl" target="_blank" class="ms-2">
+                <i class="fas fa-external-link-alt me-1"></i>View Demo
+              </a>
+            </div>
           </div>
-        </div>
+
+          <!-- Tech Categories Breakdown -->
+          <div class="sidebar-card mb-4">
+            <h5 class="sidebar-card-title">
+              <i class="fas fa-layer-group me-2"></i>Tech Breakdown
+            </h5>
+            <div class="tech-category-list">
+              <div
+                class="tech-category-row"
+                *ngFor="let cat of getTechCategoryBreakdown()"
+              >
+                <div class="tc-label">
+                  <span class="tc-dot" [style.background]="cat.color"></span>
+                  <span class="tc-name">{{ cat.name }}</span>
+                </div>
+                <div class="tc-bar-wrap">
+                  <div
+                    class="tc-bar"
+                    [style.width.%]="cat.percent"
+                    [style.background]="cat.color"
+                  ></div>
+                </div>
+                <span class="tc-count">{{ cat.count }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Related Projects -->
+          <div class="sidebar-card mb-4" *ngIf="getRelatedProjects().length > 0">
+            <h5 class="sidebar-card-title">
+              <i class="fas fa-th-large me-2"></i>Related Projects
+            </h5>
+            <div
+              class="related-project-item"
+              *ngFor="let rel of getRelatedProjects()"
+              (click)="navigateToProject(rel)"
+            >
+              <div class="related-icon">
+                <i
+                  class="fas"
+                  [ngClass]="{
+                    'fa-globe': getProjectCategoryForProject(rel) === 'web',
+                    'fa-mobile-alt': getProjectCategoryForProject(rel) === 'mobile',
+                    'fa-code': getProjectCategoryForProject(rel) === 'other'
+                  }"
+                ></i>
+              </div>
+              <div class="related-info">
+                <div class="related-title">{{ rel.title }}</div>
+                <div class="related-type">{{ rel.projectType }}</div>
+              </div>
+              <i class="fas fa-chevron-right related-arrow"></i>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div class="project-navigation">
+            <h5>More Projects</h5>
+            <div class="nav-buttons">
+              <button
+                class="btn btn-outline-secondary btn-sm w-100 mb-2"
+                (click)="goToPreviousProject()"
+              >
+                <i class="fas fa-arrow-left me-2"></i>Previous Project
+              </button>
+              <button
+                class="btn btn-outline-secondary btn-sm w-100"
+                (click)="goToNextProject()"
+              >
+                Next Project<i class="fas fa-arrow-right ms-2"></i>
+              </button>
+            </div>
+          </div>
+
+        </div><!-- /sidebar-sticky -->
       </div>
     </div>
   </div>

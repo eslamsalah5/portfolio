@@ -411,6 +411,24 @@
   color: var(--primary-color);
 }
 
+/* WhatsApp link */
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #25d366;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.whatsapp-link:hover {
+  opacity: 0.8;
+  color: #25d366;
+}
+
 /* CV Section */
 .cv-section {
   background: linear-gradient(

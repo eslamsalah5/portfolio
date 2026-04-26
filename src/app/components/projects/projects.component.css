@@ -4,9 +4,283 @@
   padding: var(--spacing-4xl) 0;
 }
 
+/* ══════════════════════════════════════════
+   FEATURED PROJECTS — GoDawa Suite
+══════════════════════════════════════════ */
+.featured-section {
+  border-bottom: 1px solid var(--border-color, #e9ecef);
+  padding-bottom: 2.5rem;
+}
+
+/* Suite wrapper — the outer container that groups both cards */
+.suite-wrapper {
+  background: linear-gradient(135deg, rgba(73, 55, 187, 0.04) 0%, rgba(124, 77, 255, 0.04) 100%);
+  border: 1.5px solid rgba(73, 55, 187, 0.18);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+
+/* Suite header */
+.suite-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(73, 55, 187, 0.15);
+}
+
+.suite-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.suite-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4937bb, #7c4dff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(73, 55, 187, 0.35);
+}
+
+.suite-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.suite-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.suite-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.suite-badge {
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.suite-badge-pro {
+  background: linear-gradient(135deg, #4937bb, #7c4dff);
+  color: white;
+}
+
+.suite-badge-azure {
+  background: linear-gradient(135deg, #0078d4, #50e6ff);
+  color: white;
+}
+
+/* Suite part badge (Backend API / Admin Dashboard) */
+.suite-part-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(73, 55, 187, 0.1);
+  color: #4937bb;
+  border: 1px solid rgba(73, 55, 187, 0.2);
+  white-space: nowrap;
+}
+
+/* Featured cards */
+.featured-card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(73, 55, 187, 0.1);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(73, 55, 187, 0.18);
+}
+
+.featured-accent {
+  height: 4px;
+}
+
+.accent-backend {
+  background: linear-gradient(90deg, #4937bb, #7c4dff);
+}
+
+.accent-frontend {
+  background: linear-gradient(90deg, #dd0031, #ff6b6b);
+}
+
+.featured-body {
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.featured-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.icon-backend {
+  background: linear-gradient(135deg, #4937bb, #7c4dff);
+  box-shadow: 0 4px 14px rgba(73, 55, 187, 0.3);
+}
+
+.icon-frontend {
+  background: linear-gradient(135deg, #dd0031, #ff6b6b);
+  box-shadow: 0 4px 14px rgba(221, 0, 49, 0.3);
+}
+
+.featured-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.featured-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tech-tag-more {
+  background: rgba(102, 126, 234, 0.12) !important;
+  color: var(--secondary-color) !important;
+}
+
+.featured-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color, #e9ecef);
+}
+
+.btn-details {
+  background: linear-gradient(135deg, #4937bb, #7c4dff);
+  color: white;
+  border: none;
+  padding: 0.42rem 1rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-details:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.featured-links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.icon-link {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--bg-secondary, #f8f9fa);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: background 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+}
+
+.icon-link:hover {
+  background: var(--secondary-color);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .suite-wrapper {
+    padding: 1rem;
+  }
+
+  .suite-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .suite-name {
+    font-size: 1rem;
+  }
+}
+
+/* ══════════════════════════════════════════
+   ALL PROJECTS HEADER
+══════════════════════════════════════════ */
+.all-projects-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.all-projects-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  .all-projects-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 /* Project Filters */
 .project-filters {
-  margin-bottom: var(--spacing-3xl);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
 .filter-btn {
@@ -120,6 +394,34 @@
 /* Project Content */
 .project-content {
   padding: var(--spacing-xl);
+}
+
+/* Live badge on project cards */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #059669;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.live-dot-sm {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: pulse-dot-sm 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-dot-sm {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  50%       { box-shadow: 0 0 0 4px rgba(16, 185, 129, 0); }
 }
 
 .project-header {

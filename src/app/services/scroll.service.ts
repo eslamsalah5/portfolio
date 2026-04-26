@@ -42,9 +42,9 @@ export class ScrollService {
     const sections = [
       'home',
       'about',
-      'skills',
       'experience',
       'projects',
+      'skills',
       'contact',
     ];
 

@@ -16,6 +16,7 @@ import {
 export class ProjectsComponent implements OnInit {
   projects: Project[] = [];
   filteredProjects: Project[] = [];
+  featuredProjects: Project[] = [];
   activeFilter: string = 'all';
 
   constructor(
@@ -25,6 +26,10 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.projects = this.portfolioDataService.getProjects();
+    // Featured = Professional projects (top 2)
+    this.featuredProjects = this.projects
+      .filter((p) => p.projectType === 'Professional')
+      .slice(0, 2);
     this.filteredProjects = this.projects;
   }
 
@@ -120,6 +125,17 @@ export class ProjectsComponent implements OnInit {
       default:
         return 'badge-default';
     }
+  }
+
+  isLiveProject(project: Project): boolean {
+    if (!project.demoUrl) return false;
+    const url = project.demoUrl;
+    return (
+      !url.includes('drive.google.com') &&
+      !url.includes('youtube.com') &&
+      !url.includes('youtu.be') &&
+      !url.includes('vimeo.com')
+    );
   }
 
   viewProjectDetails(project: Project): void {

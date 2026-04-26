@@ -24,9 +24,9 @@ import { FooterComponent } from '../footer/footer.component';
   template: `
     <app-header></app-header>
     <app-about></app-about>
-    <app-skills></app-skills>
     <app-experience></app-experience>
     <app-projects></app-projects>
+    <app-skills></app-skills>
     <app-contact></app-contact>
     <app-footer></app-footer>
   `,

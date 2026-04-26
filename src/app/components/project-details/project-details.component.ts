@@ -52,9 +52,10 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     if (id >= 0 && id < projects.length) {
       this.project = projects[id];
       this.projectIndex = id;
-      this.showDefaultIcon = false; // Reset default icon flag
-      console.log('Project loaded:', this.project.title);
-      console.log('Project gallery:', this.project.gallery);
+      this.showDefaultIcon = false;
+      this.openSection = 0; // reset accordion
+      // Scroll to top when loading a new project
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       this.router.navigate(['/projects']);
     }
@@ -599,5 +600,135 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     if (!this.project?.gallery) return 0;
     const remaining = this.project.gallery.length - 3;
     return remaining > 0 ? remaining : 0;
+  }
+
+  openSection: number | null = 0; // first section open by default
+
+  toggleSection(i: number): void {
+    this.openSection = this.openSection === i ? null : i;
+  }
+
+  /**
+   * Parse fullDescription into accordion sections.
+   * Sections are separated by lines that look like "Emoji Title:" or "Title:"
+   */
+  getDescriptionSections(): { emoji: string; title: string; points: string[] }[] {
+    if (!this.project?.fullDescription) return [];
+
+    const lines = this.project.fullDescription.split('\n').map(l => l.trim()).filter(l => l);
+    const sections: { emoji: string; title: string; points: string[] }[] = [];
+    let current: { emoji: string; title: string; points: string[] } | null = null;
+
+    // Regex: optional emoji + text ending with colon (section header)
+    const headerRe = /^([\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}🌐🤖💳🎫👥🏗️⚡📋🔐📅🚌🛠️🔑🚀📊🎯✨🔧💡🌟⭐🏆🎖️🔒🔑💡🌐]+)?\s*(.+):$/u;
+
+    for (const line of lines) {
+      const match = line.match(headerRe);
+      if (match) {
+        if (current) sections.push(current);
+        current = {
+          emoji: match[1] ?? '📌',
+          title: match[2].trim(),
+          points: [],
+        };
+      } else if (line.startsWith('•') && current) {
+        current.points.push(line.replace(/^•\s*/, '').trim());
+      } else if (line.startsWith('-') && current) {
+        current.points.push(line.replace(/^-\s*/, '').trim());
+      } else if (current && current.points.length === 0 && !line.startsWith('•')) {
+        // Plain text before first bullet — treat as a point
+        current.points.push(line);
+      }
+    }
+    if (current) sections.push(current);
+
+    // Filter out sections with no points
+    return sections.filter(s => s.points.length > 0);
+  }
+  isLiveUrl(url: string): boolean {
+    if (!url) return false;
+    return (
+      !url.includes('drive.google.com') &&
+      !url.includes('youtube.com') &&
+      !url.includes('youtu.be') &&
+      !url.includes('vimeo.com')
+    );
+  }
+
+  /** Extracts a clean display URL (hostname only) */
+  getDemoDisplayUrl(url: string): string {
+    try {
+      const parsed = new URL(url);
+      return parsed.hostname.replace('www.', '');
+    } catch {
+      return url;
+    }
+  }
+
+  /** Tech category breakdown for sidebar bar chart */
+  getTechCategoryBreakdown(): { name: string; count: number; percent: number; color: string }[] {
+    if (!this.project) return [];
+
+    const categoryColors: { [key: string]: string } = {
+      'Backend':    '#512bd4',
+      'Frontend':   '#dd0031',
+      'Mobile':     '#02569b',
+      'Database':   '#cc2927',
+      'Security':   '#10b981',
+      'Payment':    '#635bff',
+      'Cloud':      '#0078d4',
+      'AI/ML':      '#f59e0b',
+      'Architecture': '#9c27b0',
+      'ORM':        '#ff6f00',
+      'Documentation': '#85ea2d',
+      'Analytics':  '#f2c811',
+      'Technology': '#6c757d',
+    };
+
+    const counts: { [key: string]: number } = {};
+    for (const tech of this.project.technologies) {
+      const cat = this.getTechCategory(tech);
+      counts[cat] = (counts[cat] ?? 0) + 1;
+    }
+
+    const total = this.project.technologies.length;
+    return Object.entries(counts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([name, count]) => ({
+        name,
+        count,
+        percent: Math.round((count / total) * 100),
+        color: categoryColors[name] ?? '#6c757d',
+      }));
+  }
+
+  /** Returns up to 3 related projects (same category, excluding current) */
+  getRelatedProjects(): Project[] {
+    if (!this.project) return [];
+    const allProjects = this.portfolioDataService.getProjects();
+    const currentCat = this.getProjectCategory();
+
+    return allProjects
+      .filter((p, i) => i !== this.projectIndex && this.getProjectCategoryForProject(p) === this.mapCategoryLabel(currentCat))
+      .slice(0, 3);
+  }
+
+  getProjectCategoryForProject(project: Project): string {
+    const webTechs = ['Angular', 'ASP.NET', 'Web API', 'SQL Server'];
+    const mobileTechs = ['Flutter', 'Dart', 'Firebase'];
+    if (project.technologies.some(t => mobileTechs.some(m => t.includes(m)))) return 'mobile';
+    if (project.technologies.some(t => webTechs.some(w => t.includes(w)))) return 'web';
+    return 'other';
+  }
+
+  private mapCategoryLabel(label: string): string {
+    if (label === 'Mobile Application') return 'mobile';
+    if (label === 'Web Application') return 'web';
+    return 'other';
+  }
+
+  navigateToProject(project: Project): void {
+    const idx = this.portfolioDataService.getProjects().indexOf(project);
+    this.router.navigate(['/project', idx]);
   }
 }

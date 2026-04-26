@@ -81,7 +81,7 @@ export class PortfolioDataService {
     github: 'https://github.com/eslamsalah5',
     summary:
       'Full Stack .NET Developer with a strong backend focus, specializing in ASP.NET Core, Clean Architecture, and Angular. Designed and built a production-ready B2B pharmaceutical distribution platform from scratch — 388+ REST endpoints, AI-powered product mapping, Redis caching, Hangfire background jobs, and Azure deployment — achieving 60–70% faster API response times and an 89% reduction in N+1 queries. Holds a B.Sc. in IT (GPA 3.63, Excellent with Honors) from Zagazig University, complemented by 5 months of intensive .NET Full Stack training at ITI. Passionate about clean, maintainable code, SOLID principles, and turning complex business requirements into reliable, scalable systems.',
-    profileImage: 'assets/images/1.jpg',
+    profileImage: 'assets/images/myPhoto.jpeg',
   };
 
   // Skills Data
@@ -779,7 +779,7 @@ By The Numbers:
     {
       title: 'Money Flow - Expense & Wallet Management',
       description:
-        'A full-stack expense tracking and wallet management system designed to help users efficiently manage their personal finances. The application allows users to record expenses, categorize spending, manage multiple wallets, and receive payment reminders for upcoming expenses.',
+        'Built a RESTful expense & wallet management API with ASP.NET Core 9 — multi-wallet support, ACID-compliant balance tracking, Google/Facebook OAuth, future-date expenses with automated reminders, and date-range financial analytics. Onion Architecture with Repository + Unit of Work, Serilog logging, and FluentValidation.',
       technologies: [
         'ASP.NET Core 9 Web API',
         'Entity Framework Core',
@@ -797,6 +797,7 @@ By The Numbers:
       ],
       image: 'assets/images/paymind.jpg',
       projectType: 'Personal Training',
+      demoUrl: 'https://play.google.com/store/apps/details?id=com.mohamed.moneyflow',
       fullDescription: `User Authentication & Authorization:
 • Secure JWT-based authentication system
 • Google and Facebook OAuth integrations for simplified login
@@ -834,7 +835,7 @@ Documentation & Monitoring:
     {
       title: 'FashionHub - Web API for E-Commerce Platform',
       description:
-        'A backend Web API project for a fashion e-commerce platform focusing on products, categories, users, and orders management. Built with clean, maintainable architecture and secure authentication.',
+        'Built a RESTful e-commerce API with ASP.NET Core — product/category management, JWT authentication with role-based access (admin/customer), order tracking, and Stripe payment integration. Onion Architecture with Repository + Unit of Work.',
       technologies: [
         'ASP.NET Core Web API',
         'Entity Framework Core',
@@ -870,65 +871,81 @@ Extras:
 • Validation on all endpoints and proper HTTP status codes`,
     },
     {
-      title: 'Ra7ala - Bus Management System',
+      title: 'Ra7ala — Full-Stack Transportation Management System',
       description:
-        'A full-stack bus reservation platform with multi-role access (Passenger, Driver, Admin, Super Admin, System Owner). Includes JWT-secured authentication, role-based dashboards, trip management, and RAG AI integration for natural-language route inquiries. Built using Onion Architecture for maintainability and scalability. This is my ITI graduation project.',
+        'Enterprise-grade TMS connecting passengers with bus companies across Egypt. .NET 9 Clean Architecture backend + Angular 19 SPA frontend, featuring Google Gemini AI chatbot with live trip context, Stripe payments with webhooks, optimistic concurrency to prevent overbooking, and 5-role RBAC. Live and deployed.',
       technologies: [
         'ASP.NET Core 9',
         'Angular 19',
-        'Entity Framework Core',
+        'Entity Framework Core 9',
         'SQL Server',
+        'Clean Architecture',
         'JWT Authentication',
-        'Role-based Authorization',
-        'RAG AI',
-        'RESTful API',
+        'ASP.NET Core Identity',
+        'Stripe API',
+        'Google Gemini AI',
+        'PrimeNG 19',
+        'Bootstrap 5',
         'Repository Pattern',
         'Unit of Work',
-        'Stripe',
-        'Onion Architecture',
-        'Email Service',
+        'Optimistic Concurrency',
+        'MailKit / SMTP',
+        'Swagger / OpenAPI',
+        'RxJS',
+        'Lazy Loading',
       ],
       image: 'assets/images/ra7ala.png',
       projectType: 'Graduation',
       githubUrl: 'https://github.com/Ra7alaa',
-      demoUrl:
-        'https://drive.google.com/file/d/1rck1qGyDNXrA1esKJnvay9pvpRA5hofc/view?usp=sharing',
-      fullDescription: `User Roles & Structure:
+      demoUrl: 'https://ra7ala.runasp.net',
+      fullDescription: `🌐 Live Demo: ra7ala.runasp.net
 
-System Owner:
-• Manages and oversees all companies
-• Has a centralized dashboard showing company KPIs such as revenue, active trips, number of buses, routes, and trips
-• Can accept or reject new company registrations
+Overview:
+Ra7ala is an enterprise-grade Transportation Management System (TMS) that connects passengers with bus companies across Egypt. The platform combines a high-performance .NET 9 backend with a modern Angular 19 frontend, featuring AI-driven support and secure Stripe payments.
 
-Super Admin (Company Owner):
-• Full control over their company
-• Can create stations, define routes (between origin and destination), add buses, assign admins, and manage their fleet
-• Access to company-level analytics and dashboards
+Architecture:
+• Backend: .NET 9 Clean Architecture (Domain → Application → Infrastructure → Presentation)
+• Frontend: Angular 19 Standalone Components with lazy-loaded feature modules
+• Auth: Stateless JWT + ASP.NET Core Identity — 5 roles: Owner, SuperAdmin, Admin, Driver, Passenger
+• Unit of Work + Repository patterns for atomic, transactional data operations
+• Soft-delete across all core entities for data safety and audit trails
 
-Admin:
-• Manages operational tasks within the company
-• Can create trips, assign drivers, and manage bus schedules
-• Cannot assign other admins
+🤖 AI Assistant — Ra7ala Bot:
+• Powered by Google Gemini 2.5 Flash-Lite
+• Receives a live summary of ALL upcoming trips, prices, and routes on every request
+• Detects and responds in the user's language and dialect automatically (Arabic/English)
+• Floating chat widget accessible from any page without navigation
+• Markdown rendering: bold text, bullet lists, clean formatting
+• Exponential backoff for API retries — handles rate limits gracefully
+• Quick suggestion prompts to help users get started
 
-Driver:
-• Views assigned trips
-• Checks passenger attendance by verifying bookings
-• Can confirm passengers and track their location on the trip day
+💳 Financial Infrastructure (Stripe):
+• PCI-compliant payments via Stripe Elements (client-secret flow)
+• Server-side amount enforcement — prevents client-side price tampering
+• Automated webhooks: syncs payment states (Success, Failure, Refund, Cancel) via payment_intent.succeeded
+• Full refund pipeline: automated refund processing and booking reversal logic
 
-Passenger:
-• Searches for trips by date, route, or company
-• Views available seats and books tickets
-• Completes booking and payment through the app
-• Sees trip details and company info
+🎫 Booking & Ticketing:
+• Multi-step booking with real-time price calculation and station sequence validation
+• Optimistic concurrency via [Timestamp] RowVersion on Trip entity — prevents overbooking under simultaneous requests
+• Unique 6-character alphanumeric ticket codes with collision detection and timestamp-based fallbacks
+• Sequential seat assignment for group bookings
+• Digital tickets with status badges, booking history, and one-click cancellation
 
-AI Chat Support (RAG AI):
-Integrated RAG-powered assistant that helps users ask questions about available trips, routes, and scheduling in natural language. Allows passengers to search for trips without strict form input.
+👥 5-Role System:
+• Passenger: Search trips by city/date/seats, book, pay, view tickets, cancel
+• Admin: Manage buses (amenities), drivers, routes (multi-station), trips, stations
+• SuperAdmin: Full company control — fleet, staff, analytics, company profile
+• Owner: Approve/reject company registrations, monitor all companies and platform activity
+• Driver: View assigned trips, verify passenger bookings
 
-Architecture & Design:
-• Onion Architecture: Clear separation of concerns with layered structure for maintainability
-• JWT Authentication: Secure login for all roles with token-based access
-• Role-based Authorization: Access control based on user roles (via policies and claims)
-• EF Core + LINQ for database queries and efficient data access`,
+🏗️ Frontend Architecture:
+• 100% Standalone Components — no NgModules
+• Role-based guards: roleGuard() factory protects routes per UserRole
+• Auth interceptor: automatically attaches JWT Bearer token to all requests
+• RxJS BehaviorSubject for reactive user state, language, and theme management
+• Skeleton loaders, toast notifications (ngx-toastr), dedicated 403/404/500 error pages
+• PrimeNG 19 + Bootstrap 5.3 — responsive across mobile, tablet, and desktop`,
     },
     {
       title: 'Examination System - Relational Database with Analytics',

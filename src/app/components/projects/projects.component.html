@@ -1,6 +1,8 @@
 <!-- Projects Section -->
 <section id="projects" class="projects-section py-5">
   <div class="container">
+
+    <!-- Section Header -->
     <div class="row">
       <div class="col-12">
         <h2 class="section-title">My Projects</h2>
@@ -10,38 +12,140 @@
       </div>
     </div>
 
-    <!-- Project Filter -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="project-filters text-center">
-          <button
-            class="filter-btn"
-            [class.active]="activeFilter === 'all'"
-            (click)="filterProjects('all')"
-          >
-            All Projects ({{ getProjectCount("all") }})
-          </button>
-          <button
-            class="filter-btn"
-            [class.active]="activeFilter === 'web'"
-            (click)="filterProjects('web')"
-          >
-            Web Apps ({{ getProjectCount("web") }})
-          </button>
-          <button
-            class="filter-btn"
-            [class.active]="activeFilter === 'mobile'"
-            (click)="filterProjects('mobile')"
-          >
-            Mobile Apps ({{ getProjectCount("mobile") }})
-          </button>
+    <!-- ══════════════════════════════════════════
+         FEATURED PROJECTS — GoDawa Suite
+    ══════════════════════════════════════════ -->
+    <div class="featured-section mb-5" *ngIf="featuredProjects.length > 0">
+
+      <!-- Suite wrapper -->
+      <div class="suite-wrapper">
+        <!-- Suite header -->
+        <div class="suite-header">
+          <div class="suite-header-left">
+            <div class="suite-logo">
+              <i class="fas fa-capsules"></i>
+            </div>
+            <div>
+              <div class="suite-name">GoDawa Suite</div>
+              <div class="suite-subtitle">Enterprise B2B Pharmaceutical Distribution Platform</div>
+            </div>
+          </div>
+          <div class="suite-badges">
+            <span class="suite-badge suite-badge-pro">
+              <i class="fas fa-briefcase me-1"></i>Professional
+            </span>
+            <span class="suite-badge suite-badge-azure">
+              <i class="fab fa-microsoft me-1"></i>Azure Deployed
+            </span>
+          </div>
         </div>
+
+        <!-- Suite cards -->
+        <div class="row g-3">
+          <div
+            class="col-lg-6"
+            *ngFor="let project of featuredProjects; let i = index"
+          >
+            <div class="featured-card" (click)="viewProjectDetails(project)">
+              <div class="featured-accent" [class.accent-backend]="i === 0" [class.accent-frontend]="i === 1"></div>
+
+              <div class="featured-body">
+                <!-- Header row -->
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <div class="featured-icon-wrap" [class.icon-backend]="i === 0" [class.icon-frontend]="i === 1">
+                    <i class="fas fa-2x" [class.fa-server]="i === 0" [class.fa-desktop]="i === 1"></i>
+                  </div>
+                  <span class="suite-part-badge">
+                    {{ i === 0 ? 'Backend API' : 'Admin Dashboard' }}
+                  </span>
+                </div>
+
+                <!-- Title & description -->
+                <h4 class="featured-title">{{ project.title }}</h4>
+                <p class="featured-description">{{ project.description }}</p>
+
+                <!-- Tech tags (first 6 only) -->
+                <div class="project-technologies mb-3">
+                  <span
+                    class="tech-tag"
+                    *ngFor="let tech of project.technologies.slice(0, 6)"
+                  >{{ tech }}</span>
+                  <span
+                    class="tech-tag tech-tag-more"
+                    *ngIf="project.technologies.length > 6"
+                  >+{{ project.technologies.length - 6 }} more</span>
+                </div>
+
+                <!-- Footer actions -->
+                <div class="featured-footer">
+                  <button class="btn-details">
+                    <i class="fas fa-info-circle me-2"></i>View Details
+                  </button>
+                  <div class="featured-links">
+                    <a
+                      [href]="project.demoUrl"
+                      class="icon-link"
+                      title="Live Demo"
+                      *ngIf="project.demoUrl"
+                      target="_blank"
+                      (click)="$event.stopPropagation()"
+                    >
+                      <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <a
+                      [href]="project.githubUrl"
+                      class="icon-link"
+                      title="View Code"
+                      *ngIf="project.githubUrl"
+                      target="_blank"
+                      (click)="$event.stopPropagation()"
+                    >
+                      <i class="fab fa-github"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         ALL PROJECTS — Filter + Grid
+    ══════════════════════════════════════════ -->
+    <div class="all-projects-header mb-4">
+      <h3 class="all-projects-title">All Projects</h3>
+
+      <!-- Filter Buttons -->
+      <div class="project-filters">
+        <button
+          class="filter-btn"
+          [class.active]="activeFilter === 'all'"
+          (click)="filterProjects('all')"
+        >
+          All ({{ getProjectCount('all') }})
+        </button>
+        <button
+          class="filter-btn"
+          [class.active]="activeFilter === 'web'"
+          (click)="filterProjects('web')"
+        >
+          Web Apps ({{ getProjectCount('web') }})
+        </button>
+        <button
+          class="filter-btn"
+          [class.active]="activeFilter === 'mobile'"
+          (click)="filterProjects('mobile')"
+        >
+          Mobile Apps ({{ getProjectCount('mobile') }})
+        </button>
       </div>
     </div>
 
     <!-- Projects Grid -->
     <div class="row" id="projects-grid">
-      <!-- Dynamic Projects -->
       <div
         class="col-lg-4 col-md-6 mb-4 project-item"
         *ngFor="let project of filteredProjects"
@@ -99,9 +203,11 @@
                 {{ project.projectType }}
               </span>
             </div>
-            <p class="project-description">
-              {{ project.description }}
-            </p>
+            <!-- Live badge -->
+            <div class="live-badge" *ngIf="isLiveProject(project)">
+              <span class="live-dot-sm"></span> Live
+            </div>
+            <p class="project-description">{{ project.description }}</p>
             <div class="project-technologies">
               <span class="tech-tag" *ngFor="let tech of project.technologies">
                 {{ tech }}
@@ -111,5 +217,6 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
