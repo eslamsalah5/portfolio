@@ -69,11 +69,21 @@
             <div
               *ngIf="showDefaultIcon"
               class="default-project-image d-flex align-items-center justify-content-center rounded shadow"
+              [class.has-logo]="getProjectLogo()"
             >
-              <div class="text-center">
+              <!-- Logo display (GoDawa / Ra7ala) -->
+              <div *ngIf="getProjectLogo()" class="project-logo-display">
+                <img
+                  [src]="getProjectLogo()!"
+                  [alt]="project!.title"
+                  class="project-logo-large"
+                />
+              </div>
+              <!-- Fallback icon -->
+              <div *ngIf="!getProjectLogo()" class="text-center">
                 <i [class]="getProjectIcon()" class="project-icon mb-3"></i>
                 <h5 class="project-type">{{ getProjectCategory() }}</h5>
-                <p class="text-muted">{{ project.title }}</p>
+                <p class="text-muted">{{ project!.title }}</p>
               </div>
             </div>
           </div>

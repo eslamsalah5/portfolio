@@ -415,6 +415,14 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  getProjectLogo(): string | null {
+    if (!this.project) return null;
+    const title = this.project.title.toLowerCase();
+    if (title.includes('godawa')) return 'assets/images/godawa.png';
+    if (title.includes('ra7ala')) return 'assets/images/ra7alaLogo.svg';
+    return null;
+  }
+
   getProjectIcon(): string {
     if (!this.project) return 'fas fa-code fa-4x text-primary';
 

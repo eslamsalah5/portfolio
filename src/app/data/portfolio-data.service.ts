@@ -614,6 +614,80 @@ export class PortfolioDataService {
       color: '#ff6f00',
       category: 'Cloud & DevOps',
     },
+
+    // AI & Developer Productivity
+    {
+      name: 'GitHub Copilot',
+      icon: 'fab fa-github',
+      color: '#24292e',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'Claude AI',
+      icon: 'fas fa-brain',
+      color: '#d97757',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'Cursor IDE',
+      icon: 'fas fa-code',
+      color: '#000000',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'Kiro AI',
+      icon: 'fas fa-robot',
+      color: '#4131A3',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'Windsurf IDE',
+      icon: 'fas fa-wind',
+      color: '#00d4ff',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'OpenAI API',
+      icon: 'fas fa-brain',
+      color: '#10a37f',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'Google Gemini API',
+      icon: 'fab fa-google',
+      color: '#4285f4',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'RAG Architecture',
+      icon: 'fas fa-project-diagram',
+      color: '#ff6b6b',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'Prompt Engineering',
+      icon: 'fas fa-pen-fancy',
+      color: '#4ecdc4',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'AI Agent Integration',
+      icon: 'fas fa-network-wired',
+      color: '#f38181',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'LLM Integration',
+      icon: 'fas fa-microchip',
+      color: '#aa96da',
+      category: 'AI & Developer Productivity',
+    },
+    {
+      name: 'Context Management',
+      icon: 'fas fa-layer-group',
+      color: '#95e1d3',
+      category: 'AI & Developer Productivity',
+    },
   ];
 
   // Projects Data
@@ -645,7 +719,8 @@ export class PortfolioDataService {
         'QuestPDF',
         'ClosedXML',
       ],
-      image: 'assets/images/godawa-api.jpg',
+      image: 'assets/images/godawa.png',
+      githubUrl: 'https://github.com/eslamsalah5/GoDawa-Showcase',
       projectType: 'Professional',
       fullDescription: `Architecture & Design:
 • Clean Architecture with 4 strict layers: Domain → Application → Infrastructure → API (dependencies flow inward only)
@@ -726,7 +801,8 @@ By The Numbers:
         'Standalone Components',
         'Azure Static Web Apps',
       ],
-      image: 'assets/images/godawa-angular.jpg',
+      image: 'assets/images/godawa.png',
+      githubUrl: 'https://github.com/eslamsalah5/GoDawa-Showcase',
       projectType: 'Professional',
       fullDescription: `Architecture & Design:
 • 100% standalone components — zero NgModules, every component declares its own explicit imports
@@ -777,60 +853,75 @@ By The Numbers:
 • Deployed on Azure Static Web Apps`,
     },
     {
-      title: 'Money Flow - Expense & Wallet Management',
+      title: 'Money Flow - Expense & Wallet Management API',
       description:
-        'Built a RESTful expense & wallet management API with ASP.NET Core 9 — multi-wallet support, ACID-compliant balance tracking, Google/Facebook OAuth, future-date expenses with automated reminders, and date-range financial analytics. Onion Architecture with Repository + Unit of Work, Serilog logging, and FluentValidation.',
+        'Production-ready ASP.NET Core 9 REST API for expense and wallet management — JWT auth with OTP email verification, Google/Facebook OAuth, auto-created wallet with optimistic concurrency, full CRUD expenses with automatic balance updates, and real-time analytics across 11 report periods. Clean Architecture with 51+ unit tests at 100% pass rate.',
       technologies: [
         'ASP.NET Core 9 Web API',
-        'Entity Framework Core',
+        'Entity Framework Core 9',
         'SQL Server',
+        'ASP.NET Core Identity',
         'JWT Authentication',
+        'OTP Email Verification',
         'Google OAuth',
         'Facebook OAuth',
+        'Clean Architecture',
         'Repository Pattern',
         'Unit of Work',
-        'Onion Architecture',
-        'Serilog',
+        'Optimistic Concurrency',
         'FluentValidation',
-        'Swagger',
+        'MailKit / MimeKit',
+        'Serilog',
+        'Swagger / OpenAPI',
+        'xUnit',
+        'Moq',
         'ACID Transactions',
       ],
-      image: 'assets/images/paymind.jpg',
+      image: 'assets/images/moneyflow.jpg',
       projectType: 'Personal Training',
       demoUrl: 'https://play.google.com/store/apps/details?id=com.mohamed.moneyflow',
-      fullDescription: `User Authentication & Authorization:
-• Secure JWT-based authentication system
-• Google and Facebook OAuth integrations for simplified login
-• Protected endpoints with role-based access control
+      gallery: [
+        'assets/images/moneyflow/WhatsApp Image 2026-04-26 at 10.18.20 PM.jpeg',
+        'assets/images/moneyflow/WhatsApp Image 2026-04-26 at 10.18.20 PM (1).jpeg',
+        'assets/images/moneyflow/WhatsApp Image 2026-04-26 at 10.18.20 PM (2).jpeg',
+        'assets/images/moneyflow/WhatsApp Image 2026-04-26 at 10.18.20 PM (3).jpeg',
+        'assets/images/moneyflow/WhatsApp Image 2026-04-26 at 10.18.20 PM (4).jpeg',
+      ],
+      fullDescription: `Authentication & Security:
+• JWT authentication (60-minute expiration) with OTP-based email verification — auto-sent on registration
+• 3-step forgot password flow: request OTP → verify OTP → set new password
+• Google and Facebook OAuth — auto-create accounts with EmailConfirmed = true
+• Rate limiting: 5 OTP requests per email per hour using existing OTP records (no extra tables)
+• Image security: SSRF, XSS, and path traversal protection on profile image uploads
+• Global API rate limiting: 1000 req/min (dev) / 100 req/min (prod), partitioned by user or IP
 
-Wallet Management:
-• Create and manage multiple wallets for different purposes
-• Track balance updates with ACID-compliant transactional handling
-• Ensure data reliability and consistency across all operations
+Wallet System:
+• Auto-created wallet on first access — no manual setup required
+• Deposit and withdraw endpoints with optimistic concurrency (rowversion) to prevent lost updates
+• All balance changes are atomic via Unit of Work transactions
 
 Expense Management:
-• Add, update, and delete expenses with comprehensive category selection
-• Future-date support for expenses with automated reminder notifications
-• Image validation for expense attachments (receipts, invoices)
-• Real-time expense tracking and categorization
+• Full CRUD with automatic wallet balance adjustments (create deducts, delete refunds, update applies delta)
+• Filter expenses by date range and category
+• Optimistic concurrency on Expense entity (rowversion)
 
-Reporting & Analytics:
-• Detailed financial reports by day, month, year, or custom date ranges
-• Category-based spending breakdowns and analytics
-• Spending averages and trends for better financial insights
-• Visual representation of financial data patterns
+Reports & Analytics:
+• 11 quick report periods: Today, Yesterday, ThisWeek, LastWeek, ThisMonth, LastMonth, ThisYear, LastYear, Last7Days, Last30Days, Last90Days
+• Custom date range reports via query params or request body
+• Per-report output: total expenses, transaction count, average per day, category breakdown with percentages, daily breakdown
 
 Architecture & Quality:
-• Onion Architecture for separation of concerns and scalability
-• Repository Pattern and Unit of Work for clean data access abstraction
-• SOLID principles implementation for maintainable and testable code
-• Centralized global exception middleware for consistent error handling
+• Clean Architecture — 4 strict layers: Domain → Application → Infrastructure → API
+• Generic OtpRepository<T> handles both OTP types (~50% code reduction)
+• BaseApiController with typed response helpers — consistent ApiResponse<T> across all endpoints
+• Global exception middleware with correlation IDs
+• Manual mapping profiles (no AutoMapper dependency)
+• UTC storage throughout — clients convert to local time for display
 
-Documentation & Monitoring:
-• Comprehensive API documentation with Swagger/OpenAPI
-• Structured logging using Serilog for monitoring and debugging
-• Unified API response format across all endpoints
-• FluentValidation for robust input validation`,
+Testing:
+• 51+ unit tests — 100% passing (xUnit + Moq + EF Core InMemory)
+• Test suites: ExpenseService (9), WalletService (6), ReportService, AuthService profile (5), UpdateProfileDto validator (31)
+• MockUnitOfWork bypasses transaction handling for in-memory DB isolation`,
     },
     {
       title: 'FashionHub - Web API for E-Commerce Platform',
@@ -847,7 +938,7 @@ Documentation & Monitoring:
         'Onion Architecture',
         'Swagger',
       ],
-      image: 'assets/images/fashionhub.jpg',
+      image: 'assets/images/fashionhub-v2.svg',
       projectType: 'Personal Training',
       githubUrl: 'https://github.com/eslamsalah5/FashionHub-Api',
       fullDescription: `Product & Category Management:
@@ -960,7 +1051,7 @@ Architecture:
         'Database Normalization',
         'ERD Design',
       ],
-      image: '',
+      image: 'assets/images/examination/erd.png',
       projectType: 'Academic',
       githubUrl: 'https://github.com/eslamsalah5/Exam_System_DB',
       gallery: [
@@ -1010,7 +1101,7 @@ Security & Data Control:
         'Stripe',
         'Responsive UI',
       ],
-      image: 'assets/images/kito.jpg',
+      image: 'assets/images/kito-cover.jpg',
       projectType: 'Freelance',
       demoUrl:
         'https://drive.google.com/file/d/1mZmb5LDvIvU02wtsnY5tYqMxWf-1Jvfl/view?usp=sharing',
@@ -1085,7 +1176,7 @@ Extra Features:
         'Cubit',
         'Machine Learning Model',
       ],
-      image: 'assets/images/epilepsy.jpg',
+      image: 'assets/images/epilepsy/patient.png',
       projectType: 'Graduation',
       gallery: [
         'assets/images/epilepsy/patient.png',
@@ -1127,7 +1218,7 @@ Architecture & Data:
         'Dio',
         'Google Books API',
       ],
-      image: 'assets/images/bookly.jpg',
+      image: 'assets/images/bookly/111.jpg',
       projectType: 'Personal Training',
       githubUrl: 'https://github.com/eslamsalah5/bookly',
       gallery: [
@@ -1176,7 +1267,7 @@ Limitations / Scope:
         'LayoutBuilder',
         'MediaQuery',
       ],
-      image: 'assets/images/financial-dashboard.jpg',
+      image: 'assets/images/financial-dashboard.svg',
       projectType: 'Personal Training',
       githubUrl: 'https://github.com/eslamsalah5/responsive_dashboard',
       fullDescription: `UI Panels & Layout:
@@ -1203,7 +1294,7 @@ Purpose & Scope:
       description:
         'A simple Flutter weather application built to learn how to consume APIs, implement search, and manage dynamic state. The app allows users to get the current and upcoming weather forecasts for a specific city.',
       technologies: ['Flutter', 'Cubit', 'Dio', 'Weather API', 'Search'],
-      image: 'assets/images/weather-app.jpg',
+      image: 'assets/images/weather-app.svg',
       projectType: 'Personal Training',
       githubUrl: 'https://github.com/eslamsalah5/weather',
       fullDescription: `Search Functionality:
@@ -1235,7 +1326,7 @@ API Integration & State Management:
         'Search',
         'WebView',
       ],
-      image: 'assets/images/news-app.jpg',
+      image: 'assets/images/news-app.svg',
       projectType: 'Personal Training',
       githubUrl: 'https://github.com/eslamsalah5/News-app',
       fullDescription: `News Categories & Browsing:
@@ -1306,7 +1397,7 @@ Purpose & Scope:
   education: Education[] = [
     {
       degree:
-        'B.Sc. in Information Technology (GPA: 3.63 - Excellent with Honors, Distinction)',
+        'Bachelor of Computer Science (GPA: 3.63 - Excellent with Honors, Distinction)',
       institution: 'Zagazig University',
       period: '2020 - 2024',
       description:

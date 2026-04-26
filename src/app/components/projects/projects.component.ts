@@ -138,6 +138,12 @@ export class ProjectsComponent implements OnInit {
     );
   }
 
+  getProjectLogo(project: Project): string | null {
+    const title = project.title.toLowerCase();
+    if (title.includes('ra7ala')) return 'assets/images/ra7alaLogo.svg';
+    return null;
+  }
+
   viewProjectDetails(project: Project): void {
     const projectIndex = this.projects.indexOf(project);
     this.router.navigate(['/project', projectIndex]);

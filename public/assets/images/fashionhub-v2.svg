@@ -1,0 +1,110 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  
+  <!-- Decorative Circles -->
+  <circle cx="120" cy="120" r="80" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="700" cy="480" r="100" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="680" cy="140" r="60" fill="rgba(255,255,255,0.06)"/>
+  
+  <!-- Phone Mockup -->
+  <g filter="url(#shadow)">
+    <rect x="280" y="120" width="240" height="420" rx="30" fill="#1a1a2e" stroke="white" stroke-width="3"/>
+    <rect x="295" y="145" width="210" height="370" rx="20" fill="white"/>
+  </g>
+  
+  <!-- App Content -->
+  <!-- Header -->
+  <rect x="310" y="160" width="180" height="40" rx="10" fill="url(#shirtGrad)"/>
+  <text x="400" y="185" font-family="Arial" font-size="18" font-weight="bold" fill="white" text-anchor="middle">FashionHub</text>
+  
+  <!-- Product Cards -->
+  <!-- Card 1 -->
+  <g>
+    <rect x="310" y="220" width="80" height="100" rx="10" fill="#f8f9fa"/>
+    <!-- T-Shirt Icon -->
+    <path d="M 330 245 L 325 250 L 325 265 L 370 265 L 370 250 L 365 245 L 360 250 L 355 245 L 350 245 L 345 250 L 340 245 Z" 
+          fill="url(#shirtGrad)" opacity="0.9"/>
+    <rect x="315" y="285" width="60" height="6" rx="3" fill="#dee2e6"/>
+    <rect x="315" y="295" width="40" height="6" rx="3" fill="#e9ecef"/>
+    <rect x="315" y="305" width="50" height="8" rx="4" fill="#667eea"/>
+    <text x="340" y="312" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">$29</text>
+  </g>
+  
+  <!-- Card 2 -->
+  <g>
+    <rect x="405" y="220" width="80" height="100" rx="10" fill="#f8f9fa"/>
+    <!-- Dress Icon -->
+    <path d="M 425 245 L 420 250 L 420 275 L 465 275 L 465 250 L 460 245 L 455 250 L 450 245 L 445 245 L 440 250 L 435 245 Z" 
+          fill="#ff6b6b" opacity="0.9"/>
+    <rect x="410" y="285" width="60" height="6" rx="3" fill="#dee2e6"/>
+    <rect x="410" y="295" width="40" height="6" rx="3" fill="#e9ecef"/>
+    <rect x="410" y="305" width="50" height="8" rx="4" fill="#ff6b6b"/>
+    <text x="435" y="312" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">$49</text>
+  </g>
+  
+  <!-- Card 3 -->
+  <g>
+    <rect x="310" y="335" width="80" height="100" rx="10" fill="#f8f9fa"/>
+    <!-- Pants Icon -->
+    <rect x="330" y="355" width="15" height="50" rx="3" fill="#4ecdc4" opacity="0.9"/>
+    <rect x="350" y="355" width="15" height="50" rx="3" fill="#4ecdc4" opacity="0.9"/>
+    <rect x="315" y="410" width="60" height="6" rx="3" fill="#dee2e6"/>
+    <rect x="315" y="420" width="50" height="8" rx="4" fill="#4ecdc4"/>
+    <text x="340" y="427" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">$39</text>
+  </g>
+  
+  <!-- Card 4 -->
+  <g>
+    <rect x="405" y="335" width="80" height="100" rx="10" fill="#f8f9fa"/>
+    <!-- Shoes Icon -->
+    <ellipse cx="442" cy="385" rx="25" ry="15" fill="#ffd93d" opacity="0.9"/>
+    <path d="M 417 385 Q 417 395 442 395 Q 467 395 467 385" fill="#ffd93d" opacity="0.9"/>
+    <rect x="410" y="410" width="60" height="6" rx="3" fill="#dee2e6"/>
+    <rect x="410" y="420" width="50" height="8" rx="4" fill="#ffd93d"/>
+    <text x="435" y="427" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">$59</text>
+  </g>
+  
+  <!-- Bottom Navigation -->
+  <rect x="310" y="460" width="180" height="40" rx="20" fill="#f8f9fa"/>
+  <circle cx="340" cy="480" r="12" fill="#667eea"/>
+  <circle cx="400" cy="480" r="12" fill="#e9ecef"/>
+  <circle cx="460" cy="480" r="12" fill="#e9ecef"/>
+  
+  <!-- Shopping Cart Badge -->
+  <circle cx="470" cy="470" r="8" fill="#ff6b6b"/>
+  <text x="470" y="474" font-family="Arial" font-size="10" font-weight="bold" fill="white" text-anchor="middle">3</text>
+  
+  <!-- Decorative Shopping Bags -->
+  <g transform="translate(600, 300)" opacity="0.9">
+    <path d="M 0 10 L -15 60 L 15 60 L 0 10 Z" fill="white" opacity="0.9"/>
+    <path d="M -8 10 Q -8 0 0 0 Q 8 0 8 10" stroke="white" stroke-width="2" fill="none" opacity="0.9"/>
+  </g>
+  
+  <g transform="translate(650, 320)" opacity="0.8">
+    <path d="M 0 8 L -12 50 L 12 50 L 0 8 Z" fill="white" opacity="0.8"/>
+    <path d="M -6 8 Q -6 0 0 0 Q 6 0 6 8" stroke="white" stroke-width="2" fill="none" opacity="0.8"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="570" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="white" text-anchor="middle">FashionHub</text>
+</svg>
