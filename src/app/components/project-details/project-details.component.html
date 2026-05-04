@@ -35,7 +35,16 @@
               class="btn btn-dark me-3"
             >
               <i class="fab fa-github me-2"></i>
-              View Code
+              {{ project.githubFrontendUrl ? 'Backend Code' : 'View Code' }}
+            </a>
+            <a
+              *ngIf="project.githubFrontendUrl"
+              [href]="project.githubFrontendUrl"
+              target="_blank"
+              class="btn btn-dark me-3"
+            >
+              <i class="fab fa-github me-2"></i>
+              Frontend Code
             </a>
             <a
               *ngIf="project.demoUrl"
@@ -270,8 +279,14 @@
               <span class="ms-2">{{ project.technologies.length }} technologies</span>
             </div>
             <div class="info-item" *ngIf="project.githubUrl">
-              <strong>Repository:</strong>
+              <strong>{{ project.githubFrontendUrl ? 'Backend Repo:' : 'Repository:' }}</strong>
               <a [href]="project.githubUrl" target="_blank" class="ms-2">
+                <i class="fab fa-github me-1"></i>View on GitHub
+              </a>
+            </div>
+            <div class="info-item" *ngIf="project.githubFrontendUrl">
+              <strong>Frontend Repo:</strong>
+              <a [href]="project.githubFrontendUrl" target="_blank" class="ms-2">
                 <i class="fab fa-github me-1"></i>View on GitHub
               </a>
             </div>

@@ -20,6 +20,7 @@ export interface Project {
     | 'Professional';
   demoUrl?: string;
   githubUrl?: string;
+  githubFrontendUrl?: string;
   fullDescription?: string;
   gallery?: string[];
 }
@@ -778,16 +779,16 @@ Performance & Infrastructure:
 By The Numbers:
 • 388 REST endpoints (V1 + V2) across 34 controllers
 • 52 domain entities, 34 enumerations, all with soft delete & full audit trail
-• 37 application services, 73 interfaces, 30 repositories
-• 119 DTO files, 34 FluentValidation validators, 19 AutoMapper profiles
-• 46 EF Core migrations — auto-applied on startup
+• 37 application services, 72 interfaces, 30 repositories
+• 119 DTO files, ~55 FluentValidation validators, 19 AutoMapper profiles
+• 38 EF Core migrations — auto-applied on startup
 • 8 background jobs (4 recurring + 3 on-demand + 1 IHostedService)
 • Deployed on Azure`,
     },
     {
       title: 'GoDawa - Pharmaceutical Distribution Platform (Admin Dashboard)',
       description:
-        'Enterprise Angular 21 admin dashboard for the GoDawa platform. 67 standalone components, Signal-based state, 5-role RBAC with 70 granular permissions, and 17 feature modules covering orders, products, warehouses, AI product mapping, sales analytics, and pharmacy targets — deployed on Azure Static Web Apps.',
+        'Enterprise Angular 21 admin dashboard for the GoDawa platform. 73 standalone components, Signal-based state, 5-role RBAC with 66 granular permissions, and 15 feature modules covering orders, products, warehouses, AI product mapping, sales analytics, and pharmacy targets — deployed on Azure Static Web Apps.',
 
       technologies: [
         'Angular 21',
@@ -813,14 +814,14 @@ By The Numbers:
 • Dev-only logging: devLog/devError/devWarn are no-ops in production (esbuild tree-shaken)
 • Lazy-loaded routes across all 17 feature modules
 
-Authentication & RBAC (5 Roles × 70 Permissions):
+Authentication & RBAC (5 Roles × 66 Permissions):
 • JWT with automatic token refresh via authInterceptor — 401 triggers refresh → retry original request → logout on failure
 • 5 dashboard roles: SystemAdmin, TeleSales, SalesMan, DataEntry, SupportAgent
-• 70 granular permissions enforced at route level (permissionGuard) AND component level (signal-based computed)
+• 66 granular permissions enforced at route level (permissionGuard) AND component level (signal-based computed)
 • Component visibility example: readonly canEdit = computed(() => perm.hasPermission(Permission.EDIT_PRODUCT))
 • Multi-device session list — view and revoke active sessions
 
-17 Feature Modules — 67 Standalone Components:
+17 Feature Modules — 73 Standalone Components:
 • Authentication (6 pages): Login, forgot/reset password, OTP verification, change password, active sessions
 • Dashboard (1): Role-specific metrics, quick actions, auto-refresh
 • Employees (8): CRUD, role assignment, per-role performance dashboards (TeleSales, SalesMan, DataEntry)
@@ -844,10 +845,10 @@ UI & Design System:
 • esbuild-based @angular/build with AOT compilation for fast production builds
 
 By The Numbers:
-• 67 standalone components across 17 feature modules
+• 73 standalone components across 15 feature modules
 • 25 injectable services, 23 TypeScript model files
 • 82 routes (top-level + child) with lazy loading
-• 70 RBAC permissions across 5 roles
+• 66 RBAC permissions across 5 roles
 • 153 CSS custom properties
 • Tested with Vitest 4.0.8 (jsdom)
 • Deployed on Azure Static Web Apps`,
@@ -924,42 +925,92 @@ Testing:
 • MockUnitOfWork bypasses transaction handling for in-memory DB isolation`,
     },
     {
-      title: 'FashionHub - Web API for E-Commerce Platform',
+      title: 'FashionHub — Full-Stack E-Commerce Platform',
       description:
-        'Built a RESTful e-commerce API with ASP.NET Core — product/category management, JWT authentication with role-based access (admin/customer), order tracking, and Stripe payment integration. Onion Architecture with Repository + Unit of Work.',
+        'Production-ready e-commerce platform with ASP.NET Core backend and Angular 21 frontend. Features product browsing, shopping cart, Stripe & Paymob payments, order tracking, user profiles, and a full admin dashboard. Live and deployed.',
       technologies: [
         'ASP.NET Core Web API',
+        'Angular 21',
         'Entity Framework Core',
         'SQL Server',
         'JWT Authentication',
+        'ASP.NET Core Identity',
+        'Stripe',
+        'Paymob',
+        'Angular Signals',
+        'SSR',
         'Repository Pattern',
         'Unit of Work',
-        'Stripe',
-        'Onion Architecture',
+        'Clean Architecture',
+        'Serilog',
         'Swagger',
       ],
       image: 'assets/images/fashionhub-v2.svg',
       projectType: 'Personal Training',
       githubUrl: 'https://github.com/eslamsalah5/FashionHub-Api',
-      fullDescription: `Product & Category Management:
-• APIs to create, update, delete, and retrieve fashion products
-• Category-based filtering and product search support
+      githubFrontendUrl: 'https://github.com/eslamsalah5/FashionHub-Angular',
+      demoUrl: 'https://fashionhub.runasp.net',
+      fullDescription: `🌐 Live Demo: fashionhub.runasp.net
 
-User Authentication & Authorization:
-• JWT-based token authentication system
-• Secured endpoints by roles (e.g., admin vs customer)
+Overview:
+FashionHub is a complete, production-ready e-commerce application built with ASP.NET Core on the backend and Angular 21 on the frontend. The Angular app builds directly into the .NET backend's wwwroot, so the entire application is served from a single origin in production.
 
-Order Management:
-• APIs for creating orders, tracking order status, and fetching user order history
+🛒 Customer Features:
+• Product Discovery — Browse all products, filter by category, explore featured & sale items, search by keyword
+• Product Detail — Full product info: images, sizes, colors, ratings, and pricing
+• Shopping Cart — Add, update, and remove items with a live cart badge in the header
+• Secure Checkout — Stripe-powered payment flow with real-time card validation
+• Order History — View past orders and individual order details
+• User Profile — View and edit profile info, upload avatar, and change password
 
-Architecture:
-• Repository Pattern and Unit of Work for data access abstraction
-• Organized solution structure for scalability and clarity
-• Centralized exception handling and middleware
+🛡️ Admin Panel:
+• Dashboard — Quick overview of store operations
+• Product Management — Full CRUD: create, edit, toggle active/featured status, update stock, soft-delete (recoverable), and hard-delete (permanent)
+• Order Management — View all customer orders and update their status
 
-Extras:
-• Swagger Documentation for API testing and exploration
-• Validation on all endpoints and proper HTTP status codes`,
+🔐 Authentication & Authorization:
+• Register, login, forgot password, and reset password flows
+• JWT-based sessions with automatic expiry detection
+• Role-based access: Customer and Admin roles with dedicated route guards
+• Automatic logout on 401 responses; redirect to /access-denied on 403
+
+🏗️ Backend Architecture (Clean, 4-layer):
+• Domain: Entities, enums, and repository interfaces
+• Application: DTOs, business services, and mappers
+• Infrastructure: EF Core, repositories, external services, and data seeding
+• Presentation: API controllers, middleware, and dependency injection
+
+⚡ Frontend Architecture (Angular 21):
+• Feature-based with Core / Features / Shared layers
+• Angular Signals for reactive state — no NgRx
+• SSR via @angular/ssr + Express 5
+• OnPush change detection throughout
+• Three functional interceptors: baseUrl, auth, error handling
+
+💳 Payment Integration:
+• Stripe — Card payments via Stripe Elements with webhook verification
+• Paymob — Alternative gateway with HMAC-SHA512 webhook validation
+• Unified IPaymentGateway interface (Strategy Pattern) for easy extensibility
+• Idempotent success processing, stock reservation, and cart snapshot to prevent overselling and price manipulation
+
+⚡ Performance Highlights:
+• Memory caching for the product catalog with targeted invalidation
+• Database-level pagination for large datasets
+• No-tracking EF Core queries for read-only operations
+• Background service for payment reservation expiry cleanup
+• Response compression (Gzip/Brotli) enabled
+
+🧪 Testing:
+• Backend: 51+ unit & integration tests (xUnit + Moq + EF Core InMemory)
+• Test suites: AuthService, CartService, OrderService, PaymentService, ProductService
+• Frontend: Vitest 4 + jsdom + fast-check
+
+🔒 Security:
+• JWT Bearer tokens, ASP.NET Core Identity, BCrypt password hashing
+• Stripe webhook signature validation + Paymob HMAC-SHA512 verification
+• Soft delete with global EF Core query filters
+• Parameterized queries via EF Core (SQL injection prevention)
+• CORS configuration and HTTPS enforcement`,
     },
     {
       title: 'Ra7ala — Full-Stack Transportation Management System',
@@ -1362,7 +1413,7 @@ Purpose & Scope:
       company: 'الشركة المتخصصة لتوزيع الأدوية — المعادي، القاهرة',
       period: 'Nov 2025 - Apr 2026',
       description:
-        'Architected and delivered a production-ready enterprise B2B pharmaceutical distribution platform connecting pharmacies with warehouses across Egypt. Single-handedly built the complete system: ASP.NET Core 9 backend (388 REST endpoints, Clean Architecture, 52 domain entities, 46 migrations), Angular 21 admin dashboard (67 components, 17 feature modules, 70-permission RBAC), and API infrastructure serving a Flutter mobile pharmacy app. Shipped an AI-powered product mapping engine, optimistic-locking concurrency system, external ERP integration via API Keys, and 86+ analytics endpoints.',
+        'Architected and delivered a production-ready enterprise B2B pharmaceutical distribution platform connecting pharmacies with warehouses across Egypt. Single-handedly built the complete system: ASP.NET Core 9 backend (388 REST endpoints, Clean Architecture, 52 domain entities, 38 migrations), Angular 21 admin dashboard (73 components, 15 feature modules, 66-permission RBAC), and API infrastructure serving a Flutter mobile pharmacy app. Shipped an AI-powered product mapping engine, optimistic-locking concurrency system, external ERP integration via API Keys, and 86+ analytics endpoints.',
       technologies: [
         'ASP.NET Core 9',
         'Angular 21',
