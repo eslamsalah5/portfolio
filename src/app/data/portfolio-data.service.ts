@@ -1542,7 +1542,7 @@ Purpose & Scope:
     {
       name: '.NET Developer CV',
       type: 'Web Development',
-      url: 'assets/cv/Eslam_Salah_FullStack__NET_Developer_CV.pdf',
+      url: 'assets/cv/Eslam_Salah_FullStack_.NET_Developer_CV.pdf',
       icon: 'fab fa-microsoft',
       color: '#512bd4',
     },
