@@ -21,8 +21,8 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- Theme color for browser UI -->
-    <meta name="theme-color" content="#3f51b5">
-    <meta name="msapplication-TileColor" content="#3f51b5">
+    <meta name="theme-color" content="#0e1f26">
+    <meta name="msapplication-TileColor" content="#0e1f26">
     <meta name="msapplication-TileImage" content="favicon.svg">
 
     <!-- Preconnect to external domains for faster loading -->
@@ -30,9 +30,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-    <!-- Load Google Fonts asynchronously -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&amp;family=Roboto:wght@300;400;500;700&amp;family=Fira+Code:wght@300;400;500&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Fira+Code:wght@300;400;500&display=swap"></noscript>
+    <!-- Archivo (variable width + weight) for all type; Plex Mono for measured
+         values only. Loaded render-blocking: the hero headline is set in
+         expanded Archivo, and swapping in from a fallback would reflow it. -->
+    <style>@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-stretch:62% 125%;font-display:swap;src:url(https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdboLnnA.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-stretch:62% 125%;font-display:swap;src:url(https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdfoLnnA.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-stretch:62% 125%;font-display:swap;src:url(https://fonts.gstatic.com/s/archivo/v25/k3kQo8UDI-1M0wlSfdnoLg.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1iIq129k.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1isq129k.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1iAq129k.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1iEq129k.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwl1FgtIU.woff2) format('woff2');unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlRFgtIU.woff2) format('woff2');unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwl9FgtIU.woff2) format('woff2');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwl5FgtIU.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgg.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}</style>
 
     <!-- Load Font Awesome asynchronously -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -40,37 +41,33 @@
 
     <!-- Critical inline CSS for immediate rendering -->
     <style>
+      /* Loader — petrol ground, one amber progress rule, no spinners.
+         IDs are driven by assets/js/optimization.js; keep them. */
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
+        font-family: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
         margin: 0;
         padding: 0;
-        background: #ffffff;
-        color: #333;
-        line-height: 1.6;
+        background: #0e1f26;
+        color: #eef2f1;
+        line-height: 1.55;
       }
+
       app-root {
         display: block;
         min-height: 100vh;
       }
-      /* Hide FOUC (Flash of Unstyled Content) */
-      .async-hide {
-        opacity: 0 !important;
-      }
 
-      /* Global Loader Styles */
       .global-loader {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        inset: 0;
+        background: #0e1f26;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        align-items: flex-end;
+        justify-content: flex-start;
         z-index: 99999;
-        transition: opacity 0.5s ease, visibility 0.5s ease;
+        padding: 0 clamp(1.5rem, 6vw, 7rem) clamp(3rem, 10vh, 7rem);
+        transition: opacity 0.4s ease, visibility 0.4s ease;
       }
 
       .global-loader.loaded {
@@ -79,214 +76,59 @@
       }
 
       .loader-container {
-        text-align: center;
-        color: white;
-      }
-
-      .loader-content {
-        animation: fadeInUp 1s ease forwards;
-      }
-
-      /* Logo Animation */
-      .loader-logo {
-        margin-bottom: 2rem;
-        animation: pulse 2s infinite;
-      }
-
-      .logo-circle {
-        animation: rotate 3s linear infinite;
-        transform-origin: center;
-      }
-
-      .logo-text {
-        animation: glow 2s ease-in-out infinite alternate;
-      }
-
-      .logo-code {
-        animation: blink 1.5s ease-in-out infinite;
-      }
-
-      /* Spinner Animation */
-      .loader-spinner {
-        position: relative;
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 2rem;
-      }
-
-      .spinner-ring {
-        position: absolute;
         width: 100%;
-        height: 100%;
-        border: 3px solid transparent;
-        border-top: 3px solid rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
+        max-width: 46rem;
       }
 
-      .spinner-ring:nth-child(2) {
-        width: 90%;
-        height: 90%;
-        top: 5%;
-        left: 5%;
-        animation-duration: 1.5s;
-        animation-direction: reverse;
+      .loader-mark {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        font-weight: 800;
+        font-variation-settings: "wdth" 118;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        color: #eef2f1;
+        margin: 0 0 0.6rem;
       }
 
-      .spinner-ring:nth-child(3) {
-        width: 80%;
-        height: 80%;
-        top: 10%;
-        left: 10%;
-        animation-duration: 2s;
+      .loader-status {
+        font-size: 0.875rem;
+        color: #7b8d94;
+        margin: 0 0 1.5rem;
       }
 
-      /* Loading Text */
-      .loader-text h3 {
-        font-size: 1.5rem;
-        margin: 0 0 0.5rem 0;
-        font-weight: 600;
-        animation: fadeInOut 2s ease-in-out infinite;
-      }
-
-      .loader-text p {
-        font-size: 1rem;
-        margin: 0 0 2rem 0;
-        opacity: 0.9;
-      }
-
-      /* Progress Bar */
-      .progress-container {
-        width: 250px;
-        margin: 0 auto;
-      }
-
+      /* Progress: a single hairline rule that fills in amber. */
       .progress-bar {
         width: 100%;
-        height: 6px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 3px;
+        height: 2px;
+        background: rgba(238, 242, 241, 0.14);
         overflow: hidden;
-        margin-bottom: 0.5rem;
       }
 
       .progress-fill {
         height: 100%;
-        background: linear-gradient(90deg, #fff, #e3f2fd);
-        border-radius: 3px;
         width: 0%;
+        background: #e39a2b;
         transition: width 0.3s ease;
-        animation: shimmer 2s infinite;
       }
 
       .progress-percent {
-        font-size: 0.9rem;
-        opacity: 0.8;
-        font-weight: 500;
+        display: inline-block;
+        margin-top: 0.6rem;
+        font-family: "IBM Plex Mono", Consolas, monospace;
+        font-size: 0.75rem;
+        font-variant-numeric: tabular-nums;
+        color: #a8b8bd;
       }
 
-      /* Animations */
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.05);
-        }
-      }
-
-      @keyframes rotate {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      @keyframes spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
-      }
-
-      @keyframes glow {
-        from {
-          text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-        }
-        to {
-          text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
-        }
-      }
-
-      @keyframes blink {
-        0%,
-        50% {
-          opacity: 0.8;
-        }
-        51%,
-        100% {
-          opacity: 0.3;
-        }
-      }
-
-      @keyframes fadeInOut {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.7;
-        }
-      }
-
-      @keyframes shimmer {
-        0% {
-          background-position: -250px 0;
-        }
-        100% {
-          background-position: 250px 0;
-        }
-      }
-
-      /* Mobile Responsive */
-      @media (max-width: 768px) {
-        .loader-logo svg {
-          width: 80px;
-          height: 80px;
-        }
-
-        .loader-spinner {
-          width: 60px;
-          height: 60px;
-        }
-
-        .progress-container {
-          width: 200px;
-        }
-
-        .loader-text h3 {
-          font-size: 1.2rem;
+      @media (prefers-reduced-motion: reduce) {
+        .global-loader,
+        .progress-fill {
+          transition: none;
         }
       }
     </style>
 
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KVN52WB6CX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -320,55 +162,20 @@
         }, 8000); // Maximum 8 seconds loading time
       })();
     </script>
-  <style>:root{--primary-color:#3f51b5;--bg-primary:#ffffff;--text-primary:#333333}body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;margin:0;padding:0}app-root{display:block;min-height:100vh}:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-black:#000;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13,110,253;--bs-secondary-rgb:108,117,125;--bs-success-rgb:25,135,84;--bs-info-rgb:13,202,240;--bs-warning-rgb:255,193,7;--bs-danger-rgb:220,53,69;--bs-light-rgb:248,249,250;--bs-dark-rgb:33,37,41;--bs-primary-text-emphasis:#052c65;--bs-secondary-text-emphasis:#2b2f32;--bs-success-text-emphasis:#0a3622;--bs-info-text-emphasis:#055160;--bs-warning-text-emphasis:#664d03;--bs-danger-text-emphasis:#58151c;--bs-light-text-emphasis:#495057;--bs-dark-text-emphasis:#495057;--bs-primary-bg-subtle:#cfe2ff;--bs-secondary-bg-subtle:#e2e3e5;--bs-success-bg-subtle:#d1e7dd;--bs-info-bg-subtle:#cff4fc;--bs-warning-bg-subtle:#fff3cd;--bs-danger-bg-subtle:#f8d7da;--bs-light-bg-subtle:#fcfcfd;--bs-dark-bg-subtle:#ced4da;--bs-primary-border-subtle:#9ec5fe;--bs-secondary-border-subtle:#c4c8cb;--bs-success-border-subtle:#a3cfbb;--bs-info-border-subtle:#9eeaf9;--bs-warning-border-subtle:#ffe69c;--bs-danger-border-subtle:#f1aeb5;--bs-light-border-subtle:#e9ecef;--bs-dark-border-subtle:#adb5bd;--bs-white-rgb:255,255,255;--bs-black-rgb:0,0,0;--bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-color-rgb:33,37,41;--bs-body-bg:#fff;--bs-body-bg-rgb:255,255,255;--bs-emphasis-color:#000;--bs-emphasis-color-rgb:0,0,0;--bs-secondary-color:rgba(33, 37, 41, .75);--bs-secondary-color-rgb:33,37,41;--bs-secondary-bg:#e9ecef;--bs-secondary-bg-rgb:233,236,239;--bs-tertiary-color:rgba(33, 37, 41, .5);--bs-tertiary-color-rgb:33,37,41;--bs-tertiary-bg:#f8f9fa;--bs-tertiary-bg-rgb:248,249,250;--bs-heading-color:inherit;--bs-link-color:#0d6efd;--bs-link-color-rgb:13,110,253;--bs-link-decoration:underline;--bs-link-hover-color:#0a58ca;--bs-link-hover-color-rgb:10,88,202;--bs-code-color:#d63384;--bs-highlight-color:#212529;--bs-highlight-bg:#fff3cd;--bs-border-width:1px;--bs-border-style:solid;--bs-border-color:#dee2e6;--bs-border-color-translucent:rgba(0, 0, 0, .175);--bs-border-radius:.375rem;--bs-border-radius-sm:.25rem;--bs-border-radius-lg:.5rem;--bs-border-radius-xl:1rem;--bs-border-radius-xxl:2rem;--bs-border-radius-2xl:var(--bs-border-radius-xxl);--bs-border-radius-pill:50rem;--bs-box-shadow:0 .5rem 1rem rgba(0, 0, 0, .15);--bs-box-shadow-sm:0 .125rem .25rem rgba(0, 0, 0, .075);--bs-box-shadow-lg:0 1rem 3rem rgba(0, 0, 0, .175);--bs-box-shadow-inset:inset 0 1px 2px rgba(0, 0, 0, .075);--bs-focus-ring-width:.25rem;--bs-focus-ring-opacity:.25;--bs-focus-ring-color:rgba(13, 110, 253, .25);--bs-form-valid-color:#198754;--bs-form-valid-border-color:#198754;--bs-form-invalid-color:#dc3545;--bs-form-invalid-border-color:#dc3545}*,:after,:before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}h3{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2;color:var(--bs-heading-color)}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}p{margin-top:0;margin-bottom:1rem}svg{vertical-align:middle}:root{--bs-breakpoint-xs:0;--bs-breakpoint-sm:576px;--bs-breakpoint-md:768px;--bs-breakpoint-lg:992px;--bs-breakpoint-xl:1200px;--bs-breakpoint-xxl:1400px}.progress-bar{display:flex;flex-direction:column;justify-content:center;overflow:hidden;color:var(--bs-progress-bar-color);text-align:center;white-space:nowrap;background-color:var(--bs-progress-bar-bg);transition:var(--bs-progress-bar-transition)}@media (prefers-reduced-motion:reduce){.progress-bar{transition:none}}:root{--bs-btn-close-filter: }:root{--bs-carousel-indicator-active-bg:#fff;--bs-carousel-caption-color:#fff;--bs-carousel-control-icon-filter: }:root{--primary-color:#2c3e50;--secondary-color:#3498db;--accent-color:#e74c3c;--bg-primary:#ffffff;--bg-secondary:#f8f9fa;--bg-dark:#2c3e50;--text-primary:#2c3e50;--text-secondary:#7f8c8d;--text-light:#ffffff;--text-muted:#95a5a6;--border-color:#e9ecef;--border-hover:#3498db;--shadow-light:rgba(0, 0, 0, .1);--shadow-medium:rgba(0, 0, 0, .15);--shadow-dark:rgba(0, 0, 0, .25);--gradient-primary:linear-gradient(135deg, #667eea 0%, #764ba2 100%);--gradient-secondary:linear-gradient(135deg, #f093fb 0%, #f5576c 100%);--gradient-accent:linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)}:root{--font-primary:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";--font-secondary:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;--font-mono:"SFMono-Regular", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;--font-poppins:"Poppins", var(--font-primary);--font-roboto:"Roboto", var(--font-secondary);--font-fira-code:"Fira Code", var(--font-mono);--font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-base:1rem;--font-size-lg:1.125rem;--font-size-xl:1.25rem;--font-size-2xl:1.5rem;--font-size-3xl:1.875rem;--font-size-4xl:2.25rem;--font-size-5xl:3rem;--font-weight-light:300;--font-weight-normal:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--font-weight-extrabold:800;--line-height-tight:1.25;--line-height-normal:1.5;--line-height-relaxed:1.75;--letter-spacing-tight:-.025em;--letter-spacing-normal:0;--letter-spacing-wide:.025em}:root{--spacing-xs:.25rem;--spacing-sm:.5rem;--spacing-md:1rem;--spacing-lg:1.5rem;--spacing-xl:2rem;--spacing-2xl:3rem;--spacing-3xl:4rem;--spacing-4xl:6rem}:root{--border-radius-sm:.25rem;--border-radius-md:.5rem;--border-radius-lg:.75rem;--border-radius-xl:1rem;--border-radius-full:50%}:root{--transition-fast:.15s ease-in-out;--transition-normal:.3s ease-in-out;--transition-slow:.5s ease-in-out}body:not(.fonts-loaded){font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif!important}*{margin:0;padding:0;box-sizing:border-box}body{font-family:var(--font-primary);font-size:var(--font-size-base);line-height:var(--line-height-normal);color:var(--text-primary);background-color:var(--bg-primary);scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeSpeed}h3{font-family:var(--font-primary);font-weight:var(--font-weight-semibold);line-height:var(--line-height-tight);margin-bottom:var(--spacing-md)}h3{font-size:var(--font-size-3xl)}p{margin-bottom:var(--spacing-md);color:var(--text-secondary)}html{scroll-behavior:smooth}</style><link rel="stylesheet" href="styles-4ZUTWLDM.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-4ZUTWLDM.css"></noscript></head>
+  <style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:Archivo,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;background:#0e1f26;color:#eef2f1;line-height:1.55}app-root{display:block;min-height:100vh}:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-black:#000;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13,110,253;--bs-secondary-rgb:108,117,125;--bs-success-rgb:25,135,84;--bs-info-rgb:13,202,240;--bs-warning-rgb:255,193,7;--bs-danger-rgb:220,53,69;--bs-light-rgb:248,249,250;--bs-dark-rgb:33,37,41;--bs-primary-text-emphasis:#052c65;--bs-secondary-text-emphasis:#2b2f32;--bs-success-text-emphasis:#0a3622;--bs-info-text-emphasis:#055160;--bs-warning-text-emphasis:#664d03;--bs-danger-text-emphasis:#58151c;--bs-light-text-emphasis:#495057;--bs-dark-text-emphasis:#495057;--bs-primary-bg-subtle:#cfe2ff;--bs-secondary-bg-subtle:#e2e3e5;--bs-success-bg-subtle:#d1e7dd;--bs-info-bg-subtle:#cff4fc;--bs-warning-bg-subtle:#fff3cd;--bs-danger-bg-subtle:#f8d7da;--bs-light-bg-subtle:#fcfcfd;--bs-dark-bg-subtle:#ced4da;--bs-primary-border-subtle:#9ec5fe;--bs-secondary-border-subtle:#c4c8cb;--bs-success-border-subtle:#a3cfbb;--bs-info-border-subtle:#9eeaf9;--bs-warning-border-subtle:#ffe69c;--bs-danger-border-subtle:#f1aeb5;--bs-light-border-subtle:#e9ecef;--bs-dark-border-subtle:#adb5bd;--bs-white-rgb:255,255,255;--bs-black-rgb:0,0,0;--bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-color-rgb:33,37,41;--bs-body-bg:#fff;--bs-body-bg-rgb:255,255,255;--bs-emphasis-color:#000;--bs-emphasis-color-rgb:0,0,0;--bs-secondary-color:rgba(33, 37, 41, .75);--bs-secondary-color-rgb:33,37,41;--bs-secondary-bg:#e9ecef;--bs-secondary-bg-rgb:233,236,239;--bs-tertiary-color:rgba(33, 37, 41, .5);--bs-tertiary-color-rgb:33,37,41;--bs-tertiary-bg:#f8f9fa;--bs-tertiary-bg-rgb:248,249,250;--bs-heading-color:inherit;--bs-link-color:#0d6efd;--bs-link-color-rgb:13,110,253;--bs-link-decoration:underline;--bs-link-hover-color:#0a58ca;--bs-link-hover-color-rgb:10,88,202;--bs-code-color:#d63384;--bs-highlight-color:#212529;--bs-highlight-bg:#fff3cd;--bs-border-width:1px;--bs-border-style:solid;--bs-border-color:#dee2e6;--bs-border-color-translucent:rgba(0, 0, 0, .175);--bs-border-radius:.375rem;--bs-border-radius-sm:.25rem;--bs-border-radius-lg:.5rem;--bs-border-radius-xl:1rem;--bs-border-radius-xxl:2rem;--bs-border-radius-2xl:var(--bs-border-radius-xxl);--bs-border-radius-pill:50rem;--bs-box-shadow:0 .5rem 1rem rgba(0, 0, 0, .15);--bs-box-shadow-sm:0 .125rem .25rem rgba(0, 0, 0, .075);--bs-box-shadow-lg:0 1rem 3rem rgba(0, 0, 0, .175);--bs-box-shadow-inset:inset 0 1px 2px rgba(0, 0, 0, .075);--bs-focus-ring-width:.25rem;--bs-focus-ring-opacity:.25;--bs-focus-ring-color:rgba(13, 110, 253, .25);--bs-form-valid-color:#198754;--bs-form-valid-border-color:#198754;--bs-form-invalid-color:#dc3545;--bs-form-invalid-border-color:#dc3545}*,:after,:before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}p{margin-top:0;margin-bottom:1rem}:root{--bs-breakpoint-xs:0;--bs-breakpoint-sm:576px;--bs-breakpoint-md:768px;--bs-breakpoint-lg:992px;--bs-breakpoint-xl:1200px;--bs-breakpoint-xxl:1400px}.progress-bar{display:flex;flex-direction:column;justify-content:center;overflow:hidden;color:var(--bs-progress-bar-color);text-align:center;white-space:nowrap;background-color:var(--bs-progress-bar-bg);transition:var(--bs-progress-bar-transition)}@media (prefers-reduced-motion:reduce){.progress-bar{transition:none}}:root{--bs-btn-close-filter: }:root{--bs-carousel-indicator-active-bg:#fff;--bs-carousel-caption-color:#fff;--bs-carousel-control-icon-filter: }:root{--base:#0e1f26;--base-deep:#0a171c;--surface:#16303a;--surface-2:#1e3d49;--paper:#f4f6f5;--paper-2:#eaeeec;--paper-3:#dfe4e2;--ink:#0b1519;--ink-muted:#4a5a60;--ink-faint:#6d7d83;--on-base:#eef2f1;--on-base-muted:#a8b8bd;--on-base-faint:#7b8d94;--accent:#e39a2b;--accent-ink:#8a5a08;--accent-dim:rgba(227, 154, 43, .14);--accent-rule:rgba(227, 154, 43, .32);--live:#2fb18a;--live-ink:#14705a;--live-dim:rgba(47, 177, 138, .14);--alert:#d4553d;--alert-ink:#a8391f;--rule:var(--paper-3);--rule-strong:#c3ccc9;--rule-on-base:rgba(238, 242, 241, .14);--rule-on-base-strong:rgba(238, 242, 241, .26);--spine:2px;--spine-color:var(--rule-strong);--spine-color-active:var(--accent)}:root{--font-sans:"Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;--font-mono:"IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, "Courier New", monospace;--display-stretch:118%;--display-weight:800;--font-size-xs:.75rem;--font-size-sm:.875rem;--font-size-base:1.0625rem;--font-size-lg:1.1875rem;--font-size-xl:1.375rem;--font-size-2xl:1.75rem;--font-size-3xl:2.25rem;--font-size-4xl:3rem;--font-size-5xl:4rem;--font-size-6xl:5.25rem;--font-weight-normal:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--font-weight-extrabold:800;--line-height-tight:1.08;--line-height-snug:1.3;--line-height-normal:1.55;--line-height-relaxed:1.7;--tracking-tight:-.02em;--tracking-snug:-.01em;--tracking-normal:0;--measure:68ch;--measure-narrow:54ch;--measure-wide:84ch}:root{--spacing-xs:.25rem;--spacing-sm:.5rem;--spacing-md:1rem;--spacing-lg:1.5rem;--spacing-xl:2rem;--spacing-2xl:3rem;--spacing-3xl:4.5rem;--spacing-4xl:6.5rem;--section-pad:var(--spacing-4xl);--section-pad-mobile:var(--spacing-3xl)}:root{--radius-chip:4px;--radius-card:8px;--radius-none:0;--radius-full:50%}:root{--shadow-sm:0 1px 2px rgba(11, 21, 25, .06);--shadow-md:0 2px 8px rgba(11, 21, 25, .08);--shadow-lg:0 8px 24px rgba(11, 21, 25, .1);--shadow-xl:0 16px 40px rgba(11, 21, 25, .14)}:root{--ease:cubic-bezier(.32, .72, .28, 1);--transition-fast:.12s var(--ease);--transition-normal:.22s var(--ease);--transition-slow:.4s var(--ease)}:root{--primary-color:var(--base);--secondary-color:var(--accent-ink);--accent-color:var(--accent);--bg-primary:var(--paper);--bg-secondary:var(--paper-2);--bg-dark:var(--base);--bg-light:var(--paper-2);--secondary-background:var(--paper-2);--text-primary:var(--ink);--text-secondary:var(--ink-muted);--text-light:var(--on-base);--text-muted:var(--ink-faint);--text-dark:var(--ink);--border-color:var(--rule);--border-light:var(--rule);--border-hover:var(--accent);--shadow-light:rgba(11, 21, 25, .08);--shadow-medium:rgba(11, 21, 25, .12);--shadow-dark:rgba(11, 21, 25, .2);--shadow-heavy:rgba(11, 21, 25, .22);--box-shadow:var(--shadow-md);--border-radius-sm:var(--radius-chip);--border-radius-md:var(--radius-chip);--border-radius-lg:var(--radius-card);--border-radius-xl:var(--radius-card);--border-radius:var(--radius-card);--transition:var(--transition-normal);--gradient-primary:var(--base);--gradient-secondary:var(--surface);--gradient-accent:var(--accent-ink);--font-primary:var(--font-sans);--font-secondary:var(--font-sans);--font-poppins:var(--font-sans);--font-roboto:var(--font-sans);--font-fira-code:var(--font-mono);--letter-spacing-tight:var(--tracking-tight);--letter-spacing-normal:var(--tracking-normal);--letter-spacing-wide:.02em;--font-weight-light:300}*,*:before,*:after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-family:var(--font-sans);font-size:var(--font-size-base);font-weight:var(--font-weight-normal);line-height:var(--line-height-normal);color:var(--ink);background-color:var(--paper);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-synthesis-weight:none}p{color:var(--ink-muted);line-height:var(--line-height-relaxed);max-width:var(--measure)}@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}@media (max-width: 768px){:root{--section-pad:var(--section-pad-mobile);--font-size-5xl:2.75rem;--font-size-4xl:2.25rem;--font-size-3xl:1.875rem;--font-size-6xl:3.25rem}}</style><link rel="stylesheet" href="styles-W5ZYTQ6K.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles-W5ZYTQ6K.css"></noscript></head>
   <body>
-    <!-- Loading Screen -->
+    <!-- Loading screen: name, status, one amber progress rule. -->
     <div id="global-loader" class="global-loader">
       <div class="loader-container">
-        <div class="loader-content">
-          <!-- Animated Logo -->
-          <div class="loader-logo">
-            <svg width="100" height="100" viewBox="0 0 100 100">
-              <defs>
-                <linearGradient id="loaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style="stop-color: #3f51b5; stop-opacity: 1"/>
-                  <stop offset="100%" style="stop-color: #1a237e; stop-opacity: 1"/>
-                </linearGradient>
-              </defs>
-              <circle cx="50" cy="50" r="45" fill="url(#loaderGrad)" stroke="#fff" stroke-width="2" class="logo-circle"/>
-              <text x="50" y="65" font-size="30" fill="white" text-anchor="middle" font-family="Arial" font-weight="bold" class="logo-text">
-                ES
-              </text>
-              <text x="50" y="35" font-size="12" fill="white" text-anchor="middle" opacity="0.8" class="logo-code">
-                &lt;/&gt;
-              </text>
-            </svg>
-          </div>
-
-          <!-- Loading Spinner -->
-          <div class="loader-spinner">
-            <div class="spinner-ring"></div>
-            <div class="spinner-ring"></div>
-            <div class="spinner-ring"></div>
-          </div>
-
-          <!-- Loading Text -->
-          <div class="loader-text">
-            <h3>Loading Portfolio</h3>
-            <p id="loading-status">Initializing...</p>
-          </div>
-
-          <!-- Progress Bar -->
-          <div class="progress-container">
-            <div class="progress-bar">
-              <div class="progress-fill" id="progress-fill"></div>
-            </div>
-            <span class="progress-percent" id="progress-percent">0%</span>
-          </div>
+        <p class="loader-mark">Eslam Salah</p>
+        <p class="loader-status" id="loading-status">Loading</p>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
         </div>
+        <span class="progress-percent" id="progress-percent">0%</span>
       </div>
     </div>
 
     <app-root></app-root>
-  <script src="polyfills-B6TNHZQ6.js" type="module"></script><script src="scripts-PRSL767H.js" defer></script><script src="main-5TZGSUCQ.js" type="module"></script></body>
+  <script src="polyfills-B6TNHZQ6.js" type="module"></script><script src="scripts-PRSL767H.js" defer></script><script src="main-XTP75ENP.js" type="module"></script></body>
 </html>
