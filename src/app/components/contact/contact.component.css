@@ -1,911 +1,257 @@
 /* ============================================================================
-   ENHANCED CONTACT SECTION STYLES
-   Modern, Professional & Consistent with Portfolio Design System
+   CONTACT
+   Petrol ground. Underline-only fields, one amber submit. Previously three
+   floating circles, two floating shapes, a pulsing icon halo, and gradient
+   text — none of which said anything about the work.
    ============================================================================ */
 
-/* Contact Section Base */
-.contact-section {
-  background: var(--gradient-primary);
-  padding: var(--spacing-4xl) 0;
-  position: relative;
-  overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
+  gap: var(--spacing-4xl);
+  align-items: start;
+}
+
+/* ── Direct channels ── */
+.contact-direct-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-base-faint);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.contact-channels {
+  border-top: 1px solid var(--rule-on-base);
+  margin: 0 0 var(--spacing-lg);
+}
+
+.channel {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--rule-on-base);
+  font-size: var(--font-size-sm);
+}
+
+.channel dt {
+  color: var(--on-base-faint);
+}
+
+.channel dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.channel a {
+  color: var(--on-base);
+}
+
+.channel a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-rule);
+  text-underline-offset: 3px;
+}
+
+.contact-location {
+  font-size: var(--font-size-sm);
+  color: var(--on-base-faint);
+  margin: 0;
 }
 
 /* ============================================================================
-   ANIMATED BACKGROUND ELEMENTS
+   FORM
+   Presentation only — the EmailJS wiring and validation states are unchanged.
    ============================================================================ */
 
-.contact-bg-elements {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.floating-circle {
-  position: absolute;
-  border-radius: var(--border-radius-full);
-  background: rgba(255, 255, 255, 0.08);
-  animation: float 6s ease-in-out infinite;
-}
-
-.circle-1 {
-  width: 120px;
-  height: 120px;
-  top: 10%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.circle-2 {
-  width: 80px;
-  height: 80px;
-  top: 70%;
-  right: 15%;
-  animation-delay: 2s;
-}
-
-.circle-3 {
-  width: 60px;
-  height: 60px;
-  top: 30%;
-  right: 25%;
-  animation-delay: 4s;
-}
-
-.floating-shape {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.06);
-  animation: rotate 8s linear infinite;
-  border-radius: var(--border-radius-lg);
-}
-
-.shape-1 {
-  width: 100px;
-  height: 100px;
-  top: 20%;
-  right: 5%;
-  transform: rotate(45deg);
-}
-
-.shape-2 {
-  width: 140px;
-  height: 140px;
-  bottom: 10%;
-  left: 5%;
-  border-radius: var(--border-radius-xl);
-  animation-delay: 3s;
-}
-
-/* ============================================================================
-   SECTION HEADER STYLES
-   ============================================================================ */
-
-.section-header-wrapper {
-  position: relative;
-  z-index: 3;
-  margin-bottom: var(--spacing-4xl);
-  text-align: center;
-}
-
-.section-icon-wrapper {
-  position: relative;
-  display: inline-block;
-  margin-bottom: var(--spacing-lg);
-}
-
-.section-main-icon {
-  font-size: 3.5rem;
-  color: var(--text-light);
-  position: relative;
-  z-index: 2;
-}
-
-.icon-pulse {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: var(--border-radius-full);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.gradient-text {
-  background: linear-gradient(45deg, #fff, #f0f8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-md);
-}
-
-.title-underline {
-  width: 100px;
-  height: 4px;
-  background: linear-gradient(45deg, #fff, #4fc3f7);
-  margin: 0 auto var(--spacing-lg);
-  border-radius: var(--border-radius-sm);
-}
-
-.section-subtitle {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: var(--font-size-xl);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: var(--line-height-relaxed);
-  font-weight: var(--font-weight-normal);
-}
-
-/* ============================================================================
-   FORM CONTAINER STYLES
-   ============================================================================ */
-
-.contact-form-container {
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-3xl);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.2);
-  position: relative;
-  z-index: 3;
-  animation: slideInUp 0.8s ease-out;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.form-header {
-  text-align: center;
-  margin-bottom: var(--spacing-3xl);
-}
-
-.form-icon-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 70px;
-  height: 70px;
-  background: var(--gradient-primary);
-  border-radius: var(--border-radius-full);
-  margin-bottom: var(--spacing-lg);
-  position: relative;
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-}
-
-.form-header-icon {
-  font-size: 1.8rem;
-  color: var(--text-light);
-}
-
-.form-title {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
-}
-
-.form-description {
-  color: var(--text-secondary);
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-relaxed);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-/* ============================================================================
-   ENHANCED FORM LAYOUT
-   ============================================================================ */
-
-.enhanced-contact-form {
+.contact-form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-}
-
-.form-group-enhanced {
-  position: relative;
-}
-
-.full-width {
-  grid-column: 1 / -1;
-}
-
-/* ============================================================================
-   INPUT FIELD STYLES
-   ============================================================================ */
-
-.input-wrapper,
-.select-wrapper,
-.textarea-wrapper {
-  position: relative;
-}
-
-.floating-label {
-  position: absolute;
-  top: 0;
-  left: var(--spacing-md);
-  background: var(--bg-primary);
-  padding: 0 var(--spacing-sm);
-  color: var(--secondary-color);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  transform: translateY(-50%);
-  z-index: 2;
-  transition: var(--transition-normal);
-  border-radius: var(--border-radius-sm);
-}
-
-.label-icon {
-  margin-right: var(--spacing-sm);
-  color: var(--secondary-color);
-}
-
-.form-input-enhanced,
-.form-select-enhanced,
-.form-textarea-enhanced {
-  width: 100%;
-  padding: var(--spacing-lg) var(--spacing-lg);
-  border: 2px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
-  font-size: var(--font-size-base);
-  background: var(--bg-primary);
-  transition: var(--transition-normal);
-  outline: none;
-  font-family: var(--font-primary);
-  color: var(--text-primary);
-}
-
-.form-input-enhanced:focus,
-.form-select-enhanced:focus,
-.form-textarea-enhanced:focus {
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-  transform: translateY(-1px);
-}
-
-.form-input-enhanced:focus + .input-focus-border,
-.form-textarea-enhanced:focus + .textarea-focus-border {
-  width: 100%;
-}
-
-.input-focus-border,
-.textarea-focus-border {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background: var(--gradient-primary);
-  transition: width var(--transition-normal);
-  border-radius: var(--border-radius-sm);
-}
-
-/* ============================================================================
-   SELECT FIELD STYLES
-   ============================================================================ */
-
-.form-select-enhanced {
-  appearance: none;
-  cursor: pointer;
-  padding-right: var(--spacing-3xl);
-}
-
-.form-select-enhanced:focus + .select-arrow {
-  transform: translateY(-50%) rotate(180deg);
-  color: var(--secondary-color);
-}
-
-.select-arrow {
-  position: absolute;
-  right: var(--spacing-lg);
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-secondary);
-  pointer-events: none;
-  transition: var(--transition-normal);
-  font-size: var(--font-size-sm);
-}
-
-/* ============================================================================
-   TEXTAREA STYLES
-   ============================================================================ */
-
-.form-textarea-enhanced {
-  resize: vertical;
-  min-height: 140px;
-  max-height: 300px;
-  line-height: var(--line-height-relaxed);
-}
-
-/* ============================================================================
-   ERROR MESSAGE STYLES
-   ============================================================================ */
-
-.error-message {
-  color: var(--accent-color);
-  font-size: var(--font-size-sm);
-  margin-top: var(--spacing-sm);
-  display: flex;
-  align-items: center;
-  font-weight: var(--font-weight-medium);
-  animation: shake 0.5s ease-in-out;
-}
-
-.error-message i {
-  margin-right: var(--spacing-xs);
-}
-
-/* ============================================================================
-   ACTION BUTTONS STYLES
-   ============================================================================ */
-
-.form-actions-enhanced {
-  display: flex;
   gap: var(--spacing-lg);
-  justify-content: center;
-  margin-top: var(--spacing-xl);
-  flex-wrap: wrap;
 }
 
-.btn-send-enhanced,
-.btn-reset-enhanced {
-  position: relative;
-  padding: var(--spacing-lg) var(--spacing-2xl);
-  border: none;
-  border-radius: var(--border-radius-lg);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  cursor: pointer;
-  transition: var(--transition-normal);
-  overflow: hidden;
-  min-width: 180px;
-  font-family: var(--font-primary);
-}
-
-.btn-send-enhanced {
-  background: var(--gradient-primary);
-  color: var(--text-light);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-}
-
-.btn-send-enhanced:hover:not(:disabled) {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
-}
-
-.btn-send-enhanced:disabled {
+.contact-form.is-sending {
   opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.btn-reset-enhanced {
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  border: 2px solid var(--border-color);
-}
-
-.btn-reset-enhanced:hover:not(:disabled) {
-  background: var(--bg-primary);
-  border-color: var(--secondary-color);
-  color: var(--text-primary);
-  transform: translateY(-2px);
-}
-
-.btn-reset-enhanced:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.btn-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-sm);
-}
-
-.btn-hover-effect {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
-}
-
-.btn-send-enhanced:hover .btn-hover-effect {
-  left: 100%;
-}
-
-/* ============================================================================
-   QUICK CONTACT SECTION STYLES
-   ============================================================================ */
-
-.quick-contact-section {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-3xl);
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  position: relative;
-  z-index: 3;
-}
-
-.quick-contact-header {
-  margin-bottom: var(--spacing-2xl);
-}
-
-.quick-icon-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: var(--border-radius-full);
-  margin-bottom: var(--spacing-lg);
-}
-
-.quick-contact-icon {
-  font-size: 1.5rem;
-  color: var(--text-light);
-}
-
-.quick-contact-title {
-  color: var(--text-light);
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-md);
-}
-
-.quick-contact-description {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-relaxed);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.quick-contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-2xl);
-}
-
-.quick-contact-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: var(--border-radius-lg);
-  padding: var(--spacing-xl);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-lg);
-  text-decoration: none;
-  transition: var(--transition-normal);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
-.quick-contact-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-  text-decoration: none;
-}
-
-.card-icon-wrapper {
-  width: 50px;
-  height: 50px;
-  border-radius: var(--border-radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  color: var(--text-light);
-  flex-shrink: 0;
-}
-
-.email-card .card-icon-wrapper {
-  background: var(--gradient-primary);
-}
-
-.linkedin-card .card-icon-wrapper {
-  background: linear-gradient(135deg, #0077b5, #005885);
-}
-
-.phone-card .card-icon-wrapper {
-  background: linear-gradient(135deg, #25d366, #128c7e);
-}
-
-.card-content {
-  text-align: left;
-  flex-grow: 1;
-}
-
-.card-content h5 {
-  color: var(--text-primary);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--spacing-xs);
-}
-
-.card-content p {
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  margin: 0;
-}
-
-/* ============================================================================
-   STATUS MESSAGE STYLES
-   ============================================================================ */
-
-.status-message-container {
-  margin-bottom: var(--spacing-xl);
-  position: relative;
-  animation: slideInDown 0.5s ease-out;
-}
-
-.status-content {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-md);
-  padding: var(--spacing-lg);
-  border-radius: var(--border-radius-lg);
-  border-left: 4px solid;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.status-message.loading .status-content {
-  background: linear-gradient(135deg, #e3f2fd, #f8f9fa);
-  border-left-color: var(--secondary-color);
-  color: var(--text-primary);
-}
-
-.status-message.success .status-content {
-  background: linear-gradient(135deg, #e8f5e8, #f1f8e9);
-  border-left-color: #4caf50;
-  color: #2e7d32;
-}
-
-.status-message.error .status-content {
-  background: linear-gradient(135deg, #ffebee, #fce4ec);
-  border-left-color: var(--accent-color);
-  color: #c62828;
-}
-
-.status-content i {
-  font-size: 1.2rem;
-  margin-top: 2px;
-  flex-shrink: 0;
-}
-
-.status-text {
-  flex-grow: 1;
-}
-
-.status-title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--spacing-xs);
-  line-height: 1.3;
-}
-
-.status-description {
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
-  margin: 0;
-  opacity: 0.9;
-}
-
-.status-close-btn {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  padding: var(--spacing-xs);
-  border-radius: var(--border-radius-sm);
-  transition: var(--transition-normal);
-  opacity: 0.7;
-  flex-shrink: 0;
-}
-
-.status-close-btn:hover {
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.form-disabled {
-  opacity: 0.7;
   pointer-events: none;
 }
 
-.form-disabled .form-input-enhanced,
-.form-disabled .form-select-enhanced,
-.form-disabled .form-textarea-enhanced {
-  background: #f8f9fa;
-  cursor: not-allowed;
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-lg);
 }
 
-/* ============================================================================
-   ENHANCED LOADING AND DISABLED STATES
-   ============================================================================ */
-
-.form-input-enhanced:disabled,
-.form-select-enhanced:disabled,
-.form-textarea-enhanced:disabled {
-  background: #f8f9fa;
-  cursor: not-allowed;
-  opacity: 0.7;
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-width: 0;
 }
 
-.form-input-enhanced:disabled:focus,
-.form-select-enhanced:disabled:focus,
-.form-textarea-enhanced:disabled:focus {
-  border-color: var(--border-color);
-  box-shadow: none;
-  transform: none;
+.field label {
+  font-size: var(--font-size-sm);
+  color: var(--on-base-muted);
 }
 
-/* Spinning animation for loading button */
-.fa-spinner {
-  animation: spin 1s linear infinite;
+.optional {
+  color: var(--on-base-faint);
+  font-size: var(--font-size-xs);
 }
 
-/* ============================================================================
-   ANIMATIONS
-   ============================================================================ */
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  color: var(--on-base);
+  background: var(--surface);
+  border: 0;
+  border-bottom: 1px solid var(--rule-on-base-strong);
+  border-radius: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  transition: border-color var(--transition-fast),
+    background-color var(--transition-fast);
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.field textarea {
+  resize: vertical;
+  line-height: var(--line-height-relaxed);
 }
 
-@keyframes pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  background: var(--surface-2);
 }
 
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  background: var(--surface-2);
+  border-bottom-color: var(--accent);
 }
 
-@keyframes slideInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-5px);
-  }
-  75% {
-    transform: translateX(5px);
-  }
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* ============================================================================
-   RESPONSIVE DESIGN
-   ============================================================================ */
-
-@media (max-width: 768px) {
-  .contact-section {
-    padding: var(--spacing-2xl) 0;
-    min-height: auto;
-  }
-
-  .section-header-wrapper {
-    margin-bottom: var(--spacing-2xl);
-  }
-
-  .gradient-text {
-    font-size: var(--font-size-3xl);
-  }
-
-  .section-subtitle {
-    font-size: var(--font-size-lg);
-  }
-
-  .contact-form-container {
-    padding: var(--spacing-xl);
-    margin: 0 var(--spacing-md);
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-lg);
-  }
-
-  .form-actions-enhanced {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .btn-send-enhanced,
-  .btn-reset-enhanced {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .quick-contact-section {
-    padding: var(--spacing-xl);
-    margin: 0 var(--spacing-md);
-  }
-
-  .quick-contact-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  .quick-contact-card {
-    padding: var(--spacing-lg);
-  }
-
-  .status-content {
-    padding: var(--spacing-md);
-    gap: var(--spacing-sm);
-  }
-
-  .status-title {
-    font-size: var(--font-size-base);
-  }
-
-  .status-description {
-    font-size: var(--font-size-sm);
-  }
-
-  /* Hide floating elements on mobile for better performance */
-  .floating-circle,
-  .floating-shape {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .form-title {
-    font-size: var(--font-size-2xl);
-  }
-
-  .form-description {
-    font-size: var(--font-size-base);
-  }
-
-  .contact-form-container {
-    padding: var(--spacing-lg);
-  }
-
-  .quick-contact-card {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--spacing-md);
-  }
-
-  .card-content {
-    text-align: center;
-  }
-
-  .status-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .status-close-btn {
-    align-self: flex-end;
-    position: absolute;
-    top: var(--spacing-sm);
-    right: var(--spacing-sm);
-  }
-}
-
-/* ============================================================================
-   ACCESSIBILITY IMPROVEMENTS
-   ============================================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  .floating-circle,
-  .floating-shape,
-  .icon-pulse {
-    animation: none;
-  }
-
-  .contact-form-container {
-    animation: none;
-  }
-
-  * {
-    transition: none !important;
-  }
-}
-
-/* Focus states for accessibility */
-.form-input-enhanced:focus,
-.form-select-enhanced:focus,
-.form-textarea-enhanced:focus,
-.btn-send-enhanced:focus,
-.btn-reset-enhanced:focus,
-.quick-contact-card:focus {
-  outline: 2px solid var(--secondary-color);
+/* The bottom rule is the focus affordance, but a 1px shift alone is too quiet
+   for keyboard users, so the global ring still applies. */
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .contact-form-container {
-    border: 2px solid var(--text-primary);
+.field input:disabled,
+.field select:disabled,
+.field textarea:disabled {
+  color: var(--on-base-faint);
+}
+
+.field select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.field-error {
+  font-size: var(--font-size-xs);
+  color: #f2a3a3;
+  margin: 0;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xs);
+}
+
+.form-actions .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   STATUS
+   ============================================================================ */
+
+.status {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  background: var(--surface);
+  border-left: var(--spine) solid var(--on-base-faint);
+}
+
+.status.success {
+  border-left-color: var(--live);
+}
+
+.status.error {
+  border-left-color: #e07070;
+}
+
+.status.loading {
+  border-left-color: var(--accent);
+}
+
+.status-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--on-base);
+  margin: 0;
+}
+
+.status-description {
+  font-size: var(--font-size-sm);
+  color: var(--on-base-muted);
+  margin: var(--spacing-xs) 0 0;
+  max-width: var(--measure-narrow);
+}
+
+.status-close {
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  color: var(--on-base-muted);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.status-close:hover {
+  color: var(--on-base);
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+  }
+}
+
+@media (max-width: 576px) {
+  .field-row {
+    grid-template-columns: 1fr;
   }
 
-  .form-input-enhanced,
-  .form-select-enhanced,
-  .form-textarea-enhanced {
-    border-width: 2px;
+  .channel {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
   }
 }

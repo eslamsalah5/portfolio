@@ -1,128 +1,79 @@
-<!-- Footer Section -->
+<!-- Footer -->
 <footer class="footer-section">
   <div class="container">
-    <!-- Main Footer Content -->
-    <div class="row footer-main py-5">
-      <!-- About Column -->
-      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-        <div class="footer-about">
-          <h4 class="footer-title">{{ personalInfo.name }}</h4>
-          <p class="footer-description">
-            {{ personalInfo.title }} passionate about creating innovative web
-            solutions. Always learning and exploring new technologies to deliver
-            exceptional user experiences.
-          </p>
-          <div class="footer-social">
-            <a
-              [href]="personalInfo.linkedin"
-              class="social-link"
-              title="LinkedIn"
-              target="_blank"
-            >
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a
-              [href]="personalInfo.github"
-              class="social-link"
-              title="GitHub"
-              target="_blank"
-            >
-              <i class="fab fa-github"></i>
-            </a>
-          </div>
-        </div>
+    <div class="footer-main">
+      <div class="footer-identity">
+        <p class="footer-name">{{ personalInfo.name }}</p>
+        <p class="footer-role">{{ personalInfo.title }}</p>
+        <p class="footer-location">{{ personalInfo.location }}</p>
       </div>
 
-      <!-- Quick Links Column -->
-      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-        <div class="footer-links">
-          <h5 class="footer-subtitle">Quick Links</h5>
-          <ul class="footer-menu">
-            <li><a (click)="scrollToSection('home', $event)">Home</a></li>
-            <li><a (click)="scrollToSection('about', $event)">About</a></li>
-            <li><a (click)="scrollToSection('skills', $event)">Skills</a></li>
-            <li>
-              <a (click)="scrollToSection('experience', $event)">Experience</a>
-            </li>
-            <li>
-              <a (click)="scrollToSection('projects', $event)">Projects</a>
-            </li>
-            <li><a (click)="scrollToSection('contact', $event)">Contact</a></li>
-          </ul>
-        </div>
-      </div>
+      <nav class="footer-nav" aria-label="Sections">
+        <h2 class="footer-heading">Sections</h2>
+        <ul class="footer-menu">
+          <li>
+            <a href="#home" (click)="scrollToSection('home', $event)">Home</a>
+          </li>
+          <li>
+            <a href="#about" (click)="scrollToSection('about', $event)">About</a>
+          </li>
+          <li>
+            <a href="#experience" (click)="scrollToSection('experience', $event)"
+              >Experience</a
+            >
+          </li>
+          <li>
+            <a href="#projects" (click)="scrollToSection('projects', $event)"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a href="#skills" (click)="scrollToSection('skills', $event)"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a href="#contact" (click)="scrollToSection('contact', $event)"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
 
-      <!-- Contact Info Column -->
-      <div class="col-lg-5 col-md-6">
-        <div class="footer-contact">
-          <h5 class="footer-subtitle">Get in Touch</h5>
-          <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <a [href]="'mailto:' + personalInfo.email" class="contact-link">{{
+      <div class="footer-elsewhere">
+        <h2 class="footer-heading">Elsewhere</h2>
+        <ul class="footer-menu">
+          <li>
+            <a [href]="'mailto:' + personalInfo.email">{{
               personalInfo.email
             }}</a>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <a [href]="'tel:' + personalInfo.phone" class="contact-link">{{
+          </li>
+          <li>
+            <a [href]="'tel:' + personalInfo.phone" class="num">{{
               personalInfo.phone
             }}</a>
-          </div>
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>{{ personalInfo.location }}</span>
-          </div>
-
-          <!-- Quick Actions -->
-          <div class="newsletter-signup mt-4">
-            <h6 class="newsletter-title">Quick Actions</h6>
-            <div class="quick-actions">
-              <a
-                (click)="scrollToSection('contact', $event)"
-                class="action-btn hire-me-btn"
-                title="Contact me for job opportunities"
-              >
-                <i class="fas fa-briefcase"></i>
-                Hire Me
-              </a>
-              <a
-                [href]="personalInfo.linkedin"
-                target="_blank"
-                class="action-btn linkedin-btn"
-                title="Connect on LinkedIn"
-              >
-                <i class="fab fa-linkedin"></i>
-                Connect
-              </a>
-            </div>
-          </div>
-        </div>
+          </li>
+          <li>
+            <a [href]="personalInfo.linkedin" target="_blank" rel="noopener"
+              >LinkedIn</a
+            >
+          </li>
+          <li>
+            <a [href]="personalInfo.github" target="_blank" rel="noopener"
+              >GitHub</a
+            >
+          </li>
+        </ul>
       </div>
     </div>
 
-    <!-- Divider -->
-    <hr class="footer-divider" />
-
-    <!-- Footer Bottom -->
-    <div class="row footer-bottom py-4">
-      <div class="col-md-6">
-        <p class="copyright">
-          &copy; 2025 {{ personalInfo.name }}. All rights reserved.
-        </p>
-      </div>
-      <div class="col-md-6">
-        <div class="footer-bottom-links">
-          <a (click)="scrollToSection('about', $event)">About Me</a>
-          <a (click)="scrollToSection('projects', $event)">Portfolio</a>
-          <a (click)="scrollToSection('contact', $event)">Contact</a>
-        </div>
-      </div>
+    <div class="footer-bottom">
+      <p class="copyright">
+        &copy; <span class="num">2025</span> {{ personalInfo.name }}
+      </p>
+      <button type="button" class="to-top" (click)="scrollToTop($event)">
+        Back to top
+      </button>
     </div>
-  </div>
-  <!-- Back to Top Button -->
-  <div class="back-to-top">
-    <a (click)="scrollToTop($event)" class="back-to-top-btn">
-      <i class="fas fa-chevron-up"></i>
-    </a>
   </div>
 </footer>

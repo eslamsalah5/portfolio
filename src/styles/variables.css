@@ -1,106 +1,218 @@
-/* Colors Variables */
+/* ============================================================================
+   DESIGN TOKENS
+   Palette: deep petrol ground, paper content, one amber signal, one teal live.
+   No gradients. Amber marks measured values and controls; teal marks running.
+   ============================================================================ */
+
 :root {
-  /* Primary Colors */
-  --primary-color: #2c3e50;
-  --secondary-color: #3498db;
-  --accent-color: #e74c3c;
+  /* ── Ground ── */
+  --base: #0e1f26; /* deep petrol — hero, contact, footer */
+  --base-deep: #0a171c; /* below base, for footer floor */
+  --surface: #16303a; /* raised block on petrol */
+  --surface-2: #1e3d49; /* raised block on surface */
 
-  /* Background Colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-dark: #2c3e50;
+  /* ── Paper ── */
+  --paper: #f4f6f5; /* content sections */
+  --paper-2: #eaeeec; /* alternating content sections */
+  --paper-3: #dfe4e2; /* rules and dividers on paper */
 
-  /* Text Colors */
-  --text-primary: #2c3e50;
-  --text-secondary: #7f8c8d;
-  --text-light: #ffffff;
-  --text-muted: #95a5a6;
+  /* ── Ink ── */
+  --ink: #0b1519; /* text on paper — 17.2:1 */
+  --ink-muted: #4a5a60; /* secondary text on paper — 7.4:1 */
+  --ink-faint: #6d7d83; /* tertiary text on paper — 4.6:1 */
 
-  /* Border Colors */
-  --border-color: #e9ecef;
-  --border-hover: #3498db;
+  /* ── Text on petrol ── */
+  --on-base: #eef2f1; /* primary text on petrol — 14.6:1 */
+  --on-base-muted: #a8b8bd; /* secondary text on petrol — 7.9:1 */
+  --on-base-faint: #7b8d94; /* tertiary text on petrol — 5.0:1 */
 
-  /* Shadow Colors */
-  --shadow-light: rgba(0, 0, 0, 0.1);
-  --shadow-medium: rgba(0, 0, 0, 0.15);
-  --shadow-dark: rgba(0, 0, 0, 0.25);
+  /* ── Signal ──
+     IMPORTANT contrast constraint:
+     --accent on --paper is 2.17:1 and --live on --paper is 2.9:1.
+     Neither may be used as TEXT on paper. On paper, use the -ink variants.
+     As a fill, rule, dot, or underline on paper, raw --accent is fine. */
+  --accent: #e39a2b; /* amber on petrol — 7.23:1 */
+  --accent-ink: #8a5a08; /* amber as text on paper — 5.46:1 */
+  --accent-dim: rgba(227, 154, 43, 0.14); /* amber wash */
+  --accent-rule: rgba(227, 154, 43, 0.32);
 
-  /* Gradient Colors */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  --gradient-accent: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --live: #2fb18a; /* teal on petrol — 6.31:1 */
+  --live-ink: #14705a; /* teal as text on paper — 5.47:1 */
+  --live-dim: rgba(47, 177, 138, 0.14);
+
+  --alert: #d4553d; /* error on petrol — 4.6:1 */
+  --alert-ink: #a8391f; /* error as text on paper — 5.9:1 */
+
+  /* ── Borders ── */
+  --rule: var(--paper-3); /* divider on paper */
+  --rule-strong: #c3ccc9; /* stronger divider on paper */
+  --rule-on-base: rgba(238, 242, 241, 0.14); /* divider on petrol */
+  --rule-on-base-strong: rgba(238, 242, 241, 0.26);
+
+  /* ── Left rule: the page's one structural device ── */
+  --spine: 2px;
+  --spine-color: var(--rule-strong);
+  --spine-color-active: var(--accent);
 }
 
-/* Typography */
+/* ============================================================================
+   TYPOGRAPHY
+   Archivo for everything (variable width + weight so display type can be
+   genuinely expanded and heavy). IBM Plex Mono ONLY on measured values.
+   ============================================================================ */
+
 :root {
-  /* Font Families with fallbacks for faster loading */
-  --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
-    sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
-    "Courier New", monospace;
+  --font-sans: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, "Liberation Mono",
+    Menlo, "Courier New", monospace;
 
-  /* Custom fonts (loaded asynchronously) */
-  --font-poppins: "Poppins", var(--font-primary);
-  --font-roboto: "Roboto", var(--font-secondary);
-  --font-fira-code: "Fira Code", var(--font-mono);
+  /* Display type: expanded width, heavy weight, tight tracking. */
+  --display-stretch: 118%;
+  --display-weight: 800;
 
-  /* Font Sizes */
-  --font-size-xs: 0.75rem; /* 12px */
-  --font-size-sm: 0.875rem; /* 14px */
-  --font-size-base: 1rem; /* 16px */
-  --font-size-lg: 1.125rem; /* 18px */
-  --font-size-xl: 1.25rem; /* 20px */
-  --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem; /* 36px */
-  --font-size-5xl: 3rem; /* 48px */
+  /* Type scale */
+  --font-size-xs: 0.75rem; /* 12px — chips, meta */
+  --font-size-sm: 0.875rem; /* 14px — labels, captions */
+  --font-size-base: 1.0625rem; /* 17px — body */
+  --font-size-lg: 1.1875rem; /* 19px — lead body */
+  --font-size-xl: 1.375rem; /* 22px — card titles */
+  --font-size-2xl: 1.75rem; /* 28px — subsection */
+  --font-size-3xl: 2.25rem; /* 36px — section title */
+  --font-size-4xl: 3rem; /* 48px — large section */
+  --font-size-5xl: 4rem; /* 64px — hero */
+  --font-size-6xl: 5.25rem; /* 84px — hero metric numerals */
 
-  /* Font Weights */
-  --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
 
-  /* Line Heights */
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
+  --line-height-tight: 1.08; /* display */
+  --line-height-snug: 1.3; /* headings */
+  --line-height-normal: 1.55; /* UI text */
+  --line-height-relaxed: 1.7; /* body prose */
 
-  /* Letter Spacing */
-  --letter-spacing-tight: -0.025em;
-  --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.025em;
+  --tracking-tight: -0.02em; /* display */
+  --tracking-snug: -0.01em;
+  --tracking-normal: 0;
+
+  /* Measure — body copy stays readable */
+  --measure: 68ch;
+  --measure-narrow: 54ch;
+  --measure-wide: 84ch;
 }
 
-/* Spacing */
+/* ============================================================================
+   SPACING — 4px base
+   ============================================================================ */
+
 :root {
-  --spacing-xs: 0.25rem; /* 4px */
-  --spacing-sm: 0.5rem; /* 8px */
-  --spacing-md: 1rem; /* 16px */
-  --spacing-lg: 1.5rem; /* 24px */
-  --spacing-xl: 2rem; /* 32px */
-  --spacing-2xl: 3rem; /* 48px */
-  --spacing-3xl: 4rem; /* 64px */
-  --spacing-4xl: 6rem; /* 96px */
+  --spacing-xs: 0.25rem; /* 4 */
+  --spacing-sm: 0.5rem; /* 8 */
+  --spacing-md: 1rem; /* 16 */
+  --spacing-lg: 1.5rem; /* 24 */
+  --spacing-xl: 2rem; /* 32 */
+  --spacing-2xl: 3rem; /* 48 */
+  --spacing-3xl: 4.5rem; /* 72 */
+  --spacing-4xl: 6.5rem; /* 104 */
+
+  --section-pad: var(--spacing-4xl);
+  --section-pad-mobile: var(--spacing-3xl);
 }
 
-/* Border Radius */
+/* ============================================================================
+   RADIUS — three steps only
+   ============================================================================ */
+
 :root {
-  --border-radius-sm: 0.25rem; /* 4px */
-  --border-radius-md: 0.5rem; /* 8px */
-  --border-radius-lg: 0.75rem; /* 12px */
-  --border-radius-xl: 1rem; /* 16px */
-  --border-radius-full: 50%;
+  --radius-chip: 4px;
+  --radius-card: 8px;
+  --radius-none: 0;
+  --radius-full: 50%;
 }
 
-/* Transitions */
+/* ============================================================================
+   ELEVATION
+   Shadows are cast in petrol, not neutral grey, so they sit in the palette.
+   ============================================================================ */
+
 :root {
-  --transition-fast: 0.15s ease-in-out;
-  --transition-normal: 0.3s ease-in-out;
-  --transition-slow: 0.5s ease-in-out;
+  --shadow-sm: 0 1px 2px rgba(11, 21, 25, 0.06);
+  --shadow-md: 0 2px 8px rgba(11, 21, 25, 0.08);
+  --shadow-lg: 0 8px 24px rgba(11, 21, 25, 0.1);
+  --shadow-xl: 0 16px 40px rgba(11, 21, 25, 0.14);
+}
+
+/* ============================================================================
+   MOTION
+   One orchestrated moment on load; everything else answers input.
+   ============================================================================ */
+
+:root {
+  --ease: cubic-bezier(0.32, 0.72, 0.28, 1);
+  --transition-fast: 0.12s var(--ease);
+  --transition-normal: 0.22s var(--ease);
+  --transition-slow: 0.4s var(--ease);
+}
+
+/* ============================================================================
+   LEGACY ALIASES
+   The previous token names, remapped onto the new palette. These keep sections
+   coherent while the rebuild is in progress. The six at the end were used but
+   never defined, which left 12 properties resolving to nothing.
+   ============================================================================ */
+
+:root {
+  --primary-color: var(--base);
+  --secondary-color: var(--accent-ink);
+  --accent-color: var(--accent);
+
+  --bg-primary: var(--paper);
+  --bg-secondary: var(--paper-2);
+  --bg-dark: var(--base);
+  --bg-light: var(--paper-2);
+  --secondary-background: var(--paper-2);
+
+  --text-primary: var(--ink);
+  --text-secondary: var(--ink-muted);
+  --text-light: var(--on-base);
+  --text-muted: var(--ink-faint);
+  --text-dark: var(--ink);
+
+  --border-color: var(--rule);
+  --border-light: var(--rule);
+  --border-hover: var(--accent);
+
+  --shadow-light: rgba(11, 21, 25, 0.08);
+  --shadow-medium: rgba(11, 21, 25, 0.12);
+  --shadow-dark: rgba(11, 21, 25, 0.2);
+  --shadow-heavy: rgba(11, 21, 25, 0.22);
+  --box-shadow: var(--shadow-md);
+
+  --border-radius-sm: var(--radius-chip);
+  --border-radius-md: var(--radius-chip);
+  --border-radius-lg: var(--radius-card);
+  --border-radius-xl: var(--radius-card);
+  --border-radius: var(--radius-card);
+
+  --transition: var(--transition-normal);
+
+  /* The old gradient tokens now resolve to flat colour. Any component still
+     writing `background: var(--gradient-primary)` gets petrol, not purple. */
+  --gradient-primary: var(--base);
+  --gradient-secondary: var(--surface);
+  --gradient-accent: var(--accent-ink);
+
+  --font-primary: var(--font-sans);
+  --font-secondary: var(--font-sans);
+  --font-poppins: var(--font-sans);
+  --font-roboto: var(--font-sans);
+  --font-fira-code: var(--font-mono);
+
+  --letter-spacing-tight: var(--tracking-tight);
+  --letter-spacing-normal: var(--tracking-normal);
+  --letter-spacing-wide: 0.02em;
+  --font-weight-light: 300;
 }

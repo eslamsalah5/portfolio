@@ -93,40 +93,6 @@ export class ProjectsComponent implements OnInit {
     return 0;
   }
 
-  getProjectCategory(project: Project): string {
-    const webTechs = ['angular', 'asp.net', 'web api', 'sql server', 'core'];
-    const mobileTechs = ['flutter', 'dart', 'firebase', 'mobile'];
-
-    const hasWebTech = project.technologies.some((tech) =>
-      webTechs.some((webTech) => tech.toLowerCase().includes(webTech)),
-    );
-
-    const hasMobileTech = project.technologies.some((tech) =>
-      mobileTechs.some((mobileTech) => tech.toLowerCase().includes(mobileTech)),
-    );
-
-    if (hasMobileTech) return 'mobile';
-    if (hasWebTech) return 'web';
-    return 'other';
-  }
-
-  getProjectTypeBadgeClass(projectType: string): string {
-    switch (projectType) {
-      case 'Personal Training':
-        return 'badge-personal';
-      case 'Academic':
-        return 'badge-academic';
-      case 'Graduation':
-        return 'badge-graduation';
-      case 'Freelance':
-        return 'badge-freelance';
-      case 'Professional':
-        return 'badge-professional';
-      default:
-        return 'badge-default';
-    }
-  }
-
   isLiveProject(project: Project): boolean {
     if (!project.demoUrl) return false;
     const url = project.demoUrl;
@@ -142,6 +108,11 @@ export class ProjectsComponent implements OnInit {
     const title = project.title.toLowerCase();
     if (title.includes('ra7ala')) return 'assets/images/ra7alaLogo.svg';
     return null;
+  }
+
+  /** Clearing `image` swaps the figure to the initial plate fallback. */
+  onImageError(project: Project): void {
+    project.image = '';
   }
 
   viewProjectDetails(project: Project): void {

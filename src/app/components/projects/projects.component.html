@@ -1,232 +1,210 @@
-<!-- Projects Section -->
-<section id="projects" class="projects-section py-5">
+<!-- Projects -->
+<section id="projects" class="section section--paper projects">
   <div class="container">
-
-    <!-- Section Header -->
-    <div class="row">
-      <div class="col-12">
-        <h2 class="section-title">My Projects</h2>
-        <p class="text-center text-muted mb-5">
-          Here are some of my recent works and projects
-        </p>
-      </div>
+    <div class="section-head">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">
+        One production platform, plus the work that led up to it.
+      </p>
     </div>
 
     <!-- ══════════════════════════════════════════
-         FEATURED PROJECTS — GoDawa Suite
+         GoDawa suite — backend and dashboard are one system, so they are
+         presented inside one wrapper rather than as two peers in the grid.
     ══════════════════════════════════════════ -->
-    <div class="featured-section mb-5" *ngIf="featuredProjects.length > 0">
-
-      <!-- Suite wrapper -->
-      <div class="suite-wrapper">
-        <!-- Suite header -->
-        <div class="suite-header">
-          <div class="suite-header-left">
-            <div class="suite-logo">
-              <img src="assets/images/godawa.png" alt="GoDawa Logo" class="suite-logo-img" />
-            </div>
-            <div>
-              <div class="suite-name">GoDawa Suite</div>
-              <div class="suite-subtitle">Enterprise B2B Pharmaceutical Distribution Platform</div>
-            </div>
-          </div>
-          <div class="suite-header-right">
-            <div class="suite-badges">
-              <span class="suite-badge suite-badge-pro">
-                <i class="fas fa-briefcase me-1"></i>Professional
-              </span>
-              <span class="suite-badge suite-badge-azure">
-                <i class="fab fa-microsoft me-1"></i>Azure Deployed
-              </span>
-            </div>
-            <a
-              href="https://github.com/eslamsalah5/GoDawa-Showcase"
-              target="_blank"
-              class="suite-showcase-link"
-              title="View Full Platform Showcase"
-            >
-              <i class="fab fa-github me-1"></i>Platform Showcase
-            </a>
+    <div class="suite" *ngIf="featuredProjects.length > 0">
+      <div class="suite-head">
+        <div class="suite-identity">
+          <img
+            src="assets/images/godawa.png"
+            alt="GoDawa platform logo"
+            class="suite-logo"
+            width="44"
+            height="44"
+          />
+          <div>
+            <h3 class="suite-name">GoDawa</h3>
+            <p class="suite-line">
+              B2B pharmaceutical distribution platform. Two deployed parts, one
+              system.
+            </p>
           </div>
         </div>
 
-        <!-- Suite cards -->
-        <div class="row g-3">
-          <div
-            class="col-lg-6"
-            *ngFor="let project of featuredProjects; let i = index"
+        <div class="suite-meta">
+          <span class="chip chip--accent">Professional</span>
+          <span class="chip chip--live">Deployed on Azure</span>
+          <a
+            href="https://github.com/eslamsalah5/GoDawa-Showcase"
+            target="_blank"
+            rel="noopener"
+            class="suite-link"
+            >Platform showcase</a
           >
-            <div class="featured-card" (click)="viewProjectDetails(project)">
-              <div class="featured-accent" [class.accent-backend]="i === 0" [class.accent-frontend]="i === 1"></div>
-
-              <div class="featured-body">
-                <!-- Header row -->
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                  <div class="d-flex align-items-center gap-2">
-                    <div class="featured-icon-wrap" [class.icon-backend]="i === 0" [class.icon-frontend]="i === 1">
-                      <i class="fas fa-2x" [class.fa-server]="i === 0" [class.fa-desktop]="i === 1"></i>
-                    </div>
-                    <img src="assets/images/godawa.png" alt="GoDawa" class="featured-suite-logo" />
-                  </div>
-                  <span class="suite-part-badge">
-                    {{ i === 0 ? 'Backend API' : 'Admin Dashboard' }}
-                  </span>
-                </div>
-
-                <!-- Title & description -->
-                <h4 class="featured-title">{{ project.title }}</h4>
-                <p class="featured-description">{{ project.description }}</p>
-
-                <!-- Tech tags (first 6 only) -->
-                <div class="project-technologies mb-3">
-                  <span
-                    class="tech-tag"
-                    *ngFor="let tech of project.technologies.slice(0, 6)"
-                  >{{ tech }}</span>
-                  <span
-                    class="tech-tag tech-tag-more"
-                    *ngIf="project.technologies.length > 6"
-                  >+{{ project.technologies.length - 6 }} more</span>
-                </div>
-
-                <!-- Footer actions -->
-                <div class="featured-footer">
-                  <button class="btn-details">
-                    <i class="fas fa-info-circle me-2"></i>View Details
-                  </button>
-                  <div class="featured-links">
-                    <a
-                      [href]="project.demoUrl"
-                      class="icon-link"
-                      title="Live Demo"
-                      *ngIf="project.demoUrl"
-                      target="_blank"
-                      (click)="$event.stopPropagation()"
-                    >
-                      <i class="fas fa-external-link-alt"></i>
-                    </a>
-                    <a
-                      [href]="project.githubUrl"
-                      class="icon-link"
-                      title="View Code"
-                      *ngIf="project.githubUrl"
-                      target="_blank"
-                      (click)="$event.stopPropagation()"
-                    >
-                      <i class="fab fa-github"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
+      <div class="suite-parts">
+        <article
+          class="suite-part"
+          *ngFor="let project of featuredProjects; let i = index"
+        >
+          <p class="suite-part-role">
+            {{ i === 0 ? "Backend API" : "Admin dashboard" }}
+          </p>
+          <h4 class="suite-part-title">{{ project.title }}</h4>
+          <p class="suite-part-description">{{ project.description }}</p>
+
+          <ul class="chip-row">
+            <li
+              class="chip"
+              *ngFor="let tech of project.technologies.slice(0, 6)"
+            >
+              {{ tech }}
+            </li>
+            <li class="chip" *ngIf="project.technologies.length > 6">
+              +{{ project.technologies.length - 6 }}
+            </li>
+          </ul>
+
+          <div class="suite-part-actions">
+            <button
+              type="button"
+              class="link-action"
+              (click)="viewProjectDetails(project)"
+            >
+              Read the breakdown
+            </button>
+            <a
+              [href]="project.demoUrl"
+              *ngIf="project.demoUrl"
+              target="_blank"
+              rel="noopener"
+              class="link-action"
+              >Live</a
+            >
+            <a
+              [href]="project.githubUrl"
+              *ngIf="project.githubUrl"
+              target="_blank"
+              rel="noopener"
+              class="link-action"
+              >Code</a
+            >
+          </div>
+        </article>
+      </div>
     </div>
 
     <!-- ══════════════════════════════════════════
-         ALL PROJECTS — Filter + Grid
+         Everything else
     ══════════════════════════════════════════ -->
-    <div class="all-projects-header mb-4">
-      <h3 class="all-projects-title">All Projects</h3>
+    <div class="all-projects">
+      <div class="all-projects-head">
+        <h3 class="subsection-title">All projects</h3>
 
-      <!-- Filter Buttons -->
-      <div class="project-filters">
-        <button
-          class="filter-btn"
-          [class.active]="activeFilter === 'all'"
-          (click)="filterProjects('all')"
-        >
-          All ({{ getProjectCount('all') }})
-        </button>
-        <button
-          class="filter-btn"
-          [class.active]="activeFilter === 'web'"
-          (click)="filterProjects('web')"
-        >
-          Web Apps ({{ getProjectCount('web') }})
-        </button>
-        <button
-          class="filter-btn"
-          [class.active]="activeFilter === 'mobile'"
-          (click)="filterProjects('mobile')"
-        >
-          Mobile Apps ({{ getProjectCount('mobile') }})
-        </button>
-      </div>
-    </div>
-
-    <!-- Projects Grid -->
-    <div class="row" id="projects-grid">
-      <div
-        class="col-lg-4 col-md-6 mb-4 project-item"
-        *ngFor="let project of filteredProjects"
-        [attr.data-category]="getProjectCategory(project)"
-      >
-        <div class="project-card">
-          <div class="project-image">
-            <div class="image-placeholder">
-              <img
-                [src]="project.image"
-                [alt]="project.title"
-                class="project-main-img"
-              />
-            </div>
-            <div class="project-overlay">
-              <div class="project-links">
-                <button
-                  class="project-link"
-                  title="View Details"
-                  (click)="viewProjectDetails(project)"
-                >
-                  <i class="fas fa-info-circle"></i>
-                </button>
-                <a
-                  [href]="project.demoUrl"
-                  class="project-link"
-                  title="Live Demo"
-                  *ngIf="project.demoUrl"
-                  target="_blank"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-                <a
-                  [href]="project.githubUrl"
-                  class="project-link"
-                  title="View Code"
-                  *ngIf="project.githubUrl"
-                  target="_blank"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="project-content">
-            <div class="project-header">
-              <h4 class="project-title">{{ project.title }}</h4>
-              <span
-                class="project-type-badge"
-                [ngClass]="getProjectTypeBadgeClass(project.projectType)"
-              >
-                {{ project.projectType }}
-              </span>
-            </div>
-            <!-- Live badge -->
-            <div class="live-badge" *ngIf="isLiveProject(project)">
-              <span class="live-dot-sm"></span> Live
-            </div>
-            <p class="project-description">{{ project.description }}</p>
-            <div class="project-technologies">
-              <span class="tech-tag" *ngFor="let tech of project.technologies">
-                {{ tech }}
-              </span>
-            </div>
-          </div>
+        <div class="filters" role="group" aria-label="Filter projects">
+          <button
+            type="button"
+            class="filter"
+            [class.is-active]="activeFilter === 'all'"
+            [attr.aria-pressed]="activeFilter === 'all'"
+            (click)="filterProjects('all')"
+          >
+            All <span class="num">{{ getProjectCount("all") }}</span>
+          </button>
+          <button
+            type="button"
+            class="filter"
+            [class.is-active]="activeFilter === 'web'"
+            [attr.aria-pressed]="activeFilter === 'web'"
+            (click)="filterProjects('web')"
+          >
+            Web <span class="num">{{ getProjectCount("web") }}</span>
+          </button>
+          <button
+            type="button"
+            class="filter"
+            [class.is-active]="activeFilter === 'mobile'"
+            [attr.aria-pressed]="activeFilter === 'mobile'"
+            (click)="filterProjects('mobile')"
+          >
+            Mobile <span class="num">{{ getProjectCount("mobile") }}</span>
+          </button>
         </div>
       </div>
-    </div>
 
+      <div class="project-grid">
+        <article class="project" *ngFor="let project of filteredProjects">
+          <!-- Real image where there is one; otherwise a petrol plate with the
+               project initial. No rotating gradients. -->
+          <div class="project-figure">
+            <img
+              *ngIf="project.image"
+              [src]="project.image"
+              [alt]="project.title + ' screenshot'"
+              class="project-img"
+              loading="lazy"
+              (error)="onImageError(project)"
+            />
+            <span class="project-plate" *ngIf="!project.image" aria-hidden="true">
+              {{ project.title.charAt(0) }}
+            </span>
+          </div>
+
+          <div class="project-body">
+            <div class="project-meta">
+              <span
+                class="chip"
+                [class.chip--accent]="project.projectType === 'Professional'"
+                >{{ project.projectType }}</span
+              >
+              <span class="live" *ngIf="isLiveProject(project)">Live</span>
+            </div>
+
+            <h4 class="project-title">{{ project.title }}</h4>
+            <p class="project-description">{{ project.description }}</p>
+
+            <ul class="chip-row">
+              <li
+                class="chip"
+                *ngFor="let tech of project.technologies.slice(0, 5)"
+              >
+                {{ tech }}
+              </li>
+              <li class="chip" *ngIf="project.technologies.length > 5">
+                +{{ project.technologies.length - 5 }}
+              </li>
+            </ul>
+
+            <div class="project-actions">
+              <button
+                type="button"
+                class="link-action"
+                (click)="viewProjectDetails(project)"
+              >
+                Details
+              </button>
+              <a
+                [href]="project.demoUrl"
+                *ngIf="project.demoUrl"
+                target="_blank"
+                rel="noopener"
+                class="link-action"
+                >Demo</a
+              >
+              <a
+                [href]="project.githubUrl"
+                *ngIf="project.githubUrl"
+                target="_blank"
+                rel="noopener"
+                class="link-action"
+                >Code</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
   </div>
 </section>

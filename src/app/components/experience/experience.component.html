@@ -1,222 +1,64 @@
-<!-- Experience Section -->
-<section id="experience" class="experience-section py-5">
+<!-- Experience -->
+<section id="experience" class="section section--paper-2 experience">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2 class="section-title">Professional Experience</h2>
-        <p class="text-center text-muted mb-5">
-          My professional work experience and career journey
-        </p>
+    <div class="section-head">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-subtitle">
+        Where the systems described above were built.
+      </p>
+    </div>
+
+    <!-- Roles: a genuine chronological sequence, so it keeps its markers. -->
+    <ol class="timeline" *ngIf="experiences.length > 0">
+      <li class="timeline-item" *ngFor="let exp of experiences">
+        <div class="timeline-content">
+          <p class="role-period num">{{ exp.period }}</p>
+          <h3 class="role-title">{{ exp.title }}</h3>
+          <p class="role-company">{{ exp.company }}</p>
+          <p class="role-description">{{ exp.description }}</p>
+          <ul class="chip-row">
+            <li class="chip" *ngFor="let tech of exp.technologies">
+              {{ tech }}
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+
+    <!-- Freelance work: not a sequence, so no numbering. Three entries on a
+         shared rule. -->
+    <div class="freelance">
+      <h3 class="subsection-title">Freelance delivery</h3>
+
+      <div class="freelance-grid">
+        <article class="freelance-item spine" *ngFor="let item of freelanceWork">
+          <h4 class="freelance-name">{{ item.name }}</h4>
+          <p class="freelance-kind">{{ item.kind }}</p>
+          <p class="freelance-description">{{ item.description }}</p>
+          <ul class="chip-row">
+            <li class="chip" *ngFor="let tech of item.technologies">
+              {{ tech }}
+            </li>
+          </ul>
+        </article>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-12">
-        <!-- Professional Experience Section -->
-        <div class="mb-5" *ngIf="experiences.length > 0">
-          <div class="timeline">
-            <div
-              class="timeline-item"
-              *ngFor="let exp of experiences; let i = index"
-            >
-              <div class="timeline-marker"></div>
-              <div class="timeline-content">
-                <div class="timeline-header">
-                  <h3 class="timeline-title">{{ exp.title }}</h3>
-                  <h4 class="timeline-company">{{ exp.company }}</h4>
-                  <span class="timeline-period">{{ exp.period }}</span>
-                </div>
-                <div class="timeline-body">
-                  <p class="timeline-description">{{ exp.description }}</p>
-                  <div class="timeline-technologies">
-                    <span
-                      class="tech-tag"
-                      *ngFor="let tech of exp.technologies"
-                      >{{ tech }}</span
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- No Experience Message -->
-        <div class="text-center" *ngIf="experiences.length === 0">
-          <!-- This will only show if no experience at all -->
-          <div class="no-experience-card">
-            <i class="fas fa-briefcase mb-3"></i>
-            <h4>Building Professional Experience</h4>
-            <p class="text-muted">
-              Currently focusing on freelance projects and expanding my
-              portfolio. Open to full-time opportunities and exciting projects.
-            </p>
-          </div>
-        </div>
-
-        <!-- Freelance Projects Section - Always Show -->
-        <div class="freelance-experience-section mb-5">
-          <div class="section-header text-center mb-4">
-            <i class="fas fa-laptop-code section-icon"></i>
-            <h3 class="freelance-title">Featured Freelance Projects</h3>
-            <p class="freelance-subtitle">
-              Showcasing successful client deliveries and technical expertise
-            </p>
-          </div>
-
-          <div class="row">
-            <!-- X World Project -->
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="freelance-project-card">
-                <div class="project-header">
-                  <div class="project-icon">
-                    <i class="fab fa-flutter"></i>
-                  </div>
-                  <h4 class="project-name">X World</h4>
-                  <span class="project-type">Social Media App</span>
-                </div>
-                <div class="project-details">
-                  <p class="project-description">
-                    Anonymous social media Flutter app where users interact with
-                    unique X identities. Features real-time chat, post
-                    commenting, premium user features, gift system,
-                    localization, themes, and content moderation.
-                  </p>
-                  <div class="project-technologies">
-                    <span class="tech-badge flutter">Flutter</span>
-                    <span class="tech-badge dart">Dart</span>
-                    <span class="tech-badge firebase">Firebase</span>
-                    <span class="tech-badge realtime">Real-time Chat</span>
-                  </div>
-                </div>
-                <div class="project-highlights">
-                  <div class="highlight-item">
-                    <i class="fas fa-users"></i>
-                    <span>Anonymous Social Platform</span>
-                  </div>
-                  <div class="highlight-item">
-                    <i class="fas fa-comments"></i>
-                    <span>Real-time Messaging</span>
-                  </div>
-                  <div class="highlight-item">
-                    <i class="fas fa-crown"></i>
-                    <span>Premium Features</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- KITO Project -->
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="freelance-project-card">
-                <div class="project-header">
-                  <div class="project-icon multi-client">
-                    <i class="fas fa-mobile-alt"></i>
-                  </div>
-                  <h4 class="project-name">KITO</h4>
-                  <span class="project-type">Multi-Client Solution</span>
-                </div>
-                <div class="project-details">
-                  <p class="project-description">
-                    Versatile mobile application delivered to multiple clients
-                    with customizable features and configurations. Demonstrates
-                    scalability and adaptability in freelance development.
-                  </p>
-                  <div class="project-technologies">
-                    <span class="tech-badge flutter">Flutter</span>
-                    <span class="tech-badge dart">Dart</span>
-                    <span class="tech-badge api">REST API</span>
-                    <span class="tech-badge custom">Customizable</span>
-                  </div>
-                </div>
-                <div class="project-highlights">
-                  <div class="highlight-item">
-                    <i class="fas fa-sync-alt"></i>
-                    <span>Multi-Client Delivery</span>
-                  </div>
-                  <div class="highlight-item">
-                    <i class="fas fa-cogs"></i>
-                    <span>Customizable Features</span>
-                  </div>
-                  <div class="highlight-item">
-                    <i class="fas fa-expand-arrows-alt"></i>
-                    <span>Scalable Architecture</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- E-Commerce Project -->
-            <div class="col-lg-4 col-md-6 mb-4">
-              <div class="freelance-project-card">
-                <div class="project-header">
-                  <div class="project-icon fullstack">
-                    <i class="fas fa-shopping-cart"></i>
-                  </div>
-                  <h4 class="project-name">Fashion Store</h4>
-                  <span class="project-type">Full-Stack E-Commerce</span>
-                </div>
-                <div class="project-details">
-                  <p class="project-description">
-                    Complete e-commerce solution for clothing retail with modern
-                    UI, secure payment processing, inventory management, and
-                    responsive design using .NET backend and Angular frontend.
-                  </p>
-                  <div class="project-technologies">
-                    <span class="tech-badge dotnet">.NET Core</span>
-                    <span class="tech-badge angular">Angular</span>
-                    <span class="tech-badge sql">SQL Server</span>
-                    <span class="tech-badge payment">Payment Gateway</span>
-                  </div>
-                </div>
-                <div class="project-highlights">
-                  <div class="highlight-item">
-                    <i class="fas fa-layer-group"></i>
-                    <span>Full-Stack Development</span>
-                  </div>
-                  <div class="highlight-item">
-                    <i class="fas fa-credit-card"></i>
-                    <span>Payment Integration</span>
-                  </div>
-                  <div class="highlight-item">
-                    <i class="fas fa-boxes"></i>
-                    <span>Inventory Management</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="freelance-cta">
-          <div class="cta-content">
-            <i class="fas fa-handshake cta-icon"></i>
-            <h4 class="cta-title">Ready for Your Next Project?</h4>
-            <p class="cta-description">
-              Looking for full-time opportunities while continuing to deliver
-              exceptional freelance solutions. Let's discuss how I can
-              contribute to your team or project.
-            </p>
-            <div class="contact-buttons mt-4">
-              <a
-                href="mailto:eslamsalah5364@gmail.com"
-                class="btn btn-primary me-3"
-              >
-                <i class="fas fa-envelope me-2"></i>
-                Hire Me
-              </a>
-              <a
-                href="https://linkedin.com/in/eslamsalah55"
-                target="_blank"
-                class="btn btn-outline-primary"
-              >
-                <i class="fab fa-linkedin me-2"></i>
-                View Profile
-              </a>
-            </div>
-          </div>
-        </div>
+    <!-- Availability. Plain statement, two real links, no handshake icon. -->
+    <div class="availability">
+      <p class="availability-line">
+        Open to full-time backend or full stack roles, and continuing to take on
+        freelance work.
+      </p>
+      <div class="availability-actions">
+        <a [href]="'mailto:' + email" class="btn btn-primary">Send an email</a>
+        <a
+          [href]="linkedin"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-outline-primary"
+          >LinkedIn profile</a
+        >
       </div>
     </div>
   </div>

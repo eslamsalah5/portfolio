@@ -1,64 +1,48 @@
-<!-- Skills Section -->
-<section id="skills" class="skills-section py-5">
+<!-- Skills -->
+<section id="skills" class="section section--paper-2 skills">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2 class="section-title">My Skills</h2>
-        <p class="text-center text-muted mb-4">
-          Technologies and tools I work with professionally
-        </p>
-      </div>
+    <div class="section-head">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-subtitle">
+        What I work with, grouped by where it sits in a system.
+      </p>
     </div>
 
-    <!-- Category Tabs -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="skills-tabs">
-          <button
-            class="skills-tab-btn"
-            *ngFor="let category of skillCategories"
-            [class.active]="activeCategory === category"
-            (click)="setActiveCategory(category)"
-          >
-            <i [class]="getCategoryIcon(category)" class="me-2"></i>
-            {{ getCategoryShortName(category) }}
-          </button>
-        </div>
-      </div>
-    </div>
+    <div class="skills-layout">
+      <!-- Category rail. Doubles as the count summary, so the separate
+           "N skills in this category" line is gone. -->
+      <nav class="skill-rail" aria-label="Skill categories">
+        <button
+          type="button"
+          class="rail-item"
+          *ngFor="let category of skillCategories"
+          [class.is-active]="activeCategory === category"
+          [attr.aria-pressed]="activeCategory === category"
+          (click)="setActiveCategory(category)"
+        >
+          <span class="rail-name">{{ getCategoryShortName(category) }}</span>
+          <span class="rail-count num">{{
+            getSkillsByCategory(category).length
+          }}</span>
+        </button>
+      </nav>
 
-    <!-- Active Category Skills Grid -->
-    <div class="row">
-      <div
-        class="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-3"
-        *ngFor="let skill of getSkillsByCategory(activeCategory)"
-      >
-        <div class="skill-card">
-          <div class="skill-icon">
+      <!-- Dense list, not 98 boxes. -->
+      <div class="skill-panel">
+        <ul class="skill-list">
+          <li class="skill" *ngFor="let skill of activeSkills">
             <i
               *ngIf="!isTextIcon(skill)"
               [class]="getIconClass(skill)"
-              [style.color]="skill.color"
+              class="skill-icon"
+              aria-hidden="true"
             ></i>
-            <span
-              *ngIf="isTextIcon(skill)"
-              [style.color]="skill.color"
-              class="text-icon"
-            >
-              {{ getIconText(skill) }}
-            </span>
-          </div>
-          <h5 class="skill-name">{{ skill.name }}</h5>
-        </div>
-      </div>
-    </div>
-
-    <!-- Skills count indicator -->
-    <div class="row mt-2">
-      <div class="col-12 text-center">
-        <small class="text-muted skills-count">
-          {{ getSkillsByCategory(activeCategory).length }} skills in this category
-        </small>
+            <span *ngIf="isTextIcon(skill)" class="skill-icon skill-icon--text" aria-hidden="true">{{
+              getIconText(skill)
+            }}</span>
+            <span class="skill-name">{{ skill.name }}</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

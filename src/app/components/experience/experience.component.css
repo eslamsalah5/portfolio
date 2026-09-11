@@ -1,576 +1,180 @@
-/* Experience Section Styles */
-.experience-section {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-}
-
-.section-subtitle {
-  color: var(--primary-color);
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin-bottom: var(--spacing-lg);
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.section-subtitle::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 50px;
-  height: 3px;
-  background: var(--gradient-primary);
-  border-radius: 2px;
-}
+/* ============================================================================
+   EXPERIENCE
+   The timeline keeps its markers: roles are a real chronological sequence.
+   Everything else on this page drops numbering.
+   ============================================================================ */
 
 .timeline {
   position: relative;
-  padding-left: 2rem;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 1rem;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--gradient-primary);
+  margin: 0 0 var(--spacing-4xl);
+  padding-left: var(--spacing-xl);
+  border-left: var(--spine) solid var(--spine-color-active);
+  max-width: var(--measure-wide);
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: 3rem;
-  padding-left: 2rem;
+  padding-bottom: var(--spacing-3xl);
 }
 
-.timeline-marker {
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Marker sits on the rule itself. */
+.timeline-item::before {
+  content: "";
   position: absolute;
-  left: -2.5rem;
+  left: calc(-1 * var(--spacing-xl) - 5px);
   top: 0.5rem;
-  width: 1rem;
-  height: 1rem;
-  background: var(--primary-color);
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  border: 3px solid var(--bg-secondary);
-  box-shadow: 0 0 0 3px var(--primary-color);
+  background: var(--accent);
 }
 
-.timeline-content {
-  background: var(--bg-primary);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-lg);
-  box-shadow: var(--box-shadow);
-  border-left: 4px solid var(--primary-color);
+.role-period {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--ink-faint);
+  margin: 0 0 var(--spacing-xs);
+  max-width: none;
 }
 
-.timeline-header {
-  margin-bottom: var(--spacing-md);
+.role-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-snug);
+  color: var(--ink);
+  margin: 0;
+  max-width: none;
 }
 
-.timeline-title {
-  color: var(--primary-color);
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+.role-company {
+  font-size: var(--font-size-base);
+  color: var(--accent-ink);
+  font-weight: var(--font-weight-medium);
+  margin: var(--spacing-xs) 0 var(--spacing-md);
+  max-width: none;
 }
 
-.timeline-company {
-  color: var(--secondary-color);
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+.role-description {
+  color: var(--ink-muted);
+  line-height: var(--line-height-relaxed);
+  max-width: var(--measure);
+  margin: 0 0 var(--spacing-md);
 }
 
-.timeline-period {
-  background: var(--gradient-primary);
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.timeline-description {
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: var(--spacing-md);
-}
-
-.timeline-technologies {
+/* One quiet chip. Previously eight hardcoded brand-colour variants. */
+.chip-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--spacing-xs);
 }
 
-.tech-tag {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--border-radius);
-  font-size: 0.875rem;
-  border: 1px solid var(--border-color);
-  transition: var(--transition);
-}
-
-.tech-tag:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* No Experience Section */
-.no-experience-card {
-  background: var(--bg-primary);
-  border: 2px dashed var(--border-color);
-  border-radius: var(--border-radius-lg);
-  padding: 3rem 2rem;
-  text-align: center;
-  transition: var(--transition);
-}
-
-.no-experience-card:hover {
-  border-color: var(--primary-color);
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-}
-
-.no-experience-card i {
-  font-size: 3rem;
-  color: var(--primary-color);
-}
-
-.no-experience-card h4 {
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.contact-buttons .btn {
-  padding: 0.75rem 1.5rem;
-  font-weight: 500;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-}
-
-.contact-buttons .btn:hover {
-  transform: translateY(-2px);
+.chip {
+  font-size: var(--font-size-xs);
+  color: var(--ink-muted);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-chip);
+  padding: 0.15rem 0.45rem;
 }
 
 /* ============================================================================
-   FREELANCE PROJECTS SECTION STYLES
+   FREELANCE
    ============================================================================ */
 
-.freelance-experience-section {
-  padding: var(--spacing-3xl) 0;
-}
-
-.section-header {
-  margin-bottom: var(--spacing-3xl);
-}
-
-.section-icon {
-  font-size: 3rem;
-  color: var(--secondary-color);
-  margin-bottom: var(--spacing-lg);
-  display: block;
-}
-
-.freelance-title {
-  font-size: var(--font-size-3xl);
+.subsection-title {
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
+  letter-spacing: var(--tracking-snug);
+  color: var(--ink);
+  padding-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--rule-strong);
 }
 
-.freelance-subtitle {
+.freelance {
+  margin-bottom: var(--spacing-4xl);
+}
+
+.freelance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing-2xl);
+}
+
+.freelance-item {
+  padding-left: var(--spacing-lg);
+}
+
+.freelance-name {
   font-size: var(--font-size-lg);
-  color: var(--text-secondary);
+  font-weight: var(--font-weight-semibold);
+  color: var(--ink);
   margin: 0;
 }
 
+.freelance-kind {
+  font-size: var(--font-size-sm);
+  color: var(--ink-faint);
+  margin: var(--spacing-xs) 0 var(--spacing-md);
+  max-width: none;
+}
+
+.freelance-description {
+  font-size: var(--font-size-sm);
+  color: var(--ink-muted);
+  line-height: var(--line-height-relaxed);
+  margin: 0 0 var(--spacing-md);
+  max-width: var(--measure-narrow);
+}
+
 /* ============================================================================
-   FREELANCE PROJECT CARDS
+   AVAILABILITY
    ============================================================================ */
 
-.freelance-project-card {
-  background: var(--bg-primary);
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-2xl);
-  height: 100%;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--border-color);
-  transition: var(--transition-normal);
-  position: relative;
-  overflow: hidden;
+.availability {
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--rule-strong);
 }
 
-.freelance-project-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--gradient-primary);
-  transition: var(--transition-normal);
+.availability-line {
+  font-size: var(--font-size-lg);
+  color: var(--ink);
+  max-width: var(--measure-narrow);
+  margin: 0 0 var(--spacing-lg);
 }
 
-.freelance-project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.freelance-project-card:hover::before {
-  height: 6px;
-}
-
-/* Project Header */
-.project-header {
-  text-align: center;
-  margin-bottom: var(--spacing-xl);
-}
-
-.project-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: var(--border-radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--spacing-lg);
-  font-size: 1.8rem;
-  color: white;
-  background: var(--gradient-primary);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-}
-
-.project-icon.multi-client {
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
-  box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
-}
-
-.project-icon.fullstack {
-  background: linear-gradient(135deg, #27ae60, #229954);
-  box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
-}
-
-.project-icon.insta-dawa {
-  background: linear-gradient(135deg, #4937bb, #7c4dff);
-  box-shadow: 0 8px 25px rgba(73, 55, 187, 0.3);
-}
-
-/* Featured Card */
-.featured-card {
-  position: relative;
-  border: 2px solid rgba(73, 55, 187, 0.2);
-}
-
-.featured-card::before {
-  background: linear-gradient(135deg, #4937bb, #7c4dff) !important;
-}
-
-.featured-badge {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  background: linear-gradient(135deg, #ffca28, #ffa000);
-  color: #333;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.featured-badge i {
-  font-size: 0.65rem;
-}
-
-.tech-badge.redis-badge {
-  background: linear-gradient(135deg, #dc382d, #ff5252);
-}
-
-.project-name {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-sm);
-}
-
-.project-type {
-  display: inline-block;
-  background: rgba(102, 126, 234, 0.1);
-  color: var(--secondary-color);
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: var(--border-radius-full);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-}
-
-/* Project Details */
-.project-details {
-  margin-bottom: var(--spacing-xl);
-}
-
-.project-description {
-  color: var(--text-secondary);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-relaxed);
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Technology Badges */
-.project-technologies {
+.availability-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-sm);
-  margin-bottom: var(--spacing-lg);
-}
-
-.tech-badge {
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--border-radius-lg);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  color: white;
-  background: var(--text-secondary);
-}
-
-.tech-badge.flutter {
-  background: linear-gradient(135deg, #02569b, #0468d1);
-}
-
-.tech-badge.dart {
-  background: linear-gradient(135deg, #0175c2, #13b9fd);
-}
-
-.tech-badge.firebase {
-  background: linear-gradient(135deg, #ffca28, #ffa000);
-}
-
-.tech-badge.realtime {
-  background: linear-gradient(135deg, #4caf50, #66bb6a);
-}
-
-.tech-badge.dotnet {
-  background: linear-gradient(135deg, #512bd4, #7c4dff);
-}
-
-.tech-badge.angular {
-  background: linear-gradient(135deg, #dd0031, #c3002f);
-}
-
-.tech-badge.sql {
-  background: linear-gradient(135deg, #336791, #0f62fe);
-}
-
-.tech-badge.azure {
-  background: linear-gradient(135deg, #0078d4, #50e6ff);
-}
-
-.tech-badge.payment {
-  background: linear-gradient(135deg, #00c851, #007e33);
-}
-
-.tech-badge.api {
-  background: linear-gradient(135deg, #ff6d00, #ff8f00);
-}
-
-.tech-badge.custom {
-  background: linear-gradient(135deg, #9c27b0, #e91e63);
-}
-
-/* Project Highlights */
-.project-highlights {
-  border-top: 1px solid var(--border-color);
-  padding-top: var(--spacing-lg);
-}
-
-.highlight-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: var(--spacing-sm);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-
-.highlight-item i {
-  color: var(--secondary-color);
-  width: 20px;
-  margin-right: var(--spacing-sm);
-  font-size: var(--font-size-sm);
-}
-
-.highlight-item:last-child {
-  margin-bottom: 0;
+  gap: var(--spacing-md);
 }
 
 /* ============================================================================
-   CALL TO ACTION SECTION
+   RESPONSIVE
    ============================================================================ */
 
-.freelance-cta {
-  background: var(--gradient-primary);
-  border-radius: var(--border-radius-xl);
-  padding: var(--spacing-3xl);
-  text-align: center;
-  color: white;
-  position: relative;
-  overflow: hidden;
+@media (max-width: 992px) {
+  .freelance-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
 }
 
-.freelance-cta::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 70%
-  );
-  animation: pulse 4s ease-in-out infinite;
-}
-
-.cta-content {
-  position: relative;
-  z-index: 2;
-}
-
-.cta-icon {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-lg);
-  opacity: 0.9;
-}
-
-.cta-title {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--spacing-md);
-}
-
-.cta-description {
-  font-size: var(--font-size-lg);
-  opacity: 0.9;
-  line-height: var(--line-height-relaxed);
-  max-width: 600px;
-  margin: 0 auto var(--spacing-xl);
-}
-
-.contact-buttons .btn {
-  padding: var(--spacing-md) var(--spacing-xl);
-  font-weight: var(--font-weight-semibold);
-  border-radius: var(--border-radius-lg);
-  transition: var(--transition-normal);
-}
-
-.contact-buttons .btn-primary {
-  background: white;
-  color: var(--secondary-color);
-  border: 2px solid white;
-}
-
-.contact-buttons .btn-primary:hover {
-  background: transparent;
-  color: white;
-  border-color: white;
-  transform: translateY(-2px);
-}
-
-.contact-buttons .btn-outline-primary {
-  background: transparent;
-  color: white;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-}
-
-.contact-buttons .btn-outline-primary:hover {
-  background: white;
-  color: var(--secondary-color);
-  border-color: white;
-  transform: translateY(-2px);
-}
-
-/* ============================================================================
-   RESPONSIVE DESIGN
-   ============================================================================ */
-
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .timeline {
-    padding-left: 1rem;
+    padding-left: var(--spacing-lg);
   }
 
-  .timeline::before {
-    left: 0.5rem;
+  .timeline-item::before {
+    left: calc(-1 * var(--spacing-lg) - 5px);
   }
 
-  .timeline-item {
-    padding-left: 1.5rem;
-  }
-
-  .timeline-marker {
-    left: -2rem;
-    width: 0.75rem;
-    height: 0.75rem;
-  }
-
-  .timeline-content {
-    padding: var(--spacing-md);
-  }
-
-  .freelance-experience-section {
-    padding: var(--spacing-2xl) 0;
-  }
-
-  .freelance-project-card {
-    padding: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
-  }
-
-  .project-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
-  }
-
-  .freelance-title {
-    font-size: var(--font-size-2xl);
-  }
-
-  .freelance-cta {
-    padding: var(--spacing-2xl);
-  }
-
-  .cta-title {
-    font-size: var(--font-size-xl);
-  }
-
-  .contact-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-md);
-  }
-
-  .contact-buttons .btn {
-    width: 100%;
-    max-width: 250px;
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.2;
+  .availability-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
   }
 }

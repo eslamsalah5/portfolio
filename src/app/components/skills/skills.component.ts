@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioDataService, Skill } from '../../data/portfolio-data.service';
 
@@ -10,22 +10,26 @@ import { PortfolioDataService, Skill } from '../../data/portfolio-data.service';
   styleUrl: './skills.component.css',
 })
 export class SkillsComponent implements OnInit {
+  private portfolioDataService = inject(PortfolioDataService);
+
   skillCategories: string[] = [];
   skills: Skill[] = [];
   activeCategory: string = '';
 
-  constructor(private portfolioDataService: PortfolioDataService) {}
+  /** Resolved on change rather than per render — the template lists ~30 rows. */
+  activeSkills: Skill[] = [];
 
   ngOnInit(): void {
     this.skills = this.portfolioDataService.getSkills();
     this.skillCategories = this.portfolioDataService.getSkillCategories();
     if (this.skillCategories.length > 0) {
-      this.activeCategory = this.skillCategories[0];
+      this.setActiveCategory(this.skillCategories[0]);
     }
   }
 
   setActiveCategory(category: string): void {
     this.activeCategory = category;
+    this.activeSkills = this.getSkillsByCategory(category);
   }
 
   getSkillsByCategory(category: string): Skill[] {
@@ -57,18 +61,5 @@ export class SkillsComponent implements OnInit {
       'Cloud & DevOps': 'Cloud & DevOps',
     };
     return shortNames[category] ?? category;
-  }
-
-  getCategoryIcon(category: string): string {
-    const icons: { [key: string]: string } = {
-      'Programming Languages': 'fas fa-code',
-      'Backend Technologies': 'fas fa-server',
-      'Frontend Technologies': 'fas fa-desktop',
-      'Mobile Development': 'fas fa-mobile-alt',
-      'Development Tools': 'fas fa-tools',
-      'Design & Development Concepts': 'fas fa-layer-group',
-      'Cloud & DevOps': 'fas fa-cloud',
-    };
-    return icons[category] ?? 'fas fa-circle';
   }
 }

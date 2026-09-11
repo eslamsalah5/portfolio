@@ -28,22 +28,19 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     private portfolioDataService: PortfolioDataService
   ) {}
 
+  /** Held as a field so removeEventListener gets the same reference back. */
+  private readonly onKeyDown = (event: KeyboardEvent) => this.handleKeyDown(event);
+
   ngOnInit(): void {
-    console.log('ProjectDetailsComponent initialized');
     this.route.params.subscribe((params) => {
-      const projectId = +params['id'];
-      console.log('Loading project with ID:', projectId);
-      this.loadProject(projectId);
+      this.loadProject(+params['id']);
     });
 
-    // Add keyboard event listener for modal
-    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+    document.addEventListener('keydown', this.onKeyDown);
   }
 
   ngOnDestroy() {
-    // Remove keyboard event listener
-    document.removeEventListener('keydown', this.handleKeyDown.bind(this));
-    // Restore body scroll if modal is open
+    document.removeEventListener('keydown', this.onKeyDown);
     document.body.style.overflow = 'auto';
   }
 
@@ -76,38 +73,6 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     const prevIndex =
       this.projectIndex === 0 ? projects.length - 1 : this.projectIndex - 1;
     this.router.navigate(['/project', prevIndex]);
-  }
-
-  getTechColor(tech: string): string {
-    const techColors: { [key: string]: string } = {
-      Angular: '#dd0031',
-      Flutter: '#02569b',
-      'ASP.NET Core': '#512bd4',
-      'SQL Server': '#cc2927',
-      Firebase: '#ffca28',
-      JavaScript: '#f7df1e',
-      TypeScript: '#3178c6',
-      'C#': '#239120',
-      Dart: '#a97bff',
-      'Entity Framework': '#ff6f00',
-      JWT: '#41b883',
-      Stripe: '#635bff',
-      PayPal: '#003087',
-      'Power BI': '#f2c811',
-      Swagger: '#85ea2d',
-      Cubit: '#ff9800',
-      Hive: '#ff6b00',
-      'Clean Architecture': '#9c27b0',
-      'Repository Pattern': '#795548',
-      'Unit of Work': '#607d8b',
-    };
-
-    for (const [key, value] of Object.entries(techColors)) {
-      if (tech.toLowerCase().includes(key.toLowerCase())) {
-        return value;
-      }
-    }
-    return '#6c757d'; // Default gray color
   }
 
   getTechIcon(tech: string): string {
@@ -391,28 +356,18 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   getProjectCategory(): string {
     if (!this.project) return 'Other';
 
-    const webTechs = ['Angular', 'ASP.NET', 'Web API', 'SQL Server'];
-    const mobileTechs = ['Flutter', 'Dart', 'Firebase'];
-
-    const hasWebTech = this.project.technologies.some((tech) =>
-      webTechs.some((webTech) => tech.includes(webTech))
-    );
-
-    const hasMobileTech = this.project.technologies.some((tech) =>
-      mobileTechs.some((mobileTech) => tech.includes(mobileTech))
-    );
-
-    if (hasMobileTech) return 'Mobile Application';
-    if (hasWebTech) return 'Web Application';
-    return 'Software Project';
+    switch (this.getProjectCategoryForProject(this.project)) {
+      case 'mobile':
+        return 'Mobile Application';
+      case 'web':
+        return 'Web Application';
+      default:
+        return 'Software Project';
+    }
   }
 
-  onImageError(event: Event): void {
-    const target = event.target as HTMLImageElement;
-    if (target) {
-      // Show the default icon if image fails to load
-      this.showDefaultIcon = true;
-    }
+  onImageError(): void {
+    this.showDefaultIcon = true;
   }
 
   getProjectLogo(): string | null {
@@ -424,7 +379,7 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
   }
 
   getProjectIcon(): string {
-    if (!this.project) return 'fas fa-code fa-4x text-primary';
+    if (!this.project) return 'fas fa-code';
 
     const webTechs = [
       'Angular',
@@ -463,61 +418,21 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
       )
     );
 
-    if (hasMobileTech) return 'fas fa-mobile-alt fa-4x text-info';
-    if (hasApiTech) return 'fas fa-server fa-4x text-warning';
-    if (hasDatabaseTech) return 'fas fa-database fa-4x text-danger';
-    if (hasWebTech) return 'fas fa-globe fa-4x text-success';
+    if (hasMobileTech) return 'fas fa-mobile-alt';
+    if (hasApiTech) return 'fas fa-server';
+    if (hasDatabaseTech) return 'fas fa-database';
+    if (hasWebTech) return 'fas fa-globe';
 
-    return 'fas fa-code fa-4x text-primary';
+    return 'fas fa-code';
   }
-  getFormattedDescription(): string {
-    if (!this.project?.fullDescription) return '';
-
-    let formatted = this.project.fullDescription;
-
-    // Split into sections and format
-    formatted = formatted
-      // Handle bullet points
-      .replace(/^•\s(.+)$/gm, '<li>$1</li>')
-      // Handle section headers (lines ending with colon and starting new section)
-      .replace(/^([^•\n].+:)$/gm, '<h5>$1</h5>')
-      // Handle paragraphs
-      .replace(/\n\n/g, '</p><p>')
-      // Handle line breaks
-      .replace(/\n/g, '<br>')
-      // Wrap in paragraph tags
-      .replace(/^(.*)$/, '<p>$1</p>')
-      // Fix list formatting
-      .replace(/<p>(<li>.*?<\/li>)<br>/g, '<ul>$1')
-      .replace(/(<li>.*?<\/li>)<br>(<\/p>)/g, '$1</ul>$2')
-      .replace(/<br><\/ul>/g, '</ul>')
-      // Clean up multiple br tags
-      .replace(/(<br>)+/g, '<br>')
-      // Fix headers
-      .replace(/<p>(<h5>.*?<\/h5>)<br>/g, '$1')
-      .replace(/(<h5>.*?<\/h5>)<br>(<\/p>)/g, '$1');
-
-    return formatted;
+  onGalleryImageError(event: Event): void {
+    (event.target as HTMLImageElement).style.display = 'none';
   }
 
-  // Gallery image error handling
-  onGalleryImageError(event: any, index: number): void {
-    console.log(`Gallery image ${index} failed to load`);
-    // Hide the failed image or replace with placeholder
-    event.target.style.display = 'none';
-  }
-
-  // Open image in modal (placeholder - can be enhanced with a modal library)
   openImageModal(imageSrc: string, index: number): void {
-    console.log('Opening image modal:', imageSrc, 'at index:', index);
     this.selectedImage = imageSrc;
     this.currentImageIndex = index;
-    // Prevent body scroll when modal is open
     document.body.style.overflow = 'hidden';
-    console.log('Modal state:', {
-      selectedImage: this.selectedImage,
-      currentImageIndex: this.currentImageIndex,
-    });
   }
 
   // Close image modal
@@ -564,22 +479,13 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Project Type methods
+  /**
+   * One chip, differentiated by text. Amber is reserved for paid production
+   * work — that is the distinction a reader is actually scanning for.
+   */
   getProjectTypeBadgeClass(): string {
-    if (!this.project) return 'badge-default';
-
-    switch (this.project.projectType) {
-      case 'Personal Training':
-        return 'badge-personal';
-      case 'Academic':
-        return 'badge-academic';
-      case 'Graduation':
-        return 'badge-graduation';
-      case 'Freelance':
-        return 'badge-freelance';
-      default:
-        return 'badge-default';
-    }
+    const type = this.project?.projectType ?? '';
+    return type === 'Professional' || type === 'Freelance' ? 'chip--accent' : '';
   }
 
   getProjectTypeDisplay(): string {
@@ -673,25 +579,12 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  /** Tech category breakdown for sidebar bar chart */
-  getTechCategoryBreakdown(): { name: string; count: number; percent: number; color: string }[] {
+  /**
+   * Tech category breakdown for the sidebar bars. The bars are all one colour —
+   * length already encodes the count, so a per-category hue would be decoration.
+   */
+  getTechCategoryBreakdown(): { name: string; count: number; percent: number }[] {
     if (!this.project) return [];
-
-    const categoryColors: { [key: string]: string } = {
-      'Backend':    '#512bd4',
-      'Frontend':   '#dd0031',
-      'Mobile':     '#02569b',
-      'Database':   '#cc2927',
-      'Security':   '#10b981',
-      'Payment':    '#635bff',
-      'Cloud':      '#0078d4',
-      'AI/ML':      '#f59e0b',
-      'Architecture': '#9c27b0',
-      'ORM':        '#ff6f00',
-      'Documentation': '#85ea2d',
-      'Analytics':  '#f2c811',
-      'Technology': '#6c757d',
-    };
 
     const counts: { [key: string]: number } = {};
     for (const tech of this.project.technologies) {
@@ -706,32 +599,32 @@ export class ProjectDetailsComponent implements OnInit, OnDestroy {
         name,
         count,
         percent: Math.round((count / total) * 100),
-        color: categoryColors[name] ?? '#6c757d',
       }));
   }
 
-  /** Returns up to 3 related projects (same category, excluding current) */
+  /** Up to 3 other projects in the same category. */
   getRelatedProjects(): Project[] {
     if (!this.project) return [];
-    const allProjects = this.portfolioDataService.getProjects();
-    const currentCat = this.getProjectCategory();
+    const currentCat = this.getProjectCategoryForProject(this.project);
 
-    return allProjects
-      .filter((p, i) => i !== this.projectIndex && this.getProjectCategoryForProject(p) === this.mapCategoryLabel(currentCat))
+    return this.portfolioDataService
+      .getProjects()
+      .filter(
+        (p, i) =>
+          i !== this.projectIndex &&
+          this.getProjectCategoryForProject(p) === currentCat
+      )
       .slice(0, 3);
   }
 
+  /** The single source for both the header chip and the related-project match. */
   getProjectCategoryForProject(project: Project): string {
     const webTechs = ['Angular', 'ASP.NET', 'Web API', 'SQL Server'];
-    const mobileTechs = ['Flutter', 'Dart', 'Firebase'];
+    // Firebase alone does not make something mobile — GoDawa's backend uses
+    // Firebase FCM for push, and that was labelling it a mobile app.
+    const mobileTechs = ['Flutter', 'Dart', 'Android', 'iOS'];
     if (project.technologies.some(t => mobileTechs.some(m => t.includes(m)))) return 'mobile';
     if (project.technologies.some(t => webTechs.some(w => t.includes(w)))) return 'web';
-    return 'other';
-  }
-
-  private mapCategoryLabel(label: string): string {
-    if (label === 'Mobile Application') return 'mobile';
-    if (label === 'Web Application') return 'web';
     return 'other';
   }
 
