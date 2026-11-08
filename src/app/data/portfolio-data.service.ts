@@ -21,6 +21,8 @@ export interface Project {
   demoUrl?: string;
   githubUrl?: string;
   githubFrontendUrl?: string;
+  /** Completion month in YYYY-MM format. */
+  completedMonth?: string;
   fullDescription?: string;
   gallery?: string[];
 }
@@ -1423,6 +1425,7 @@ Purpose & Scope:
       ],
       image: 'assets/images/jasoora/jasoora-feature-graphic-1024x500.png',
       projectType: 'Freelance',
+      completedMonth: '2026-11',
       gallery: [
         'assets/images/jasoora/06-home-1920x1080.png',
         'assets/images/jasoora/01-reading-modes-1920x1080.png',

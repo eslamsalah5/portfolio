@@ -27,8 +27,14 @@ export class ExperienceComponent implements OnInit {
   email: string = '';
   linkedin: string = '';
 
-  /** Previously hardcoded three times over in the template. */
   readonly freelanceWork: FreelanceWork[] = [
+    {
+      name: 'Jasoora',
+      kind: 'Reading and publishing app · Jul–Nov 2026',
+      description:
+        'Arabic-first mobile app for novels, short stories, and illustrated series. Readers can build a library and resume where they left off, and writers can draft and publish their own stories.',
+      technologies: ['Flutter', 'Dart', 'Supabase', 'PostgreSQL'],
+    },
     {
       name: 'X World',
       kind: 'Anonymous social platform',

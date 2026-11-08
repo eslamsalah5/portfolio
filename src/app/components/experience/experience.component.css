@@ -101,7 +101,7 @@
 
 .freelance-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--spacing-2xl);
 }
 
@@ -157,14 +157,18 @@
    RESPONSIVE
    ============================================================================ */
 
-@media (max-width: 992px) {
+@media (max-width: 1199.98px) {
   .freelance-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--spacing-xl);
   }
 }
 
 @media (max-width: 576px) {
+  .freelance-grid {
+    grid-template-columns: 1fr;
+  }
+
   .timeline {
     padding-left: var(--spacing-lg);
   }

@@ -25,7 +25,9 @@ export class ProjectsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.projects = this.portfolioDataService.getProjects();
+    this.projects = [...this.portfolioDataService.getProjects()].sort((a, b) =>
+      (b.completedMonth ?? '').localeCompare(a.completedMonth ?? ''),
+    );
     // Featured = Professional projects (top 2)
     this.featuredProjects = this.projects
       .filter((p) => p.projectType === 'Professional')
@@ -116,7 +118,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   viewProjectDetails(project: Project): void {
-    const projectIndex = this.projects.indexOf(project);
+    const projectIndex = this.portfolioDataService.getProjects().indexOf(project);
     this.router.navigate(['/project', projectIndex]);
   }
 }
