@@ -1404,6 +1404,55 @@ Purpose & Scope:
 • No authentication, advanced filtering, or saving features included
 • Built to strengthen knowledge in real-time data handling and Flutter fundamentals`,
     },
+    {
+      title: 'Jasoora (جسورة) — Reading & Publishing Platform',
+      description:
+        'Jasoora is an Arabic-first reading and publishing platform for novels, short stories, and illustrated series. Readers can discover stories, build a personal library, and pick up where they left off. Writers can turn their drafts into published works and see how readers engage with them.',
+      technologies: [
+        'Flutter',
+        'Dart',
+        'Supabase',
+        'PostgreSQL',
+        'Bloc / Cubit',
+        'Hive',
+        'Flutter Quill',
+        'Firebase Cloud Messaging',
+        'Google Mobile Ads / UMP',
+        'Angular 21',
+        'TypeScript',
+      ],
+      image: 'assets/images/jasoora/jasoora-feature-graphic-1024x500.png',
+      projectType: 'Freelance',
+      gallery: [
+        'assets/images/jasoora/06-home-1920x1080.png',
+        'assets/images/jasoora/01-reading-modes-1920x1080.png',
+        'assets/images/jasoora/05-writer-space-1920x1080.png',
+        'assets/images/jasoora/02-visual-stories-1920x1080.png',
+        'assets/images/jasoora/03-library-1920x1080.png',
+        'assets/images/jasoora/04-explore-1920x1080.png',
+      ],
+      fullDescription: `Product Overview:
+• Readers can follow a novel chapter by chapter, finish a standalone story in one sitting, or read an illustrated series in a vertical reader. Authors have a dedicated space to draft, preview, and publish their stories.
+• The app supports Arabic and English, light and dark themes, and layouts for phones and tablets. The gallery shows promotional artwork for the mobile experience.
+• I worked on Jasoora as a freelance developer from July to November 2026.
+
+Reader Experience:
+• Discover works through curated collections, personalized recommendations, genres, and search across novels, one-shots, visual stories, and authors.
+• Adjust typography and resume from a saved reading position. Organize a library, revisit reading history, and download text novels for offline reading.
+• Follow authors, join chapter and paragraph discussions, rate works, and get notifications for new chapters and community activity.
+
+Writer Space:
+• Create novels and one-shots with covers, summaries, and genres or tags. Write and preview rich text with Quill and recover unsaved work from local drafts.
+• Reorder chapters, publish immediately or schedule publication, and see reading activity for your own work.
+
+Engineering & Delivery:
+• Built the mobile app with feature-based Clean Architecture, Bloc/Cubit, and Hive. Supabase handles authentication and storage, with PostgreSQL row-level security and ownership checks protecting user data.
+• Reading progress saves locally and syncs when connectivity returns. Versioned novel downloads keep the last complete package if an update fails.
+• Used Firebase Cloud Messaging for push notifications and Google Mobile Ads with UMP for consent. Verified key flows with Flutter unit, widget, and integration tests. The Android app entered Google Play closed testing.
+
+Web Development:
+• Built a companion Angular dashboard for content management and reporting, using TypeScript, reusable components, and Angular Signals.`,
+    },
   ];
 
   // Experience Data
